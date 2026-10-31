@@ -18,6 +18,7 @@ import {
   LogOut,
   ArrowLeft,
   ArrowUpRight,
+  Flame,
 } from 'lucide-react';
 import { MockRole, useLms } from '../../context/LmsContext';
 import { useMockGlobal } from '../../context/MockGlobalContext';
@@ -129,6 +130,13 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
         badge: '3 Batches',
       },
       {
+        label: 'Batch-wise Exam Performance',
+        href: '/dashboard/teacher/performance',
+        matchPaths: ['/dashboard/teacher/performance'],
+        icon: <Flame className="w-4 h-4" />,
+        badge: 'Heat Map',
+      },
+      {
         label: 'Exam Evaluations',
         href: '/dashboard/teacher/evaluations',
         matchPaths: ['/dashboard/teacher/evaluations'],
@@ -233,19 +241,19 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
   };
 
   return (
-    <div className="min-h-screen bg-[#080808] text-[#F5F3EF] flex flex-col lg:flex-row overflow-x-hidden">
+    <div className="min-h-screen bg-[#0A0B0E] text-[#F3F4F6] flex flex-col lg:flex-row overflow-x-hidden">
       {/* Mobile Top Header Bar */}
-      <div className="lg:hidden sticky top-0 z-40 flex items-center justify-between px-4 py-3.5 bg-[#111111] border-b border-[#292929]">
+      <div className="lg:hidden sticky top-0 z-40 flex items-center justify-between px-4 py-3.5 bg-[#11131A] border-b border-[#232734]">
         <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={handleGlobalBack}
-            className="px-3 py-1.5 rounded-md bg-[#080808] border border-[#292929] text-xs font-medium text-[#A1A1AA] hover:text-[#F5F3EF] inline-flex items-center gap-1.5 transition-colors"
+            className="px-3 py-1.5 rounded-md bg-[#0A0B0E] border border-[#232734] text-xs font-medium text-[#9CA3AF] hover:text-[#F3F4F6] inline-flex items-center gap-1.5 transition-colors"
           >
-            <ArrowLeft className="w-3.5 h-3.5 text-[#FF4B00]" />
+            <ArrowLeft className="w-3.5 h-3.5 text-brand-champagne" />
             <span>← Back</span>
           </button>
-          <span className="font-semibold tracking-tight text-base text-[#F5F3EF]">
+          <span className="font-semibold tracking-tight text-base text-[#F3F4F6]">
             Kanavugal Academy
           </span>
         </div>
@@ -253,7 +261,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
         <button
           type="button"
           onClick={() => setMobileSidebarOpen((prev) => !prev)}
-          className="p-2 rounded-md bg-[#080808] border border-[#292929] text-[#F5F3EF] hover:border-[#FF4B00] transition-colors"
+          className="p-2 rounded-md bg-[#0A0B0E] border border-[#232734] text-[#F3F4F6] hover:border-brand-champagne transition-colors"
           aria-label="Toggle navigation sidebar"
         >
           {mobileSidebarOpen ? (
@@ -278,11 +286,11 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
           mobileSidebarOpen
             ? 'fixed inset-y-0 left-0 z-40 flex w-72'
             : 'hidden lg:flex lg:w-72 xl:w-80'
-        } flex-col justify-between bg-[#111111] border-r border-[#292929] shrink-0 min-h-screen`}
+        } flex-col justify-between bg-[#11131A] border-r border-[#232734] shrink-0 min-h-screen`}
       >
         <div className="p-6 space-y-7">
           {/* Brand Header */}
-          <div className="flex items-center justify-between pb-5 border-b border-[#292929]">
+          <div className="flex items-center justify-between pb-5 border-b border-[#232734]">
             <a
               href={`/dashboard/${activeRole.toLowerCase()}`}
               onClick={(e) =>
@@ -291,12 +299,12 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
               className="text-left group focus:outline-none"
             >
               <div className="flex items-center gap-2.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#FF4B00]" />
-                <span className="text-lg font-semibold tracking-tight text-[#F5F3EF] group-hover:text-[#FF4B00] transition-colors">
+                <span className="w-2.5 h-2.5 rounded-full bg-brand-champagne" />
+                <span className="text-lg font-semibold tracking-tight text-[#F3F4F6] group-hover:text-brand-champagne transition-colors">
                   Kanavugal Academy
                 </span>
               </div>
-              <p className="text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider mt-1">
+              <p className="text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider mt-1">
                 NEET UG · JEE · Classes 6–12
               </p>
             </a>
@@ -304,7 +312,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
             <button
               type="button"
               onClick={() => setMobileSidebarOpen(false)}
-              className="lg:hidden p-1.5 rounded-md bg-[#080808] border border-[#292929] text-[#A1A1AA] hover:text-[#F5F3EF]"
+              className="lg:hidden p-1.5 rounded-md bg-[#0A0B0E] border border-[#232734] text-[#9CA3AF] hover:text-[#F3F4F6]"
               aria-label="Close sidebar"
             >
               <X className="w-4 h-4" />
@@ -312,32 +320,32 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
           </div>
 
           {/* Active Session Identity Card */}
-          <div className="bg-[#080808] border border-[#292929] rounded-lg p-4 space-y-3">
+          <div className="bg-[#13161F] border border-[#232734] rounded-lg p-4 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-[#FF4B00]">
+              <span className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-brand-champagne">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 {activeRole} SESSION
               </span>
-              <span className="font-mono text-xs text-[#A1A1AA] bg-[#111111] px-2 py-0.5 rounded border border-[#292929]">
+              <span className="font-mono text-xs text-[#3B82F6] bg-[#0A0B0E] px-2 py-0.5 rounded border border-[#232734]">
                 {userCard.badge}
               </span>
             </div>
 
             <div>
-              <h2 className="text-base font-semibold text-[#F5F3EF]">
+              <h2 className="text-base font-semibold text-[#F3F4F6]">
                 {userCard.name}
               </h2>
-              <p className="font-mono text-xs text-[#A1A1AA] mt-0.5">
+              <p className="font-mono text-xs text-[#9CA3AF] mt-0.5">
                 {userCard.identifier}
               </p>
             </div>
 
-            <div className="pt-2.5 border-t border-[#292929] flex items-center justify-between text-xs text-[#A1A1AA]">
+            <div className="pt-2.5 border-t border-[#232734] flex items-center justify-between text-xs text-[#9CA3AF]">
               <span className="inline-flex items-center gap-1">
-                <MapPin className="w-3.5 h-3.5 text-[#FF4B00]" />
+                <MapPin className="w-3.5 h-3.5 text-brand-champagne" />
                 {userCard.campus}
               </span>
-              <span className="font-mono text-xs text-[#F5F3EF] truncate max-w-[130px]">
+              <span className="font-mono text-xs text-[#F3F4F6] truncate max-w-[130px]">
                 {userCard.subMeta}
               </span>
             </div>
@@ -348,7 +356,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
             className="space-y-2"
             aria-label={`${activeRole} Nested Route Navigation`}
           >
-            <p className="px-3 pb-1 text-xs md:text-sm font-medium uppercase tracking-wider text-[#A1A1AA]">
+            <p className="px-3 pb-1 text-xs md:text-sm font-medium uppercase tracking-wider text-[#9CA3AF]">
               {activeRole} Workspace
             </p>
             {navItems.map((item) => {
@@ -360,8 +368,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
                   onClick={(e) => handleLinkClick(e, item.href)}
                   className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-md text-sm font-medium transition-colors ${
                     isActive
-                      ? 'bg-[#FF4B00] text-[#F5F3EF]'
-                      : 'text-[#A1A1AA] hover:text-[#F5F3EF] hover:bg-[#080808]'
+                      ? 'bg-brand-champagne text-[#0A0B0E] font-semibold'
+                      : 'text-[#9CA3AF] hover:text-[#F3F4F6] hover:bg-[#13161F]'
                   }`}
                 >
                   <span className="flex items-center gap-3 text-left min-w-0">
@@ -372,8 +380,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
                     <span
                       className={`font-mono text-xs px-2 py-0.5 rounded whitespace-nowrap shrink-0 ${
                         isActive
-                          ? 'bg-[#080808]/30 text-[#F5F3EF]'
-                          : 'bg-[#080808] text-[#A1A1AA] border border-[#292929]'
+                          ? 'bg-[#0A0B0E]/20 text-[#0A0B0E] font-semibold'
+                          : 'bg-[#0A0B0E] text-[#9CA3AF] border border-[#232734]'
                       }`}
                     >
                       {item.badge}
@@ -386,19 +394,19 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
         </div>
 
         {/* Bottom Sidebar Footer */}
-        <div className="p-6 border-t border-[#292929] space-y-4">
+        <div className="p-6 border-t border-[#232734] space-y-4">
           {activeRole === 'STUDENT' && (
-            <div className="bg-[#080808] border border-[#292929] rounded-lg p-4 space-y-2.5">
+            <div className="bg-[#13161F] border border-[#232734] rounded-lg p-4 space-y-2.5">
               <div className="flex items-center justify-between text-xs font-medium uppercase tracking-wider">
-                <span className="text-[#A1A1AA]">NTA CBT Hall</span>
-                <span className="font-mono text-[#FF4B00]">+4 / -1</span>
+                <span className="text-[#9CA3AF]">NTA CBT Hall</span>
+                <span className="font-mono text-brand-champagne">+4 / -1</span>
               </div>
               <a
                 href="/exam/exm_jee_mock_01/attempt"
                 onClick={(e) =>
                   handleLinkClick(e, '/exam/exm_jee_mock_01/attempt')
                 }
-                className="w-full inline-flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-sm font-medium transition-colors"
+                className="w-full inline-flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-sm font-semibold transition-colors"
               >
                 <span>Enter CBT Exam Hall</span>
                 <ArrowUpRight className="w-4 h-4" />
@@ -410,33 +418,33 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
             <a
               href="/login"
               onClick={(e) => handleLinkClick(e, '/login')}
-              className="inline-flex items-center gap-2 text-sm font-medium text-[#A1A1AA] hover:text-[#F5F3EF] transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-medium text-[#9CA3AF] hover:text-[#F3F4F6] transition-colors"
             >
-              <LogOut className="w-4 h-4 text-[#FF4B00]" />
+              <LogOut className="w-4 h-4 text-brand-champagne" />
               <span>Sign Out (/login)</span>
             </a>
-            <span className="font-mono text-xs text-[#A1A1AA]">AY 2026–27</span>
+            <span className="font-mono text-xs text-[#3B82F6]">AY 2026–27</span>
           </div>
         </div>
       </aside>
 
       {/* Main Content Area + Minimal Top Header with Global "← Back" Button */}
-      <div className="flex-1 min-w-0 flex flex-col bg-[#080808]">
-        <div className="hidden lg:flex items-center justify-between px-10 py-4 bg-[#111111] border-b border-[#292929]">
+      <div className="flex-1 min-w-0 flex flex-col bg-[#0A0B0E]">
+        <div className="hidden lg:flex items-center justify-between px-10 py-4 bg-[#11131A] border-b border-[#232734]">
           <div className="flex items-center gap-4">
             <button
               type="button"
               onClick={handleGlobalBack}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-[#080808] hover:bg-[#181818] border border-[#292929] text-xs md:text-sm font-medium text-[#A1A1AA] hover:text-[#F5F3EF] transition-colors"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-[#13161F] hover:bg-[#191D29] border border-[#232734] text-xs md:text-sm font-medium text-[#9CA3AF] hover:text-[#F3F4F6] transition-colors"
             >
-              <ArrowLeft className="w-4 h-4 text-[#FF4B00]" />
+              <ArrowLeft className="w-4 h-4 text-brand-champagne" />
               <span>← Back</span>
             </button>
 
-            <div className="flex items-center gap-2 text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+            <div className="flex items-center gap-2 text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
               <span>Kanavugal Academy LMS</span>
               <span>•</span>
-              <span className="font-mono text-[#F5F3EF] normal-case">
+              <span className="font-mono text-[#3B82F6] normal-case">
                 {cleanPath}
               </span>
             </div>
@@ -446,14 +454,14 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
             <button
               type="button"
               onClick={() => navigate('/login')}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#080808] hover:border-[#FF4B00] border border-[#292929] text-xs font-medium text-[#A1A1AA] hover:text-[#F5F3EF] transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#13161F] hover:border-brand-champagne border border-[#232734] text-xs font-medium text-[#9CA3AF] hover:text-[#F3F4F6] transition-colors"
             >
-              <LogOut className="w-3.5 h-3.5 text-[#FF4B00]" />
+              <LogOut className="w-3.5 h-3.5 text-brand-champagne" />
               <span>Switch Role / Sign Out</span>
             </button>
 
-            <div className="flex items-center gap-2 text-xs font-medium text-[#A1A1AA] uppercase tracking-wider font-mono">
-              <span className="w-2 h-2 rounded-full bg-[#FF4B00]" />
+            <div className="flex items-center gap-2 text-xs font-medium text-[#9CA3AF] uppercase tracking-wider font-mono">
+              <span className="w-2 h-2 rounded-full bg-brand-champagne" />
               <span>SBO COLONY & ANAIYUR</span>
             </div>
           </div>

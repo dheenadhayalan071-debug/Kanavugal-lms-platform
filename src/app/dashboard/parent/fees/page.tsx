@@ -17,24 +17,24 @@ export const ParentFeesPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#080808] text-[#F5F3EF]">
+    <div className="bg-[#0A0B0E] text-[#F3F4F6]">
       {toastMessage && (
-        <div className="fixed bottom-8 right-6 z-50 max-w-md bg-[#111111] border border-[#FF4B00] rounded-lg px-4 py-3 shadow-2xl flex items-center gap-3">
-          <CheckCircle2 className="w-4 h-4 text-[#FF4B00] shrink-0" />
-          <p className="text-xs text-[#F5F3EF]">{toastMessage}</p>
+        <div className="fixed bottom-8 right-6 z-50 max-w-md bg-[#13161F] border border-brand-champagne rounded-lg px-4 py-3 shadow-2xl flex items-center gap-3">
+          <CheckCircle2 className="w-4 h-4 text-brand-champagne shrink-0" />
+          <p className="text-xs text-[#F3F4F6]">{toastMessage}</p>
         </div>
       )}
 
-      <header className="px-6 lg:px-10 py-6 border-b border-[#292929] bg-[#080808] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <header className="px-6 lg:px-10 py-6 border-b border-[#232734] bg-[#11131A] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div className="space-y-1">
-          <div className="flex items-center gap-2 text-xs text-[#FF4B00] font-medium">
+          <div className="flex items-center gap-2 text-xs text-brand-champagne font-medium">
             <Receipt className="w-3.5 h-3.5" />
             <span>Read-Only Fee Ledger · /dashboard/parent/fees</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F5F3EF]">
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F3F4F6]">
             Academic Fee Status & Official Receipts
           </h1>
-          <p className="text-xs text-[#A1A1AA]">
+          <p className="text-xs text-[#9CA3AF]">
             Verified offline Cash, UPI, and NEFT tuition receipts for{' '}
             {activeChild.fullName}
           </p>
@@ -48,10 +48,10 @@ export const ParentFeesPage: React.FC = () => {
                 key={child.id}
                 type="button"
                 onClick={() => setSelectedChildId(child.id)}
-                className={`px-3.5 py-2 rounded-md text-xs font-medium border transition-colors ${
+                className={`px-3.5 py-2 rounded-md text-xs font-semibold border transition-colors ${
                   isSelected
-                    ? 'bg-[#FF4B00] text-[#F5F3EF] border-[#FF4B00]'
-                    : 'bg-[#111111] text-[#A1A1AA] border-[#292929] hover:text-[#F5F3EF]'
+                    ? 'bg-brand-champagne text-[#0A0B0E] border-brand-champagne'
+                    : 'bg-[#13161F] text-[#9CA3AF] border-[#232734] hover:text-[#F3F4F6]'
                 }`}
               >
                 {child.fullName} ({child.campus})
@@ -62,53 +62,53 @@ export const ParentFeesPage: React.FC = () => {
       </header>
 
       <div className="px-6 lg:px-10 py-8 max-w-4xl">
-        <div className="bg-[#111111] border border-[#292929] rounded-lg p-6 space-y-6">
-          <div className="flex items-center justify-between border-b border-[#292929] pb-4">
+        <div className="bg-[#13161F] border border-[#232734] rounded-lg p-6 space-y-6">
+          <div className="flex items-center justify-between border-b border-[#232734] pb-4">
             <div>
-              <p className="text-xs text-[#A1A1AA]">
+              <p className="text-xs text-[#9CA3AF]">
                 Scholar: {activeChild.fullName} ({activeChild.rollNumber})
               </p>
-              <h2 className="text-lg font-semibold text-[#F5F3EF] mt-1">
+              <h2 className="text-lg font-semibold text-[#F3F4F6] mt-1">
                 {activeChild.feeSummary.termTitle}
               </h2>
             </div>
-            <span className="font-mono text-xs px-3 py-1 rounded bg-[#080808] border border-[#292929] text-[#FF4B00]">
+            <span className="font-mono text-xs px-3 py-1 rounded bg-[#0A0B0E] border border-[#232734] text-brand-champagne">
               {activeChild.feeSummary.status}
             </span>
           </div>
 
-          <div className="bg-[#080808] border border-[#292929] rounded-md p-5 space-y-3 text-xs">
-            <div className="flex justify-between py-1 border-b border-[#292929]">
-              <span className="text-[#A1A1AA]">Official Receipt Number</span>
-              <span className="font-mono text-[#F5F3EF]">
+          <div className="bg-[#0A0B0E] border border-[#232734] rounded-md p-5 space-y-3 text-xs">
+            <div className="flex justify-between py-1 border-b border-[#232734]">
+              <span className="text-[#9CA3AF]">Official Receipt Number</span>
+              <span className="font-mono text-[#3B82F6]">
                 {activeChild.feeSummary.receiptNo}
               </span>
             </div>
-            <div className="flex justify-between py-1 border-b border-[#292929]">
-              <span className="text-[#A1A1AA]">Campus Branch</span>
-              <span className="text-[#F5F3EF]">{activeChild.campus}</span>
+            <div className="flex justify-between py-1 border-b border-[#232734]">
+              <span className="text-[#9CA3AF]">Campus Branch</span>
+              <span className="text-[#F3F4F6]">{activeChild.campus}</span>
             </div>
-            <div className="flex justify-between py-1 border-b border-[#292929]">
-              <span className="text-[#A1A1AA]">Total Term Tuition Fee</span>
-              <span className="font-mono text-[#F5F3EF]">
+            <div className="flex justify-between py-1 border-b border-[#232734]">
+              <span className="text-[#9CA3AF]">Total Term Tuition Fee</span>
+              <span className="font-mono text-[#F3F4F6]">
                 ₹{activeChild.feeSummary.totalFee.toLocaleString('en-IN')}
               </span>
             </div>
-            <div className="flex justify-between py-1 border-b border-[#292929]">
-              <span className="text-[#A1A1AA]">Amount Paid</span>
-              <span className="font-mono font-semibold text-[#FF4B00]">
+            <div className="flex justify-between py-1 border-b border-[#232734]">
+              <span className="text-[#9CA3AF]">Amount Paid</span>
+              <span className="font-mono font-semibold text-brand-champagne">
                 ₹{activeChild.feeSummary.paidAmount.toLocaleString('en-IN')}
               </span>
             </div>
-            <div className="flex justify-between py-1 border-b border-[#292929]">
-              <span className="text-[#A1A1AA]">Balance Due</span>
-              <span className="font-mono text-[#F5F3EF]">
+            <div className="flex justify-between py-1 border-b border-[#232734]">
+              <span className="text-[#9CA3AF]">Balance Due</span>
+              <span className="font-mono text-[#F3F4F6]">
                 ₹{activeChild.feeSummary.balanceDue.toLocaleString('en-IN')}
               </span>
             </div>
             <div className="flex justify-between py-1">
-              <span className="text-[#A1A1AA]">Payment Mode & Date</span>
-              <span className="text-[#F5F3EF]">
+              <span className="text-[#9CA3AF]">Payment Mode & Date</span>
+              <span className="text-[#F3F4F6]">
                 {activeChild.feeSummary.paymentMethod} ·{' '}
                 {activeChild.feeSummary.paidOn}
               </span>
@@ -122,7 +122,7 @@ export const ParentFeesPage: React.FC = () => {
                 `Downloading official fee receipt ${activeChild.feeSummary.receiptNo}.pdf...`
               )
             }
-            className="w-full py-2.5 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-xs font-medium inline-flex items-center justify-center gap-2 transition-colors"
+            className="w-full py-2.5 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-xs font-semibold inline-flex items-center justify-center gap-2 transition-colors"
           >
             <Download className="w-3.5 h-3.5" />
             <span>

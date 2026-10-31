@@ -294,3 +294,41 @@ test('resolveLoginDashboardRoute, prependGlobalAnnouncement, and updateManagedUs
   assert.equal(approved[0].status, 'APPROVED');
 });
 
+test('next.config redirects() permanently routes / to /login', async () => {
+  const { default: nextConfig } = await import('../../next.config');
+  assert.ok(typeof nextConfig.redirects === 'function');
+  const rules = await nextConfig.redirects();
+  assert.equal(rules.length, 1);
+  assert.deepEqual(rules[0], {
+    source: '/',
+    destination: '/login',
+    permanent: true,
+  });
+});
+
+test('LAST_FIVE_NTA_MOCK_RANKS and classifyChapterStruggleSeverity classify CBT struggle accurately', async () => {
+  const {
+    LAST_FIVE_NTA_MOCK_RANKS,
+    classifyChapterStruggleSeverity,
+  } = await import('./lmsLogic');
+
+  assert.equal(LAST_FIVE_NTA_MOCK_RANKS.length, 5);
+  assert.ok(
+    LAST_FIVE_NTA_MOCK_RANKS[4].studentRank <
+      LAST_FIVE_NTA_MOCK_RANKS[4].branchAvgRank
+  );
+
+  const critical = classifyChapterStruggleSeverity(42);
+  assert.equal(critical.severity, 'CRITICAL');
+  assert.equal(critical.struggleIndex, 58);
+
+  const high = classifyChapterStruggleSeverity(58);
+  assert.equal(high.severity, 'HIGH');
+
+  const moderate = classifyChapterStruggleSeverity(71);
+  assert.equal(moderate.severity, 'MODERATE');
+
+  const mastered = classifyChapterStruggleSeverity(86);
+  assert.equal(mastered.severity, 'MASTERED');
+});
+

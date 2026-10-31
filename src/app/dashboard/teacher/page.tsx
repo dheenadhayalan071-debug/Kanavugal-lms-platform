@@ -7,6 +7,7 @@ import {
   CheckSquare,
   FilePlus2,
   Megaphone,
+  Flame,
 } from 'lucide-react';
 import { useLms } from '../../../context/LmsContext';
 import { useMockGlobal } from '../../../context/MockGlobalContext';
@@ -60,19 +61,19 @@ export const TeacherDashboardPage: React.FC = () => {
   const { globalAnnouncements } = useMockGlobal();
 
   return (
-    <div className="bg-[#080808] text-[#F5F3EF]">
-      <header className="px-6 lg:px-10 py-8 border-b border-[#292929] bg-[#080808] flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+    <div className="bg-[#0A0B0E] text-[#F3F4F6]">
+      <header className="px-6 lg:px-10 py-8 border-b border-[#232734] bg-[#11131A] flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div className="space-y-2">
-          <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+          <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
             <span>Faculty Overview</span>
             <span>•</span>
-            <span className="font-mono text-[#F5F3EF]">ID: KA-FAC-PHY-01</span>
+            <span className="font-mono text-[#3B82F6]">ID: KA-FAC-PHY-01</span>
             <span>•</span>
-            <span className="text-[#FF4B00]">
+            <span className="text-brand-champagne">
               SBO Colony & Anaiyur Campuses
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F5F3EF]">
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F3F4F6]">
             Dr. Ananya Velu — Faculty Overview
           </h1>
         </div>
@@ -80,26 +81,35 @@ export const TeacherDashboardPage: React.FC = () => {
         <div className="flex flex-wrap items-center gap-3">
           <button
             type="button"
-            onClick={() => navigate('/dashboard/teacher/evaluations')}
-            className="px-4 py-2.5 rounded-md bg-[#111111] hover:bg-[#181818] text-[#F5F3EF] border border-[#292929] hover:border-[#FF4B00] text-sm font-medium inline-flex items-center gap-2 transition-colors"
+            onClick={() => navigate('/dashboard/teacher/performance')}
+            className="px-4 py-2.5 rounded-md bg-[#13161F] hover:bg-[#191D29] text-[#F3F4F6] border border-[#232734] hover:border-brand-champagne text-sm font-medium inline-flex items-center gap-2 transition-colors"
           >
-            <CheckSquare className="w-4 h-4 text-[#FF4B00]" />
+            <Flame className="w-4 h-4 text-brand-champagne" />
+            <span>Batch-wise Exam Performance</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => navigate('/dashboard/teacher/evaluations')}
+            className="px-4 py-2.5 rounded-md bg-[#13161F] hover:bg-[#191D29] text-[#F3F4F6] border border-[#232734] hover:border-brand-champagne text-sm font-medium inline-flex items-center gap-2 transition-colors"
+          >
+            <CheckSquare className="w-4 h-4 text-brand-champagne" />
             <span>Grade Scripts (2)</span>
           </button>
 
           <button
             type="button"
             onClick={() => navigate('/dashboard/teacher/exams')}
-            className="px-4 py-2.5 rounded-md bg-[#111111] hover:bg-[#181818] text-[#F5F3EF] border border-[#292929] hover:border-[#FF4B00] text-sm font-medium inline-flex items-center gap-2 transition-colors"
+            className="px-4 py-2.5 rounded-md bg-[#13161F] hover:bg-[#191D29] text-[#F3F4F6] border border-[#232734] hover:border-brand-champagne text-sm font-medium inline-flex items-center gap-2 transition-colors"
           >
-            <FilePlus2 className="w-4 h-4 text-[#FF4B00]" />
+            <FilePlus2 className="w-4 h-4 text-brand-champagne" />
             <span>Examination Studio</span>
           </button>
 
           <button
             type="button"
             onClick={() => navigate('/learn/crs_phy_12_01/mod_live_01')}
-            className="px-4 py-2.5 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-sm font-medium inline-flex items-center gap-2 transition-colors"
+            className="px-4 py-2.5 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-sm font-semibold inline-flex items-center gap-2 transition-colors"
           >
             <Radio className="w-4 h-4" />
             <span>Start Live Zoom Class</span>
@@ -111,16 +121,16 @@ export const TeacherDashboardPage: React.FC = () => {
         {/* Global Announcements from MockGlobalContext (Cross-Role Reflection) */}
         <section
           aria-label="Global Academy Broadcasts"
-          className="bg-[#111111] border border-[#292929] rounded-lg p-6 md:p-8 space-y-5"
+          className="bg-[#13161F] border border-[#232734] rounded-lg p-6 md:p-8 space-y-5"
         >
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#292929] pb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#232734] pb-4">
             <div className="flex items-center gap-2.5">
-              <Megaphone className="w-5 h-5 text-[#FF4B00]" />
-              <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F5F3EF]">
+              <Megaphone className="w-5 h-5 text-brand-champagne" />
+              <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F3F4F6]">
                 Academy Announcements & Faculty Circulars
               </h2>
             </div>
-            <span className="font-mono text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+            <span className="font-mono text-xs md:text-sm font-medium text-[#3B82F6] uppercase tracking-wider">
               LIVE ADMIN BROADCAST ({globalAnnouncements.length})
             </span>
           </div>
@@ -129,20 +139,20 @@ export const TeacherDashboardPage: React.FC = () => {
             {globalAnnouncements.slice(0, 2).map((ann) => (
               <div
                 key={ann.id}
-                className="bg-[#080808] border border-[#292929] rounded-md p-5 space-y-2"
+                className="bg-[#0A0B0E] border border-[#232734] rounded-md p-5 space-y-2"
               >
                 <div className="flex items-center justify-between gap-2">
-                  <span className="font-mono text-xs md:text-sm font-medium text-[#FF4B00] uppercase tracking-wider px-2.5 py-0.5 rounded bg-[#111111] border border-[#292929]">
+                  <span className="font-mono text-xs md:text-sm font-medium text-brand-champagne uppercase tracking-wider px-2.5 py-0.5 rounded bg-[#13161F] border border-[#232734]">
                     {ann.targetBranches}
                   </span>
-                  <span className="font-mono text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+                  <span className="font-mono text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
                     {ann.publishedAt}
                   </span>
                 </div>
-                <h3 className="text-base font-semibold text-[#F5F3EF]">
+                <h3 className="text-base font-semibold text-[#F3F4F6]">
                   {ann.title}
                 </h3>
-                <p className="text-base text-[#A1A1AA] leading-relaxed">
+                <p className="text-base text-[#9CA3AF] leading-relaxed">
                   {ann.message}
                 </p>
               </div>
@@ -153,64 +163,64 @@ export const TeacherDashboardPage: React.FC = () => {
         {/* Primary Faculty KPIs */}
         <section className="space-y-5">
           <div className="space-y-1">
-            <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F5F3EF]">
+            <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F3F4F6]">
               Faculty Teaching & Evaluation KPIs
             </h2>
-            <p className="text-base text-[#A1A1AA]">
+            <p className="text-base text-[#9CA3AF]">
               Active batch load, pending script evaluations, and campus
               attendance rate
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-[#111111] border border-[#292929] rounded-lg p-6 space-y-3">
-              <div className="flex items-center justify-between text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+            <div className="bg-[#13161F] border border-[#232734] rounded-lg p-6 space-y-3">
+              <div className="flex items-center justify-between text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
                 <span>Assigned Batches</span>
-                <Users className="w-4 h-4 text-[#FF4B00]" />
+                <Users className="w-4 h-4 text-brand-champagne" />
               </div>
-              <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-[#FF4B00]">
+              <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-brand-champagne">
                 03
               </p>
-              <p className="text-base text-[#F5F3EF]">
+              <p className="text-base text-[#F3F4F6]">
                 136 Enrolled Scholars across SBO & Anaiyur
               </p>
             </div>
 
-            <div className="bg-[#111111] border border-[#292929] rounded-lg p-6 space-y-3">
-              <div className="flex items-center justify-between text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+            <div className="bg-[#13161F] border border-[#232734] rounded-lg p-6 space-y-3">
+              <div className="flex items-center justify-between text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
                 <span>Pending Evaluations</span>
-                <CheckSquare className="w-4 h-4 text-[#FF4B00]" />
+                <CheckSquare className="w-4 h-4 text-brand-champagne" />
               </div>
-              <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-[#FF4B00]">
+              <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-brand-champagne">
                 02
               </p>
-              <p className="text-base text-[#F5F3EF]">
+              <p className="text-base text-[#F3F4F6]">
                 Descriptive scripts awaiting grading
               </p>
             </div>
 
-            <div className="bg-[#111111] border border-[#292929] rounded-lg p-6 space-y-3">
-              <div className="flex items-center justify-between text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+            <div className="bg-[#13161F] border border-[#232734] rounded-lg p-6 space-y-3">
+              <div className="flex items-center justify-between text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
                 <span>Active CBT Papers</span>
-                <Award className="w-4 h-4 text-[#FF4B00]" />
+                <Award className="w-4 h-4 text-brand-champagne" />
               </div>
-              <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-[#FF4B00]">
+              <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-brand-champagne">
                 02
               </p>
-              <p className="text-base text-[#F5F3EF]">
+              <p className="text-base text-[#F3F4F6]">
                 +4 / -1 NTA Marking Scheme Configured
               </p>
             </div>
 
-            <div className="bg-[#111111] border border-[#292929] rounded-lg p-6 space-y-3">
-              <div className="flex items-center justify-between text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+            <div className="bg-[#13161F] border border-[#232734] rounded-lg p-6 space-y-3">
+              <div className="flex items-center justify-between text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
                 <span>Today’s Attendance</span>
-                <CalendarCheck className="w-4 h-4 text-[#FF4B00]" />
+                <CalendarCheck className="w-4 h-4 text-brand-champagne" />
               </div>
-              <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-[#FF4B00]">
+              <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-brand-champagne">
                 95.6%
               </p>
-              <p className="text-base text-[#F5F3EF]">
+              <p className="text-base text-[#F3F4F6]">
                 Synced with Parent & Admin Portals
               </p>
             </div>
@@ -220,10 +230,10 @@ export const TeacherDashboardPage: React.FC = () => {
         {/* Assigned Academic Batches */}
         <section className="space-y-6">
           <div className="space-y-1">
-            <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F5F3EF]">
+            <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F3F4F6]">
               Assigned Academic Batches
             </h2>
-            <p className="text-base text-[#A1A1AA]">
+            <p className="text-base text-[#9CA3AF]">
               Active NEET UG, JEE Main & Advanced, and CBSE Class 12 batches
               under your mentorship
             </p>
@@ -233,55 +243,55 @@ export const TeacherDashboardPage: React.FC = () => {
             {INITIAL_BATCHES.map((batch) => (
               <div
                 key={batch.id}
-                className="bg-[#111111] border border-[#292929] rounded-lg p-6 md:p-7 flex flex-col justify-between space-y-6 hover:border-[#FF4B00]/60 transition-colors"
+                className="bg-[#13161F] border border-[#232734] rounded-lg p-6 md:p-7 flex flex-col justify-between space-y-6 hover:border-brand-champagne/60 transition-colors"
               >
                 <div className="space-y-3.5">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs md:text-sm font-medium uppercase tracking-wider px-2.5 py-1 rounded bg-[#080808] text-[#FF4B00] border border-[#292929]">
+                    <span className="font-mono text-xs md:text-sm font-medium uppercase tracking-wider px-2.5 py-1 rounded bg-[#0A0B0E] text-brand-champagne border border-[#232734]">
                       {batch.code}
                     </span>
-                    <span className="text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+                    <span className="text-xs md:text-sm font-medium text-[#3B82F6] uppercase tracking-wider">
                       {batch.campus}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-semibold tracking-tight text-[#F5F3EF] leading-snug">
+                  <h3 className="text-xl font-semibold tracking-tight text-[#F3F4F6] leading-snug">
                     {batch.name}
                   </h3>
 
-                  <p className="text-base text-[#A1A1AA]">
+                  <p className="text-base text-[#9CA3AF]">
                     Active Chapter:{' '}
-                    <span className="text-[#F5F3EF] font-medium">
+                    <span className="text-[#F3F4F6] font-medium">
                       {batch.activeChapter}
                     </span>
                   </p>
                 </div>
 
-                <div className="space-y-4 pt-4 border-t border-[#292929]">
+                <div className="space-y-4 pt-4 border-t border-[#232734]">
                   <div className="flex items-center justify-between text-xs md:text-sm font-medium uppercase tracking-wider">
-                    <span className="text-[#A1A1AA]">
+                    <span className="text-[#9CA3AF]">
                       {batch.studentCount} Scholars
                     </span>
-                    <span className="font-mono text-[#FF4B00]">
+                    <span className="font-mono text-brand-champagne">
                       {batch.syllabusProgressPct}% Syllabus
                     </span>
                   </div>
 
-                  <div className="w-full h-2 bg-[#080808] border border-[#292929] rounded-full overflow-hidden">
+                  <div className="w-full h-2 bg-[#0A0B0E] border border-[#232734] rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-[#FF4B00]"
+                      className="h-full bg-brand-champagne"
                       style={{ width: `${batch.syllabusProgressPct}%` }}
                     />
                   </div>
 
                   <div className="flex items-center justify-between pt-1">
-                    <span className="font-mono text-xs text-[#A1A1AA]">
+                    <span className="font-mono text-xs text-[#9CA3AF]">
                       {batch.nextSessionTime}
                     </span>
                     <button
                       type="button"
                       onClick={() => navigate('/dashboard/teacher/attendance')}
-                      className="px-3.5 py-2 rounded-md bg-[#080808] hover:bg-[#FF4B00] text-[#F5F3EF] border border-[#292929] hover:border-[#FF4B00] text-xs md:text-sm font-medium transition-colors"
+                      className="px-3.5 py-2 rounded-md bg-[#0A0B0E] hover:bg-brand-champagne text-[#F3F4F6] hover:text-[#0A0B0E] border border-[#232734] hover:border-brand-champagne text-xs md:text-sm font-semibold transition-colors"
                     >
                       Mark Roster
                     </button>

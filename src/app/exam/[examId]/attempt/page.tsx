@@ -280,7 +280,6 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
 
   const currentQuestion = NTA_CBT_QUESTIONS[currentIndex];
 
-  // Decrement countdown timer each second while exam is active
   useEffect(() => {
     if (isSubmitted) return;
     const timer = setInterval(() => {
@@ -289,7 +288,6 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
     return () => clearInterval(timer);
   }, [isSubmitted]);
 
-  // Automatic Auto-Submission Logic when `remainingSeconds` reaches zero
   useEffect(() => {
     const expiryCheck = resolveCbtTimerExpiry(
       remainingSeconds,
@@ -298,7 +296,6 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
     );
 
     if (expiryCheck.shouldAutoSubmit) {
-      // Persist any currently selected draft option before locking the submission
       if (draftOption) {
         const activeId = NTA_CBT_QUESTIONS[currentIndex].id;
         setSavedOptions((prev) => ({ ...prev, [activeId]: draftOption }));
@@ -416,7 +413,7 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
   const getPaletteButtonClass = (qId: string, isCurrent: boolean) => {
     const status = questionStatuses[qId] || 'NOT_VISITED';
     const ringClass = isCurrent
-      ? 'ring-2 ring-[#FF4B00] ring-offset-2 ring-offset-[#111111]'
+      ? 'ring-2 ring-brand-champagne ring-offset-2 ring-offset-[#13161F]'
       : '';
 
     switch (status) {
@@ -425,27 +422,27 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
       case 'NOT_ANSWERED':
         return `bg-red-600/20 text-red-400 border-red-500/60 hover:bg-red-600/30 ${ringClass}`;
       case 'MARKED_FOR_REVIEW':
-        return `bg-purple-600/25 text-purple-300 border-[#FF4B00] hover:bg-purple-600/35 ${ringClass}`;
+        return `bg-purple-600/25 text-purple-300 border-brand-champagne hover:bg-purple-600/35 ${ringClass}`;
       case 'NOT_VISITED':
       default:
-        return `bg-[#080808] text-[#A1A1AA] border-[#292929] hover:text-[#F5F3EF] ${ringClass}`;
+        return `bg-[#0A0B0E] text-[#9CA3AF] border-[#232734] hover:text-[#F3F4F6] ${ringClass}`;
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#080808] text-[#F5F3EF] flex flex-col overflow-x-hidden">
+    <div className="min-h-screen bg-[#0A0B0E] text-[#F3F4F6] flex flex-col overflow-x-hidden">
       {/* Floating Auto-Submission Notification Toast */}
       {autoSubmitNotice && (
         <div
           role="alert"
-          className="fixed bottom-5 right-5 z-50 max-w-md bg-[#111111] border border-[#FF4B00] rounded-lg px-4 py-3.5 shadow-2xl flex items-start gap-3"
+          className="fixed bottom-5 right-5 z-50 max-w-md bg-[#13161F] border border-brand-champagne rounded-lg px-4 py-3.5 shadow-2xl flex items-start gap-3"
         >
-          <BellRing className="w-4 h-4 text-[#FF4B00] shrink-0 mt-0.5" />
+          <BellRing className="w-4 h-4 text-brand-champagne shrink-0 mt-0.5" />
           <div className="space-y-1">
-            <p className="text-xs font-semibold text-[#FF4B00]">
+            <p className="text-xs font-semibold text-brand-champagne">
               Automatic CBT Submission Triggered
             </p>
-            <p className="text-xs text-[#F5F3EF] leading-relaxed">
+            <p className="text-xs text-[#F3F4F6] leading-relaxed">
               {autoSubmitNotice}
             </p>
           </div>
@@ -453,30 +450,30 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
       )}
 
       {/* TOP HEADER: Exam Title, Student Roll Number & Monospace Countdown Timer */}
-      <header className="sticky top-0 z-30 bg-[#111111] border-b border-[#292929] px-4 sm:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
+      <header className="sticky top-0 z-30 bg-[#11131A] border-b border-[#232734] px-4 sm:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3.5 min-w-0">
           <button
             type="button"
             onClick={() => navigate('/dashboard/student')}
-            className="px-3 py-1.5 rounded-md bg-[#080808] hover:bg-[#181818] border border-[#292929] text-xs font-medium text-[#A1A1AA] hover:text-[#F5F3EF] inline-flex items-center gap-1.5 transition-colors shrink-0"
+            className="px-3 py-1.5 rounded-md bg-[#0A0B0E] hover:bg-[#191D28] border border-[#232734] text-xs font-medium text-[#9CA3AF] hover:text-[#F3F4F6] inline-flex items-center gap-1.5 transition-colors shrink-0"
           >
-            <ArrowLeft className="w-3.5 h-3.5 text-[#FF4B00]" />
+            <ArrowLeft className="w-3.5 h-3.5 text-brand-champagne" />
             <span>← Back</span>
           </button>
 
           <div className="min-w-0">
-            <div className="flex flex-wrap items-center gap-2 text-[11px] text-[#A1A1AA]">
-              <span className="font-mono text-[#FF4B00] font-semibold">
+            <div className="flex flex-wrap items-center gap-2 text-[11px] text-[#9CA3AF]">
+              <span className="font-mono text-brand-champagne font-semibold">
                 {examCode}
               </span>
               <span>•</span>
-              <span className="font-mono text-[#F5F3EF]">
+              <span className="font-mono text-[#3B82F6]">
                 Roll No: KA-SBO-26-0142
               </span>
               <span className="hidden md:inline">•</span>
               <span className="hidden md:inline">Candidate: Kavin Rajan</span>
             </div>
-            <h1 className="text-sm sm:text-base font-semibold text-[#F5F3EF] truncate">
+            <h1 className="text-sm sm:text-base font-semibold text-[#F3F4F6] truncate">
               All-Academy JEE Main Full Syllabus CBT Mock Test #04
             </h1>
           </div>
@@ -484,7 +481,7 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
 
         {/* Right Header Controls: Subject Section Tabs + Monospace Countdown Timer */}
         <div className="flex items-center gap-3">
-          <div className="hidden xl:flex items-center gap-1.5 bg-[#080808] p-1 rounded-md border border-[#292929]">
+          <div className="hidden xl:flex items-center gap-1.5 bg-[#0A0B0E] p-1 rounded-md border border-[#232734]">
             {(
               [
                 { label: 'Physics', startIdx: 0 },
@@ -498,10 +495,10 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
                   key={sec.label}
                   type="button"
                   onClick={() => jumpToQuestion(sec.startIdx)}
-                  className={`px-3 py-1 rounded text-xs font-medium transition-colors ${
+                  className={`px-3 py-1 rounded text-xs font-semibold transition-colors ${
                     isCurrentSubject
-                      ? 'bg-[#FF4B00] text-[#F5F3EF]'
-                      : 'text-[#A1A1AA] hover:text-[#F5F3EF]'
+                      ? 'bg-brand-champagne text-[#0A0B0E]'
+                      : 'text-[#9CA3AF] hover:text-[#F3F4F6]'
                   }`}
                 >
                   {sec.label}
@@ -514,7 +511,7 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
             <button
               type="button"
               onClick={() => setRemainingSeconds(3)}
-              className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-[#080808] hover:bg-[#181818] border border-[#292929] hover:border-[#FF4B00] font-mono text-[11px] text-[#A1A1AA] hover:text-[#F5F3EF] transition-colors"
+              className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-[#0A0B0E] hover:bg-[#191D28] border border-[#232734] hover:border-brand-champagne font-mono text-[11px] text-[#9CA3AF] hover:text-[#F3F4F6] transition-colors"
               title="Set timer to 3 seconds to test automatic expiry submission"
             >
               <span>Test 3s Expiry</span>
@@ -522,21 +519,21 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
           )}
 
           <div
-            className={`px-4 py-2 rounded-md bg-[#080808] border flex items-center gap-2.5 ${
+            className={`px-4 py-2 rounded-md bg-[#0A0B0E] border flex items-center gap-2.5 ${
               remainingSeconds <= 10
-                ? 'border-[#FF4B00] animate-pulse'
-                : 'border-[#292929]'
+                ? 'border-brand-champagne animate-pulse'
+                : 'border-[#232734]'
             }`}
             aria-label="Exam Countdown Timer"
           >
-            <Clock className="w-4 h-4 text-[#FF4B00]" />
+            <Clock className="w-4 h-4 text-brand-champagne" />
             <div className="text-right">
-              <span className="text-[10px] uppercase tracking-wider text-[#A1A1AA] block leading-none">
+              <span className="text-[10px] uppercase tracking-wider text-[#9CA3AF] block leading-none">
                 Time Left
               </span>
               <span
                 className={`font-mono text-sm sm:text-base font-semibold ${
-                  remainingSeconds === 0 ? 'text-[#FF4B00]' : 'text-[#F5F3EF]'
+                  remainingSeconds === 0 ? 'text-brand-champagne' : 'text-[#F3F4F6]'
                 }`}
               >
                 {formatCountdown(remainingSeconds)}
@@ -549,72 +546,72 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
       {/* MAIN 70% / 30% NTA CBT EXAM WORKSPACE */}
       <div className="flex-1 max-w-[1600px] w-full mx-auto px-4 sm:px-8 py-6 flex flex-col lg:flex-row gap-6">
         {/* LEFT COLUMN (70%): Active Question Display & NTA Action Bar */}
-        <main className="w-full lg:w-[70%] bg-[#111111] border border-[#292929] rounded-lg p-6 sm:p-8 flex flex-col justify-between space-y-6 min-w-0">
+        <main className="w-full lg:w-[70%] bg-[#13161F] border border-[#232734] rounded-lg p-6 sm:p-8 flex flex-col justify-between space-y-6 min-w-0">
           {isSubmitted ? (
             /* Post-Submission NTA Performance Scorecard */
             <div className="my-auto space-y-6 py-4">
               {isAutoSubmitted && (
                 <div
                   role="status"
-                  className="bg-[#080808] border border-[#FF4B00] rounded-lg p-4 flex items-start gap-3"
+                  className="bg-[#0A0B0E] border border-brand-champagne rounded-lg p-4 flex items-start gap-3"
                 >
-                  <AlertCircle className="w-5 h-5 text-[#FF4B00] shrink-0 mt-0.5" />
+                  <AlertCircle className="w-5 h-5 text-brand-champagne shrink-0 mt-0.5" />
                   <div className="space-y-1">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-[#FF4B00]">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-brand-champagne">
                       Automatic Timer Expiry Submission (00:00:00)
                     </p>
-                    <p className="text-xs text-[#F5F3EF] leading-relaxed">
+                    <p className="text-xs text-[#F3F4F6] leading-relaxed">
                       The allotted examination time reached zero. Your saved MCQ responses and active draft selection were automatically locked and submitted to the NTA CBT server.
                     </p>
                   </div>
                 </div>
               )}
 
-              <div className="flex items-center justify-between pb-5 border-b border-[#292929]">
+              <div className="flex items-center justify-between pb-5 border-b border-[#232734]">
                 <div className="space-y-1">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-medium text-[#FF4B00]">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-medium text-brand-champagne">
                     <CheckCircle2 className="w-4 h-4" />
                     {isAutoSubmitted
                       ? 'Auto-Submitted CBT Record'
                       : 'Manual CBT Submission Recorded'}
                   </span>
-                  <h2 className="text-2xl font-semibold text-[#F5F3EF]">
+                  <h2 className="text-2xl font-semibold text-[#F3F4F6]">
                     Instant CBT Telemetry & Score Breakdown
                   </h2>
                 </div>
-                <span className="font-mono text-xs px-3 py-1.5 rounded bg-[#080808] border border-[#292929] text-[#F5F3EF]">
+                <span className="font-mono text-xs px-3 py-1.5 rounded bg-[#0A0B0E] border border-[#232734] text-[#3B82F6]">
                   Roll: KA-SBO-26-0142
                 </span>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <div className="bg-[#080808] border border-[#292929] rounded-lg p-4">
-                  <p className="text-xs text-[#A1A1AA]">Net Score (+4 / -1)</p>
-                  <p className="font-mono text-2xl font-semibold text-[#FF4B00] mt-1">
+                <div className="bg-[#0A0B0E] border border-[#232734] rounded-lg p-4">
+                  <p className="text-xs text-[#9CA3AF]">Net Score (+4 / -1)</p>
+                  <p className="font-mono text-2xl font-semibold text-brand-champagne mt-1">
                     {evaluationSummary.score} / {evaluationSummary.maxScore}
                   </p>
                 </div>
-                <div className="bg-[#080808] border border-[#292929] rounded-lg p-4">
-                  <p className="text-xs text-[#A1A1AA]">Accuracy</p>
-                  <p className="font-mono text-2xl font-semibold text-[#F5F3EF] mt-1">
+                <div className="bg-[#0A0B0E] border border-[#232734] rounded-lg p-4">
+                  <p className="text-xs text-[#9CA3AF]">Accuracy</p>
+                  <p className="font-mono text-2xl font-semibold text-[#F3F4F6] mt-1">
                     {evaluationSummary.accuracy}%
                   </p>
                 </div>
-                <div className="bg-[#080808] border border-[#292929] rounded-lg p-4">
-                  <p className="text-xs text-[#A1A1AA]">Correct Answers</p>
-                  <p className="font-mono text-2xl font-semibold text-[#F5F3EF] mt-1">
+                <div className="bg-[#0A0B0E] border border-[#232734] rounded-lg p-4">
+                  <p className="text-xs text-[#9CA3AF]">Correct Answers</p>
+                  <p className="font-mono text-2xl font-semibold text-[#F3F4F6] mt-1">
                     {evaluationSummary.correct}
                   </p>
                 </div>
-                <div className="bg-[#080808] border border-[#292929] rounded-lg p-4">
-                  <p className="text-xs text-[#A1A1AA]">Incorrect / Unattempted</p>
-                  <p className="font-mono text-lg font-semibold text-[#A1A1AA] mt-1.5">
+                <div className="bg-[#0A0B0E] border border-[#232734] rounded-lg p-4">
+                  <p className="text-xs text-[#9CA3AF]">Incorrect / Unattempted</p>
+                  <p className="font-mono text-lg font-semibold text-[#9CA3AF] mt-1.5">
                     {evaluationSummary.wrong} Wrong · {evaluationSummary.unattempted} Skipped
                   </p>
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#292929]">
+              <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#232734]">
                 <button
                   type="button"
                   onClick={() => {
@@ -623,14 +620,14 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
                     setIsAutoSubmitted(false);
                     setAutoSubmitNotice(null);
                   }}
-                  className="px-4 py-2.5 rounded-md bg-[#080808] border border-[#292929] text-xs font-medium text-[#F5F3EF] hover:border-[#FF4B00]"
+                  className="px-4 py-2.5 rounded-md bg-[#0A0B0E] border border-[#232734] text-xs font-medium text-[#F3F4F6] hover:border-brand-champagne"
                 >
                   Reset Timer & Review Questions
                 </button>
                 <button
                   type="button"
                   onClick={() => navigate('/dashboard/student')}
-                  className="px-5 py-2.5 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-xs font-semibold"
+                  className="px-5 py-2.5 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-xs font-semibold"
                 >
                   Return to Student Dashboard
                 </button>
@@ -640,33 +637,33 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
             <>
               {/* Active Question Header & Stem */}
               <div className="space-y-6">
-                <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#292929]">
+                <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#232734]">
                   <div className="flex flex-wrap items-center gap-2.5">
-                    <span className="font-mono text-xs font-semibold px-3 py-1 rounded-md bg-[#FF4B00] text-[#F5F3EF]">
+                    <span className="font-mono text-xs font-semibold px-3 py-1 rounded-md bg-brand-champagne text-[#0A0B0E]">
                       Question {String(currentQuestion.number).padStart(2, '0')} of{' '}
                       {NTA_CBT_QUESTIONS.length}
                     </span>
-                    <span className="text-xs font-medium text-[#F5F3EF] px-2.5 py-1 rounded bg-[#080808] border border-[#292929]">
+                    <span className="text-xs font-medium text-[#F3F4F6] px-2.5 py-1 rounded bg-[#0A0B0E] border border-[#232734]">
                       {currentQuestion.subject}
                     </span>
-                    <span className="text-xs text-[#A1A1AA]">
+                    <span className="text-xs text-[#9CA3AF]">
                       {currentQuestion.chapter}
                     </span>
                   </div>
 
                   <div className="flex items-center gap-2 font-mono text-xs">
-                    <span className="px-2.5 py-1 rounded bg-[#080808] text-[#F5F3EF] border border-[#292929]">
+                    <span className="px-2.5 py-1 rounded bg-[#0A0B0E] text-[#F3F4F6] border border-[#232734]">
                       +{currentQuestion.positiveMarks} Correct
                     </span>
-                    <span className="px-2.5 py-1 rounded bg-[#080808] text-[#FF4B00] border border-[#292929]">
+                    <span className="px-2.5 py-1 rounded bg-[#0A0B0E] text-brand-champagne border border-[#232734]">
                       -{currentQuestion.negativeMarks} Incorrect
                     </span>
                   </div>
                 </div>
 
                 {/* Question Prompt */}
-                <div className="bg-[#080808] border border-[#292929] rounded-lg p-5 sm:p-6">
-                  <p className="text-base sm:text-lg text-[#F5F3EF] leading-relaxed font-normal">
+                <div className="bg-[#0A0B0E] border border-[#232734] rounded-lg p-5 sm:p-6">
+                  <p className="text-base sm:text-lg text-[#F3F4F6] leading-relaxed font-normal">
                     {currentQuestion.prompt}
                   </p>
                 </div>
@@ -686,15 +683,15 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
                         onClick={() => setDraftOption(opt.label)}
                         className={`w-full text-left p-4 rounded-lg border transition-colors flex items-center gap-4 ${
                           isSelected
-                            ? 'bg-[#FF4B00]/15 border-[#FF4B00] text-[#F5F3EF]'
-                            : 'bg-[#080808] border-[#292929] text-[#A1A1AA] hover:text-[#F5F3EF] hover:border-[#3f3f46]'
+                            ? 'bg-brand-champagne/15 border-brand-champagne text-[#F3F4F6]'
+                            : 'bg-[#0A0B0E] border-[#232734] text-[#9CA3AF] hover:text-[#F3F4F6] hover:border-[#374151]'
                         }`}
                       >
                         <span
                           className={`w-8 h-8 rounded-md font-mono text-xs font-semibold flex items-center justify-center border shrink-0 transition-colors ${
                             isSelected
-                              ? 'bg-[#FF4B00] text-[#F5F3EF] border-[#FF4B00]'
-                              : 'bg-[#111111] text-[#A1A1AA] border-[#292929]'
+                              ? 'bg-brand-champagne text-[#0A0B0E] border-brand-champagne'
+                              : 'bg-[#13161F] text-[#9CA3AF] border-[#232734]'
                           }`}
                         >
                           {opt.label}
@@ -709,21 +706,21 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
               </div>
 
               {/* Bottom NTA Action Buttons */}
-              <div className="pt-5 border-t border-[#292929] flex flex-wrap items-center justify-between gap-3">
+              <div className="pt-5 border-t border-[#232734] flex flex-wrap items-center justify-between gap-3">
                 <div className="flex flex-wrap items-center gap-2.5">
                   <button
                     type="button"
                     onClick={handleMarkForReviewAndNext}
-                    className="px-4 py-2.5 rounded-md bg-[#080808] hover:bg-[#181818] text-[#F5F3EF] border border-[#FF4B00]/60 text-xs font-medium inline-flex items-center gap-2 transition-colors"
+                    className="px-4 py-2.5 rounded-md bg-[#0A0B0E] hover:bg-[#191D28] text-[#F3F4F6] border border-brand-champagne/60 text-xs font-medium inline-flex items-center gap-2 transition-colors"
                   >
-                    <Flag className="w-3.5 h-3.5 text-[#FF4B00]" />
+                    <Flag className="w-3.5 h-3.5 text-brand-champagne" />
                     <span>Mark for Review & Next</span>
                   </button>
 
                   <button
                     type="button"
                     onClick={handleClearResponse}
-                    className="px-4 py-2.5 rounded-md bg-[#080808] hover:bg-[#181818] text-[#A1A1AA] hover:text-[#F5F3EF] border border-[#292929] text-xs font-medium inline-flex items-center gap-2 transition-colors"
+                    className="px-4 py-2.5 rounded-md bg-[#0A0B0E] hover:bg-[#191D28] text-[#9CA3AF] hover:text-[#F3F4F6] border border-[#232734] text-xs font-medium inline-flex items-center gap-2 transition-colors"
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
                     <span>Clear Response</span>
@@ -733,7 +730,7 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
                 <button
                   type="button"
                   onClick={handleSaveAndNext}
-                  className="px-6 py-2.5 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-xs font-semibold inline-flex items-center gap-2 transition-colors shadow-lg"
+                  className="px-6 py-2.5 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-xs font-semibold inline-flex items-center gap-2 transition-colors shadow-lg"
                 >
                   <span>Save & Next</span>
                   <ArrowRight className="w-4 h-4" />
@@ -744,61 +741,61 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
         </main>
 
         {/* RIGHT COLUMN (30%): NTA-Style Question Palette & Final Submit Exam Button */}
-        <aside className="w-full lg:w-[30%] bg-[#111111] border border-[#292929] rounded-lg p-6 flex flex-col justify-between space-y-6 shrink-0">
+        <aside className="w-full lg:w-[30%] bg-[#13161F] border border-[#232734] rounded-lg p-6 flex flex-col justify-between space-y-6 shrink-0">
           <div className="space-y-5">
             {/* Candidate Roll Card */}
-            <div className="bg-[#080808] border border-[#292929] rounded-lg p-4 flex items-center justify-between">
+            <div className="bg-[#0A0B0E] border border-[#232734] rounded-lg p-4 flex items-center justify-between">
               <div>
-                <p className="text-xs font-semibold text-[#F5F3EF]">Kavin Rajan</p>
-                <p className="font-mono text-[11px] text-[#A1A1AA] mt-0.5">
+                <p className="text-xs font-semibold text-[#F3F4F6]">Kavin Rajan</p>
+                <p className="font-mono text-[11px] text-[#3B82F6] mt-0.5">
                   Roll: KA-SBO-26-0142
                 </p>
               </div>
-              <span className="font-mono text-[11px] text-[#FF4B00] px-2.5 py-1 rounded bg-[#111111] border border-[#292929]">
+              <span className="font-mono text-[11px] text-brand-champagne px-2.5 py-1 rounded bg-[#13161F] border border-[#232734]">
                 SBO-JEE-2027-A
               </span>
             </div>
 
             {/* NTA Status Color Legend */}
             <div className="space-y-2.5">
-              <h2 className="text-xs font-semibold uppercase tracking-wider text-[#A1A1AA]">
+              <h2 className="text-xs font-semibold uppercase tracking-wider text-[#9CA3AF]">
                 NTA Question Palette Legend
               </h2>
               <div className="grid grid-cols-2 gap-2.5 text-xs">
-                <div className="bg-[#080808] border border-[#292929] rounded-md p-2.5 flex items-center justify-between">
+                <div className="bg-[#0A0B0E] border border-[#232734] rounded-md p-2.5 flex items-center justify-between">
                   <span className="flex items-center gap-2">
                     <span className="w-3 h-3 rounded-sm bg-emerald-500/40 border border-emerald-500" />
-                    <span className="text-[#F5F3EF]">Answered</span>
+                    <span className="text-[#F3F4F6]">Answered</span>
                   </span>
                   <span className="font-mono font-semibold text-emerald-400">
                     {paletteSummary.ANSWERED}
                   </span>
                 </div>
 
-                <div className="bg-[#080808] border border-[#292929] rounded-md p-2.5 flex items-center justify-between">
+                <div className="bg-[#0A0B0E] border border-[#232734] rounded-md p-2.5 flex items-center justify-between">
                   <span className="flex items-center gap-2">
                     <span className="w-3 h-3 rounded-sm bg-red-500/40 border border-red-500" />
-                    <span className="text-[#F5F3EF]">Not Answered</span>
+                    <span className="text-[#F3F4F6]">Not Answered</span>
                   </span>
                   <span className="font-mono font-semibold text-red-400">
                     {paletteSummary.NOT_ANSWERED}
                   </span>
                 </div>
 
-                <div className="bg-[#080808] border border-[#292929] rounded-md p-2.5 flex items-center justify-between">
+                <div className="bg-[#0A0B0E] border border-[#232734] rounded-md p-2.5 flex items-center justify-between">
                   <span className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-sm bg-[#181818] border border-[#52525B]" />
-                    <span className="text-[#A1A1AA]">Not Visited</span>
+                    <span className="w-3 h-3 rounded-sm bg-[#13161F] border border-[#374151]" />
+                    <span className="text-[#9CA3AF]">Not Visited</span>
                   </span>
-                  <span className="font-mono font-semibold text-[#A1A1AA]">
+                  <span className="font-mono font-semibold text-[#9CA3AF]">
                     {paletteSummary.NOT_VISITED}
                   </span>
                 </div>
 
-                <div className="bg-[#080808] border border-[#292929] rounded-md p-2.5 flex items-center justify-between">
+                <div className="bg-[#0A0B0E] border border-[#232734] rounded-md p-2.5 flex items-center justify-between">
                   <span className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-sm bg-purple-600/40 border border-[#FF4B00]" />
-                    <span className="text-[#F5F3EF]">Marked Review</span>
+                    <span className="w-3 h-3 rounded-sm bg-purple-600/40 border border-brand-champagne" />
+                    <span className="text-[#F3F4F6]">Marked Review</span>
                   </span>
                   <span className="font-mono font-semibold text-purple-300">
                     {paletteSummary.MARKED_FOR_REVIEW}
@@ -808,12 +805,12 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
             </div>
 
             {/* Numbered Question Grid */}
-            <div className="space-y-3 pt-2 border-t border-[#292929]">
+            <div className="space-y-3 pt-2 border-t border-[#232734]">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-semibold text-[#F5F3EF]">
+                <span className="font-semibold text-[#F3F4F6]">
                   Question Navigation Grid
                 </span>
-                <span className="font-mono text-[11px] text-[#A1A1AA]">
+                <span className="font-mono text-[11px] text-[#9CA3AF]">
                   Q01 – Q{NTA_CBT_QUESTIONS.length}
                 </span>
               </div>
@@ -841,10 +838,10 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
           </div>
 
           {/* Final Submit Exam Button at Bottom of Palette */}
-          <div className="pt-5 border-t border-[#292929] space-y-3">
-            <div className="flex items-center justify-between text-xs text-[#A1A1AA]">
+          <div className="pt-5 border-t border-[#232734] space-y-3">
+            <div className="flex items-center justify-between text-xs text-[#9CA3AF]">
               <span>Total Attempted</span>
-              <span className="font-mono text-[#F5F3EF]">
+              <span className="font-mono text-[#F3F4F6]">
                 {Object.keys(savedOptions).length} / {NTA_CBT_QUESTIONS.length} Questions
               </span>
             </div>
@@ -853,7 +850,7 @@ export const CbtExamAttemptPage: React.FC<CbtExamAttemptPageProps> = ({
               type="button"
               disabled={isSubmitted}
               onClick={handleManualSubmit}
-              className="w-full py-3 rounded-md bg-[#FF4B00] hover:bg-[#E04200] disabled:opacity-50 text-[#F5F3EF] text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors shadow-lg"
+              className="w-full py-3 rounded-md bg-brand-champagne hover:bg-[#F1C48F] disabled:opacity-50 text-[#0A0B0E] text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors shadow-lg"
             >
               <Send className="w-4 h-4" />
               <span>{isSubmitted ? 'Examination Submitted' : 'Submit Exam'}</span>

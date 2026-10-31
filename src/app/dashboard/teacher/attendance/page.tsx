@@ -130,24 +130,24 @@ export const TeacherAttendancePage: React.FC = () => {
   const absentTotal = filteredRoster.length - presentTotal;
 
   return (
-    <div className="bg-[#080808] text-[#F5F3EF]">
+    <div className="bg-[#0A0B0E] text-[#F3F4F6]">
       {toastMessage && (
-        <div className="fixed bottom-8 right-6 z-50 max-w-md bg-[#111111] border border-[#FF4B00] rounded-lg px-4 py-3 shadow-2xl flex items-center gap-3">
-          <CheckCircle2 className="w-4 h-4 text-[#FF4B00] shrink-0" />
-          <p className="text-xs text-[#F5F3EF]">{toastMessage}</p>
+        <div className="fixed bottom-8 right-6 z-50 max-w-md bg-[#13161F] border border-brand-champagne rounded-lg px-4 py-3 shadow-2xl flex items-center gap-3">
+          <CheckCircle2 className="w-4 h-4 text-brand-champagne shrink-0" />
+          <p className="text-xs text-[#F3F4F6]">{toastMessage}</p>
         </div>
       )}
 
-      <header className="px-6 lg:px-10 py-6 border-b border-[#292929] bg-[#080808] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <header className="px-6 lg:px-10 py-6 border-b border-[#232734] bg-[#11131A] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div className="space-y-1">
-          <div className="flex items-center gap-2 text-xs text-[#FF4B00] font-medium">
+          <div className="flex items-center gap-2 text-xs text-brand-champagne font-medium">
             <CalendarCheck className="w-3.5 h-3.5" />
             <span>Daily Classroom Roll Call · /dashboard/teacher/attendance</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F5F3EF]">
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F3F4F6]">
             Batch Attendance Roster
           </h1>
-          <p className="text-xs text-[#A1A1AA]">
+          <p className="text-xs text-[#9CA3AF]">
             Mark scholars as Present or Absent for today’s session (synced with Parent & Admin portals)
           </p>
         </div>
@@ -156,7 +156,7 @@ export const TeacherAttendancePage: React.FC = () => {
           <select
             value={selectedRosterBatch}
             onChange={(e) => setSelectedRosterBatch(e.target.value)}
-            className="bg-[#111111] border border-[#292929] rounded-md px-3 py-2 text-xs font-mono text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+            className="bg-[#13161F] border border-[#232734] rounded-md px-3 py-2 text-xs font-mono text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
           >
             <option value="ALL">All Batches ({roster.length} Scholars)</option>
             <option value="SBO-JEE-2027-A">SBO-JEE-2027-A</option>
@@ -167,7 +167,7 @@ export const TeacherAttendancePage: React.FC = () => {
           <button
             type="button"
             onClick={handleMarkAllPresent}
-            className="px-3.5 py-2 rounded-md bg-[#111111] hover:bg-[#181818] text-[#F5F3EF] border border-[#292929] hover:border-[#FF4B00] text-xs font-medium transition-colors"
+            className="px-3.5 py-2 rounded-md bg-[#13161F] hover:bg-[#191D28] text-[#F3F4F6] border border-[#232734] hover:border-brand-champagne text-xs font-medium transition-colors"
           >
             Mark All Present
           </button>
@@ -179,7 +179,7 @@ export const TeacherAttendancePage: React.FC = () => {
                 `Saved today's attendance (${presentTotal} Present, ${absentTotal} Absent) to PostgreSQL.`
               )
             }
-            className="px-4 py-2 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-xs font-medium inline-flex items-center gap-1.5 transition-colors"
+            className="px-4 py-2 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-xs font-semibold inline-flex items-center gap-1.5 transition-colors"
           >
             <CalendarCheck className="w-3.5 h-3.5" />
             <span>Save Batch Attendance</span>
@@ -190,36 +190,36 @@ export const TeacherAttendancePage: React.FC = () => {
       <div className="px-6 lg:px-10 py-8 space-y-6 max-w-7xl">
         {/* Summary Strip */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="bg-[#111111] border border-[#292929] rounded-lg p-4 flex items-center justify-between">
+          <div className="bg-[#13161F] border border-[#232734] rounded-lg p-4 flex items-center justify-between">
             <div>
-              <p className="text-xs text-[#A1A1AA]">Total Roster Scholars</p>
-              <p className="font-mono text-xl font-semibold text-[#F5F3EF] mt-0.5">
+              <p className="text-xs text-[#9CA3AF]">Total Roster Scholars</p>
+              <p className="font-mono text-xl font-semibold text-[#F3F4F6] mt-0.5">
                 {filteredRoster.length}
               </p>
             </div>
-            <Users className="w-5 h-5 text-[#FF4B00]" />
+            <Users className="w-5 h-5 text-brand-champagne" />
           </div>
 
-          <div className="bg-[#111111] border border-[#292929] rounded-lg p-4 flex items-center justify-between">
+          <div className="bg-[#13161F] border border-[#232734] rounded-lg p-4 flex items-center justify-between">
             <div>
-              <p className="text-xs text-[#A1A1AA]">Marked Present Today</p>
-              <p className="font-mono text-xl font-semibold text-[#FF4B00] mt-0.5">
+              <p className="text-xs text-[#9CA3AF]">Marked Present Today</p>
+              <p className="font-mono text-xl font-semibold text-brand-champagne mt-0.5">
                 {presentTotal}
               </p>
             </div>
-            <span className="font-mono text-xs px-2.5 py-1 rounded bg-[#080808] border border-[#292929] text-[#FF4B00]">
+            <span className="font-mono text-xs px-2.5 py-1 rounded bg-[#0A0B0E] border border-[#232734] text-brand-champagne">
               PRESENT
             </span>
           </div>
 
-          <div className="bg-[#111111] border border-[#292929] rounded-lg p-4 flex items-center justify-between">
+          <div className="bg-[#13161F] border border-[#232734] rounded-lg p-4 flex items-center justify-between">
             <div>
-              <p className="text-xs text-[#A1A1AA]">Marked Absent Today</p>
-              <p className="font-mono text-xl font-semibold text-[#F5F3EF] mt-0.5">
+              <p className="text-xs text-[#9CA3AF]">Marked Absent Today</p>
+              <p className="font-mono text-xl font-semibold text-[#F3F4F6] mt-0.5">
                 {absentTotal}
               </p>
             </div>
-            <span className="font-mono text-xs px-2.5 py-1 rounded bg-[#080808] border border-[#292929] text-[#A1A1AA]">
+            <span className="font-mono text-xs px-2.5 py-1 rounded bg-[#0A0B0E] border border-[#232734] text-[#9CA3AF]">
               ABSENT
             </span>
           </div>
@@ -232,39 +232,39 @@ export const TeacherAttendancePage: React.FC = () => {
             return (
               <div
                 key={student.id}
-                className="bg-[#111111] border border-[#292929] rounded-lg p-5 flex flex-col justify-between space-y-4"
+                className="bg-[#13161F] border border-[#232734] rounded-lg p-5 flex flex-col justify-between space-y-4"
               >
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <h3 className="text-sm font-semibold text-[#F5F3EF]">
+                    <h3 className="text-sm font-semibold text-[#F3F4F6]">
                       {student.fullName}
                     </h3>
-                    <p className="font-mono text-xs text-[#A1A1AA] mt-0.5">
+                    <p className="font-mono text-xs text-[#3B82F6] mt-0.5">
                       {student.rollNumber}
                     </p>
-                    <p className="text-[11px] text-[#A1A1AA] mt-1">
+                    <p className="text-[11px] text-[#9CA3AF] mt-1">
                       Campus: {student.campus}
                     </p>
                   </div>
-                  <span className="font-mono text-[11px] px-2 py-0.5 rounded bg-[#080808] border border-[#292929] text-[#FF4B00]">
+                  <span className="font-mono text-[11px] px-2 py-0.5 rounded bg-[#0A0B0E] border border-[#232734] text-brand-champagne">
                     {student.batchCode}
                   </span>
                 </div>
 
-                <div className="pt-3 border-t border-[#292929] flex items-center justify-between gap-2">
-                  <span className="font-mono text-[11px] text-[#A1A1AA]">
+                <div className="pt-3 border-t border-[#232734] flex items-center justify-between gap-2">
+                  <span className="font-mono text-[11px] text-[#9CA3AF]">
                     Status:{' '}
-                    <strong className="text-[#F5F3EF]">{student.status}</strong>
+                    <strong className="text-[#F3F4F6]">{student.status}</strong>
                   </span>
 
                   <div className="flex items-center gap-1.5">
                     <button
                       type="button"
                       onClick={() => handleSetAttendance(student.id, 'PRESENT')}
-                      className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-colors ${
+                      className={`px-3 py-1.5 rounded-md text-xs font-semibold border transition-colors ${
                         isPresent
-                          ? 'bg-[#FF4B00] text-[#F5F3EF] border-[#FF4B00]'
-                          : 'bg-[#080808] text-[#A1A1AA] border-[#292929] hover:text-[#F5F3EF]'
+                          ? 'bg-brand-champagne text-[#0A0B0E] border-brand-champagne'
+                          : 'bg-[#0A0B0E] text-[#9CA3AF] border-[#232734] hover:text-[#F3F4F6]'
                       }`}
                     >
                       Present
@@ -274,8 +274,8 @@ export const TeacherAttendancePage: React.FC = () => {
                       onClick={() => handleSetAttendance(student.id, 'ABSENT')}
                       className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-colors ${
                         !isPresent
-                          ? 'bg-[#080808] text-[#FF4B00] border-[#FF4B00]'
-                          : 'bg-[#080808] text-[#A1A1AA] border-[#292929] hover:text-[#F5F3EF]'
+                          ? 'bg-[#0A0B0E] text-brand-champagne border-brand-champagne'
+                          : 'bg-[#0A0B0E] text-[#9CA3AF] border-[#232734] hover:text-[#F3F4F6]'
                       }`}
                     >
                       Absent

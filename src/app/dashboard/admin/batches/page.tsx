@@ -86,24 +86,24 @@ export const AdminBatchesPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#080808] text-[#F5F3EF]">
+    <div className="bg-[#0A0B0E] text-[#F3F4F6]">
       {toastMessage && (
-        <div className="fixed bottom-8 right-6 z-50 max-w-md bg-[#111111] border border-[#FF4B00] rounded-lg px-4 py-3 shadow-2xl flex items-center gap-3">
-          <CheckCircle2 className="w-4 h-4 text-[#FF4B00] shrink-0" />
-          <p className="text-xs text-[#F5F3EF]">{toastMessage}</p>
+        <div className="fixed bottom-8 right-6 z-50 max-w-md bg-[#13161F] border border-brand-champagne rounded-lg px-4 py-3 shadow-2xl flex items-center gap-3">
+          <CheckCircle2 className="w-4 h-4 text-brand-champagne shrink-0" />
+          <p className="text-xs text-[#F3F4F6]">{toastMessage}</p>
         </div>
       )}
 
-      <header className="px-6 lg:px-10 py-6 border-b border-[#292929] bg-[#080808] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <header className="px-6 lg:px-10 py-6 border-b border-[#232734] bg-[#11131A] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div className="space-y-1">
-          <div className="flex items-center gap-2 text-xs text-[#FF4B00] font-medium">
+          <div className="flex items-center gap-2 text-xs text-brand-champagne font-medium">
             <Layers className="w-3.5 h-3.5" />
             <span>Academic Cohort Provisioning · /dashboard/admin/batches</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F5F3EF]">
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F3F4F6]">
             Batch & Lead Faculty Control
           </h1>
-          <p className="text-xs text-[#A1A1AA]">
+          <p className="text-xs text-[#9CA3AF]">
             Create new batches (e.g., SBO-NEET-2027) and assign Lead Teachers across SBO Colony and Anaiyur
           </p>
         </div>
@@ -114,20 +114,20 @@ export const AdminBatchesPage: React.FC = () => {
           {/* Create Batch Form */}
           <form
             onSubmit={handleCreateBatch}
-            className="lg:col-span-5 bg-[#111111] border border-[#292929] rounded-lg p-6 space-y-4"
+            className="lg:col-span-5 bg-[#13161F] border border-[#232734] rounded-lg p-6 space-y-4"
           >
-            <div className="flex items-center justify-between border-b border-[#292929] pb-3">
-              <h2 className="text-sm font-semibold text-[#F5F3EF]">
+            <div className="flex items-center justify-between border-b border-[#232734] pb-3">
+              <h2 className="text-sm font-semibold text-[#F3F4F6]">
                 Create New Batch & Assign Lead Teacher
               </h2>
-              <span className="font-mono text-[11px] text-[#FF4B00]">
+              <span className="font-mono text-[11px] text-brand-champagne">
                 BATCH BUILDER
               </span>
             </div>
 
             <div className="space-y-3">
               <div>
-                <label className="block text-xs text-[#A1A1AA] mb-1">
+                <label className="block text-xs text-[#9CA3AF] mb-1">
                   Batch Code
                 </label>
                 <input
@@ -136,12 +136,12 @@ export const AdminBatchesPage: React.FC = () => {
                   value={newBatchCode}
                   onChange={(e) => setNewBatchCode(e.target.value)}
                   placeholder="e.g., SBO-NEET-2027"
-                  className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2 text-xs font-mono text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+                  className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2 text-xs font-mono text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
                 />
               </div>
 
               <div>
-                <label className="block text-xs text-[#A1A1AA] mb-1">
+                <label className="block text-xs text-[#9CA3AF] mb-1">
                   Batch Programme Title
                 </label>
                 <input
@@ -150,13 +150,13 @@ export const AdminBatchesPage: React.FC = () => {
                   value={newBatchTitle}
                   onChange={(e) => setNewBatchTitle(e.target.value)}
                   placeholder="Class 12 NEET UG Intensive"
-                  className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2 text-xs text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+                  className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2 text-xs text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs text-[#A1A1AA] mb-1">
+                  <label className="block text-xs text-[#9CA3AF] mb-1">
                     Branch Campus
                   </label>
                   <select
@@ -166,7 +166,7 @@ export const AdminBatchesPage: React.FC = () => {
                         e.target.value as 'SBO Colony' | 'Anaiyur'
                       )
                     }
-                    className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2 text-xs text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+                    className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2 text-xs text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
                   >
                     <option value="SBO Colony">SBO Colony</option>
                     <option value="Anaiyur">Anaiyur</option>
@@ -174,13 +174,13 @@ export const AdminBatchesPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs text-[#A1A1AA] mb-1">
+                  <label className="block text-xs text-[#9CA3AF] mb-1">
                     Assign Lead Teacher
                   </label>
                   <select
                     value={newBatchLeadTeacher}
                     onChange={(e) => setNewBatchLeadTeacher(e.target.value)}
-                    className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2 text-xs text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+                    className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2 text-xs text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
                   >
                     <option value="Dr. R. Aravindhan">Dr. R. Aravindhan</option>
                     <option value="Prof. S. Meenakshi">Prof. S. Meenakshi</option>
@@ -195,7 +195,7 @@ export const AdminBatchesPage: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full px-4 py-2.5 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-xs font-medium inline-flex items-center justify-center gap-2 transition-colors"
+              className="w-full px-4 py-2.5 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-xs font-semibold inline-flex items-center justify-center gap-2 transition-colors"
             >
               <Plus className="w-4 h-4" />
               <span>Create Batch & Assign Lead Teacher</span>
@@ -203,12 +203,12 @@ export const AdminBatchesPage: React.FC = () => {
           </form>
 
           {/* Active Batches List */}
-          <div className="lg:col-span-7 bg-[#111111] border border-[#292929] rounded-lg p-6 space-y-4">
-            <div className="flex items-center justify-between border-b border-[#292929] pb-3">
-              <h2 className="text-sm font-semibold text-[#F5F3EF]">
+          <div className="lg:col-span-7 bg-[#13161F] border border-[#232734] rounded-lg p-6 space-y-4">
+            <div className="flex items-center justify-between border-b border-[#232734] pb-3">
+              <h2 className="text-sm font-semibold text-[#F3F4F6]">
                 Configured Campus Batches ({batches.length})
               </h2>
-              <span className="font-mono text-[11px] text-[#A1A1AA]">
+              <span className="font-mono text-[11px] text-[#9CA3AF]">
                 SBO COLONY / ANAIYUR
               </span>
             </div>
@@ -217,36 +217,36 @@ export const AdminBatchesPage: React.FC = () => {
               {batches.map((batch) => (
                 <div
                   key={batch.id}
-                  className="bg-[#080808] border border-[#292929] rounded-md p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                  className="bg-[#0A0B0E] border border-[#232734] rounded-md p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
                 >
                   <div className="space-y-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-mono text-xs font-semibold text-[#FF4B00]">
+                      <span className="font-mono text-xs font-semibold text-brand-champagne">
                         {batch.batchCode}
                       </span>
-                      <span className="font-mono text-[11px] px-2 py-0.5 rounded bg-[#111111] border border-[#292929] text-[#A1A1AA]">
+                      <span className="font-mono text-[11px] px-2 py-0.5 rounded bg-[#13161F] border border-[#232734] text-[#3B82F6]">
                         {batch.campus}
                       </span>
-                      <span className="font-mono text-[11px] text-[#A1A1AA]">
+                      <span className="font-mono text-[11px] text-[#9CA3AF]">
                         {batch.stream}
                       </span>
                     </div>
-                    <p className="text-sm font-medium text-[#F5F3EF]">
+                    <p className="text-sm font-medium text-[#F3F4F6]">
                       {batch.title}
                     </p>
-                    <p className="text-xs text-[#A1A1AA]">
+                    <p className="text-xs text-[#9CA3AF]">
                       Lead Teacher:{' '}
-                      <span className="text-[#F5F3EF] font-medium">
+                      <span className="text-[#F3F4F6] font-medium">
                         {batch.leadTeacher}
                       </span>
                     </p>
                   </div>
 
                   <div className="text-left sm:text-right shrink-0">
-                    <p className="font-mono text-xs text-[#F5F3EF]">
+                    <p className="font-mono text-xs text-[#F3F4F6]">
                       {batch.enrolledCount} / {batch.capacity} Scholars
                     </p>
-                    <span className="inline-block mt-1 font-mono text-[10px] px-2 py-0.5 rounded bg-[#111111] border border-[#292929] text-[#FF4B00]">
+                    <span className="inline-block mt-1 font-mono text-[10px] px-2 py-0.5 rounded bg-[#13161F] border border-[#232734] text-brand-champagne">
                       ACTIVE BATCH
                     </span>
                   </div>

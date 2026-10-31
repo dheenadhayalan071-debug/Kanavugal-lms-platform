@@ -4,7 +4,6 @@ import { useLms } from '../context/LmsContext';
 /**
  * Root Route (`/`)
  * Automatically redirects unauthenticated/root visitors to `/login`.
- * In Next.js 15 App Router production: `redirect('/login')` from `next/navigation`.
  */
 export const RootRedirectPage: React.FC = () => {
   const { navigate } = useLms();
@@ -14,9 +13,9 @@ export const RootRedirectPage: React.FC = () => {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen bg-[#080808] text-[#F5F3EF] flex items-center justify-center">
-      <div className="flex items-center gap-3 text-xs text-[#A1A1AA] font-mono">
-        <span className="w-2 h-2 rounded-full bg-[#FF4B00] animate-pulse" />
+    <div className="min-h-screen bg-[#0A0B0E] text-[#F3F4F6] flex items-center justify-center">
+      <div className="flex items-center gap-3 text-xs text-[#9CA3AF] font-mono">
+        <span className="w-2 h-2 rounded-full bg-brand-champagne animate-pulse" />
         <span>Redirecting to Kanavugal Academy Auth Portal (/login)...</span>
       </div>
     </div>

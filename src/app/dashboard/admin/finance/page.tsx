@@ -118,31 +118,31 @@ export const AdminFinancePage: React.FC = () => {
   const totalCollected = feePayments.reduce((sum, f) => sum + f.amountPaid, 0);
 
   return (
-    <div className="bg-[#080808] text-[#F5F3EF]">
+    <div className="bg-[#0A0B0E] text-[#F3F4F6]">
       {toastMessage && (
-        <div className="fixed bottom-8 right-6 z-50 max-w-md bg-[#111111] border border-[#FF4B00] rounded-lg px-4 py-3 shadow-2xl flex items-center gap-3">
-          <CheckCircle2 className="w-4 h-4 text-[#FF4B00] shrink-0" />
-          <p className="text-xs text-[#F5F3EF]">{toastMessage}</p>
+        <div className="fixed bottom-8 right-6 z-50 max-w-md bg-[#13161F] border border-brand-champagne rounded-lg px-4 py-3 shadow-2xl flex items-center gap-3">
+          <CheckCircle2 className="w-4 h-4 text-brand-champagne shrink-0" />
+          <p className="text-xs text-[#F3F4F6]">{toastMessage}</p>
         </div>
       )}
 
-      <header className="px-6 lg:px-10 py-6 border-b border-[#292929] bg-[#080808] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <header className="px-6 lg:px-10 py-6 border-b border-[#232734] bg-[#11131A] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div className="space-y-1">
-          <div className="flex items-center gap-2 text-xs text-[#FF4B00] font-medium">
+          <div className="flex items-center gap-2 text-xs text-brand-champagne font-medium">
             <Receipt className="w-3.5 h-3.5" />
             <span>Institutional Fee Ledger · /dashboard/admin/finance</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F5F3EF]">
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F3F4F6]">
             Offline Fee Payments (Cash / UPI)
           </h1>
-          <p className="text-xs text-[#A1A1AA]">
+          <p className="text-xs text-[#9CA3AF]">
             Log and track desk fee collections across SBO Colony and Anaiyur campuses
           </p>
         </div>
 
-        <div className="bg-[#111111] border border-[#292929] rounded-lg px-4 py-2.5 text-right">
-          <p className="text-[11px] text-[#A1A1AA]">Total Logged Collection</p>
-          <p className="font-mono text-lg font-semibold text-[#FF4B00]">
+        <div className="bg-[#13161F] border border-[#232734] rounded-lg px-4 py-2.5 text-right">
+          <p className="text-[11px] text-[#9CA3AF]">Total Logged Collection</p>
+          <p className="font-mono text-lg font-semibold text-brand-champagne">
             ₹{totalCollected.toLocaleString('en-IN')}
           </p>
         </div>
@@ -152,13 +152,13 @@ export const AdminFinancePage: React.FC = () => {
         {/* Log New Offline Desk Receipt Form */}
         <form
           onSubmit={handleRecordPayment}
-          className="bg-[#111111] border border-[#292929] rounded-lg p-6 space-y-4"
+          className="bg-[#13161F] border border-[#232734] rounded-lg p-6 space-y-4"
         >
-          <div className="flex items-center justify-between border-b border-[#292929] pb-3">
-            <h2 className="text-base font-semibold text-[#F5F3EF]">
+          <div className="flex items-center justify-between border-b border-[#232734] pb-3">
+            <h2 className="text-base font-semibold text-[#F3F4F6]">
               Log New Offline Desk Receipt (Cash / UPI)
             </h2>
-            <span className="font-mono text-xs text-[#FF4B00]">
+            <span className="font-mono text-xs text-brand-champagne">
               DESK VERIFIED
             </span>
           </div>
@@ -170,7 +170,7 @@ export const AdminFinancePage: React.FC = () => {
               value={feeStudentName}
               onChange={(e) => setFeeStudentName(e.target.value)}
               placeholder="Student Full Name"
-              className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2.5 text-xs text-[#F5F3EF] placeholder-[#A1A1AA] focus:outline-none focus:border-[#FF4B00]"
+              className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2.5 text-xs text-[#F3F4F6] placeholder-[#9CA3AF] focus:outline-none focus:border-brand-champagne"
             />
             <input
               type="text"
@@ -178,14 +178,14 @@ export const AdminFinancePage: React.FC = () => {
               value={feeRollNo}
               onChange={(e) => setFeeRollNo(e.target.value)}
               placeholder="Roll No (KA-SBO-...)"
-              className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2.5 text-xs font-mono text-[#F5F3EF] placeholder-[#A1A1AA] focus:outline-none focus:border-[#FF4B00]"
+              className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2.5 text-xs font-mono text-[#F3F4F6] placeholder-[#9CA3AF] focus:outline-none focus:border-brand-champagne"
             />
             <select
               value={feeCampus}
               onChange={(e) =>
                 setFeeCampus(e.target.value as 'SBO Colony' | 'Anaiyur')
               }
-              className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2.5 text-xs text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+              className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2.5 text-xs text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
             >
               <option value="SBO Colony">SBO Colony</option>
               <option value="Anaiyur">Anaiyur</option>
@@ -196,7 +196,7 @@ export const AdminFinancePage: React.FC = () => {
               value={feeAmount}
               onChange={(e) => setFeeAmount(e.target.value)}
               placeholder="Amount (INR)"
-              className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2.5 text-xs font-mono text-[#F5F3EF] placeholder-[#A1A1AA] focus:outline-none focus:border-[#FF4B00]"
+              className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2.5 text-xs font-mono text-[#F3F4F6] placeholder-[#9CA3AF] focus:outline-none focus:border-brand-champagne"
             />
             <div className="flex gap-2">
               <select
@@ -204,14 +204,14 @@ export const AdminFinancePage: React.FC = () => {
                 onChange={(e) =>
                   setFeeMethod(e.target.value as 'CASH' | 'UPI')
                 }
-                className="flex-1 bg-[#080808] border border-[#292929] rounded-md px-2.5 py-2.5 text-xs font-mono text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+                className="flex-1 bg-[#0A0B0E] border border-[#232734] rounded-md px-2.5 py-2.5 text-xs font-mono text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
               >
                 <option value="UPI">UPI</option>
                 <option value="CASH">CASH</option>
               </select>
               <button
                 type="submit"
-                className="px-4 py-2.5 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-xs font-medium inline-flex items-center gap-1.5 shrink-0 transition-colors"
+                className="px-4 py-2.5 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-xs font-semibold inline-flex items-center gap-1.5 shrink-0 transition-colors"
               >
                 <CreditCard className="w-3.5 h-3.5" />
                 <span>Record</span>
@@ -222,46 +222,46 @@ export const AdminFinancePage: React.FC = () => {
 
         {/* Fee Ledger Rows */}
         <section className="space-y-3">
-          <h2 className="text-base font-semibold text-[#F5F3EF]">
+          <h2 className="text-base font-semibold text-[#F3F4F6]">
             Recent Desk Receipts ({feePayments.length})
           </h2>
 
           {feePayments.map((fee) => (
             <div
               key={fee.id}
-              className="bg-[#111111] border border-[#292929] rounded-lg p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+              className="bg-[#13161F] border border-[#232734] rounded-lg p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
             >
               <div className="space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="font-mono text-xs text-[#FF4B00] font-semibold">
+                  <span className="font-mono text-xs text-brand-champagne font-semibold">
                     {fee.receiptNo}
                   </span>
-                  <span className="text-sm font-semibold text-[#F5F3EF]">
+                  <span className="text-sm font-semibold text-[#F3F4F6]">
                     {fee.studentName}
                   </span>
-                  <span className="font-mono text-xs text-[#A1A1AA]">
+                  <span className="font-mono text-xs text-[#3B82F6]">
                     ({fee.rollNumber})
                   </span>
                 </div>
-                <p className="text-xs text-[#A1A1AA]">
+                <p className="text-xs text-[#9CA3AF]">
                   {fee.termName} · {fee.campus}
                 </p>
               </div>
 
               <div className="flex items-center gap-4 shrink-0">
                 <div className="text-right">
-                  <p className="font-mono text-base font-semibold text-[#F5F3EF]">
+                  <p className="font-mono text-base font-semibold text-[#F3F4F6]">
                     ₹{fee.amountPaid.toLocaleString('en-IN')}
                   </p>
-                  <p className="font-mono text-xs text-[#A1A1AA]">
+                  <p className="font-mono text-xs text-[#9CA3AF]">
                     {fee.method} · {fee.paidDate}
                   </p>
                 </div>
                 <span
                   className={`font-mono text-xs px-2.5 py-1 rounded border ${
                     fee.status === 'PAID'
-                      ? 'bg-[#080808] text-[#F5F3EF] border-[#292929]'
-                      : 'bg-[#FF4B00]/15 text-[#FF4B00] border-[#FF4B00]/40'
+                      ? 'bg-[#0A0B0E] text-[#F3F4F6] border-[#232734]'
+                      : 'bg-brand-champagne/15 text-brand-champagne border-brand-champagne/40'
                   }`}
                 >
                   {fee.status}

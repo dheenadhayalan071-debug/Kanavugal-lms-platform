@@ -534,3 +534,124 @@ export function updateManagedUserStatus(
   );
 }
 
+export interface RankComparisonPoint {
+  examCode: string;
+  examLabel: string;
+  date: string;
+  studentRank: number;
+  branchAvgRank: number;
+  studentScore: number;
+  maxScore: number;
+  percentile: number;
+}
+
+export const LAST_FIVE_NTA_MOCK_RANKS: RankComparisonPoint[] = [
+  {
+    examCode: 'NTA-MOCK-01',
+    examLabel: 'Mock #01',
+    date: '06 Sep 2026',
+    studentRank: 14,
+    branchAvgRank: 48,
+    studentScore: 212,
+    maxScore: 300,
+    percentile: 94.1,
+  },
+  {
+    examCode: 'NTA-MOCK-02',
+    examLabel: 'Mock #02',
+    date: '20 Sep 2026',
+    studentRank: 11,
+    branchAvgRank: 45,
+    studentScore: 224,
+    maxScore: 300,
+    percentile: 95.8,
+  },
+  {
+    examCode: 'NTA-MOCK-03',
+    examLabel: 'Mock #03',
+    date: '04 Oct 2026',
+    studentRank: 8,
+    branchAvgRank: 42,
+    studentScore: 235,
+    maxScore: 300,
+    percentile: 97.2,
+  },
+  {
+    examCode: 'NTA-MOCK-04',
+    examLabel: 'Mock #04',
+    date: '18 Oct 2026',
+    studentRank: 6,
+    branchAvgRank: 44,
+    studentScore: 241,
+    maxScore: 300,
+    percentile: 98.1,
+  },
+  {
+    examCode: 'NTA-MOCK-05',
+    examLabel: 'Mock #05',
+    date: '28 Oct 2026',
+    studentRank: 4,
+    branchAvgRank: 39,
+    studentScore: 246,
+    maxScore: 300,
+    percentile: 98.9,
+  },
+];
+
+export type StruggleSeverity = 'CRITICAL' | 'HIGH' | 'MODERATE' | 'MASTERED';
+
+export interface ChapterHeatMapCell {
+  chapterId: string;
+  chapterName: string;
+  subject: 'Physics' | 'Chemistry' | 'Mathematics' | 'Biology';
+  batchScores: Record<
+    string,
+    {
+      accuracyPct: number;
+      negativeRatePct: number;
+      avgTimeSec: number;
+      strugglingCount: number;
+      totalStudents: number;
+    }
+  >;
+}
+
+/**
+ * Classifies a chapter's accuracy percentage across submitted CBT exams into
+ * a struggle severity tier for the Teacher Heat Map.
+ */
+export function classifyChapterStruggleSeverity(accuracyPct: number): {
+  severity: StruggleSeverity;
+  label: string;
+  struggleIndex: number;
+} {
+  const clamped = Math.max(0, Math.min(100, Math.round(accuracyPct)));
+  const struggleIndex = 100 - clamped;
+  if (clamped < 50) {
+    return {
+      severity: 'CRITICAL',
+      label: 'Critical Struggle (<50% Acc)',
+      struggleIndex,
+    };
+  }
+  if (clamped < 65) {
+    return {
+      severity: 'HIGH',
+      label: 'High Struggle (50–64% Acc)',
+      struggleIndex,
+    };
+  }
+  if (clamped < 78) {
+    return {
+      severity: 'MODERATE',
+      label: 'Moderate Needs Review (65–77% Acc)',
+      struggleIndex,
+    };
+  }
+  return {
+    severity: 'MASTERED',
+    label: 'Strong Mastery (≥78% Acc)',
+    struggleIndex,
+  };
+}
+

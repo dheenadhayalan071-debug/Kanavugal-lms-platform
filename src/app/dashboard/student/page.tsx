@@ -11,26 +11,29 @@ import {
 } from 'lucide-react';
 import { useLms } from '../../../context/LmsContext';
 import { useMockGlobal } from '../../../context/MockGlobalContext';
+import { StudentRankComparisonChart } from '../../../components/StudentRankComparisonChart';
 
 export const StudentDashboardPage: React.FC = () => {
   const { navigate } = useLms();
   const { globalAnnouncements } = useMockGlobal();
 
   return (
-    <div className="bg-[#080808] text-[#F5F3EF]">
+    <div className="bg-[#0A0B0E] text-[#F3F4F6]">
       {/* Welcome Header */}
-      <header className="px-6 lg:px-10 py-8 border-b border-[#292929] bg-[#080808] flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <header className="px-6 lg:px-10 py-8 border-b border-[#232734] bg-[#11131A] flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div className="space-y-2">
-          <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+          <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
             <span>SBO Colony Campus, Madurai</span>
             <span>•</span>
-            <span className="font-mono text-[#F5F3EF]">Roll: KA-SBO-26-0142</span>
+            <span className="font-mono text-[#3B82F6]">
+              Roll: KA-SBO-26-0142
+            </span>
             <span>•</span>
-            <span className="text-[#FF4B00]">
+            <span className="text-brand-champagne">
               JEE Main & Advanced (Class 12)
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F5F3EF]">
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F3F4F6]">
             Welcome back, Kavin Rajan
           </h1>
         </div>
@@ -39,16 +42,16 @@ export const StudentDashboardPage: React.FC = () => {
           <button
             type="button"
             onClick={() => navigate('/dashboard/student/courses')}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-[#111111] hover:bg-[#181818] text-[#F5F3EF] border border-[#292929] hover:border-[#FF4B00] text-sm font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-[#13161F] hover:bg-[#191D29] text-[#F3F4F6] border border-[#232734] hover:border-brand-champagne text-sm font-medium transition-colors"
           >
-            <BookOpen className="w-4 h-4 text-[#FF4B00]" />
+            <BookOpen className="w-4 h-4 text-brand-champagne" />
             <span>Open Learning Tab</span>
           </button>
 
           <button
             type="button"
             onClick={() => navigate('/dashboard/student/exams')}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-sm font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-sm font-semibold transition-colors"
           >
             <Award className="w-4 h-4" />
             <span>Open CBT Exams Tab</span>
@@ -61,16 +64,16 @@ export const StudentDashboardPage: React.FC = () => {
         {/* Global Announcements from MockGlobalContext (Cross-Role Reflection) */}
         <section
           aria-label="Global Academy Broadcasts"
-          className="bg-[#111111] border border-[#292929] rounded-lg p-6 md:p-8 space-y-5"
+          className="bg-[#13161F] border border-[#232734] rounded-lg p-6 md:p-8 space-y-5"
         >
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#292929] pb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#232734] pb-4">
             <div className="flex items-center gap-2.5">
-              <Megaphone className="w-5 h-5 text-[#FF4B00]" />
-              <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F5F3EF]">
+              <Megaphone className="w-5 h-5 text-brand-champagne" />
+              <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F3F4F6]">
                 Academy Announcements & Circulars
               </h2>
             </div>
-            <span className="font-mono text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+            <span className="font-mono text-xs md:text-sm font-medium text-[#3B82F6] uppercase tracking-wider">
               LIVE ADMIN BROADCAST ({globalAnnouncements.length})
             </span>
           </div>
@@ -79,20 +82,20 @@ export const StudentDashboardPage: React.FC = () => {
             {globalAnnouncements.slice(0, 2).map((ann) => (
               <div
                 key={ann.id}
-                className="bg-[#080808] border border-[#292929] rounded-md p-5 space-y-2"
+                className="bg-[#0A0B0E] border border-[#232734] rounded-md p-5 space-y-2"
               >
                 <div className="flex items-center justify-between gap-2">
-                  <span className="font-mono text-xs md:text-sm font-medium text-[#FF4B00] uppercase tracking-wider px-2.5 py-0.5 rounded bg-[#111111] border border-[#292929]">
+                  <span className="font-mono text-xs md:text-sm font-medium text-brand-champagne uppercase tracking-wider px-2.5 py-0.5 rounded bg-[#13161F] border border-[#232734]">
                     {ann.targetBranches}
                   </span>
-                  <span className="font-mono text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+                  <span className="font-mono text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
                     {ann.publishedAt}
                   </span>
                 </div>
-                <h3 className="text-base font-semibold text-[#F5F3EF]">
+                <h3 className="text-base font-semibold text-[#F3F4F6]">
                   {ann.title}
                 </h3>
-                <p className="text-base text-[#A1A1AA] leading-relaxed">
+                <p className="text-base text-[#9CA3AF] leading-relaxed">
                   {ann.message}
                 </p>
               </div>
@@ -103,85 +106,88 @@ export const StudentDashboardPage: React.FC = () => {
         {/* Primary KPIs */}
         <section aria-label="Academic Overview Metrics" className="space-y-5">
           <div className="space-y-1">
-            <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F5F3EF]">
+            <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F3F4F6]">
               Academic Telemetry & Attendance KPIs
             </h2>
-            <p className="text-base text-[#A1A1AA]">
+            <p className="text-base text-[#9CA3AF]">
               Real-time attendance, syllabus completion, and NTA mock test
               standing
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-[#111111] border border-[#292929] rounded-lg p-6 space-y-3">
-              <div className="flex items-center justify-between text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+            <div className="bg-[#13161F] border border-[#232734] rounded-lg p-6 space-y-3">
+              <div className="flex items-center justify-between text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
                 <span>Campus Attendance</span>
-                <Calendar className="w-4 h-4 text-[#FF4B00]" />
+                <Calendar className="w-4 h-4 text-brand-champagne" />
               </div>
-              <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-[#FF4B00]">
+              <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-brand-champagne">
                 96.4%
               </p>
-              <p className="text-base text-[#F5F3EF]">
+              <p className="text-base text-[#F3F4F6]">
                 108 / 112 Classroom Sessions Present
               </p>
             </div>
 
-            <div className="bg-[#111111] border border-[#292929] rounded-lg p-6 space-y-3">
-              <div className="flex items-center justify-between text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+            <div className="bg-[#13161F] border border-[#232734] rounded-lg p-6 space-y-3">
+              <div className="flex items-center justify-between text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
                 <span>Syllabus Completion</span>
-                <TrendingUp className="w-4 h-4 text-[#FF4B00]" />
+                <TrendingUp className="w-4 h-4 text-brand-champagne" />
               </div>
-              <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-[#FF4B00]">
+              <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-brand-champagne">
                 72.5%
               </p>
-              <p className="text-base text-[#F5F3EF]">
+              <p className="text-base text-[#F3F4F6]">
                 58 of 80 modules completed across 4 subjects
               </p>
             </div>
 
-            <div className="bg-[#111111] border border-[#292929] rounded-lg p-6 space-y-3">
-              <div className="flex items-center justify-between text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+            <div className="bg-[#13161F] border border-[#232734] rounded-lg p-6 space-y-3">
+              <div className="flex items-center justify-between text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
                 <span>Latest NTA Mock Score</span>
-                <BarChart3 className="w-4 h-4 text-[#FF4B00]" />
+                <BarChart3 className="w-4 h-4 text-brand-champagne" />
               </div>
-              <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-[#FF4B00]">
+              <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-brand-champagne">
                 246/300
               </p>
-              <p className="text-base text-[#F5F3EF]">
+              <p className="text-base text-[#F3F4F6]">
                 91.2% Accuracy · Rank #04 (SBO & Anaiyur)
               </p>
             </div>
 
-            <div className="bg-[#111111] border border-[#292929] rounded-lg p-6 space-y-3">
-              <div className="flex items-center justify-between text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+            <div className="bg-[#13161F] border border-[#232734] rounded-lg p-6 space-y-3">
+              <div className="flex items-center justify-between text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
                 <span>Assigned Batch</span>
-                <GraduationCap className="w-4 h-4 text-[#FF4B00]" />
+                <GraduationCap className="w-4 h-4 text-brand-champagne" />
               </div>
-              <p className="font-mono text-2xl md:text-3xl font-bold tracking-tight text-[#F5F3EF] pt-1">
+              <p className="font-mono text-2xl md:text-3xl font-bold tracking-tight text-[#3B82F6] pt-1">
                 SBO-JEE-2027-A
               </p>
-              <p className="text-base text-[#F5F3EF] truncate">
+              <p className="text-base text-[#F3F4F6] truncate">
                 Mentor: Dr. Ananya Velu (Ph.D. Physics)
               </p>
             </div>
           </div>
         </section>
 
+        {/* Recharts Bar Chart: Student Rank vs. Branch Average (Last 5 NTA Mock Tests) */}
+        <StudentRankComparisonChart />
+
         {/* Subject-Wise Syllabus Completion Breakdown */}
-        <section className="bg-[#111111] border border-[#292929] rounded-lg p-6 md:p-8 space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#292929] pb-5">
+        <section className="bg-[#13161F] border border-[#232734] rounded-lg p-6 md:p-8 space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#232734] pb-5">
             <div className="space-y-1">
-              <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F5F3EF]">
+              <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F3F4F6]">
                 Subject-Wise Syllabus Completion & Attendance Summary
               </h2>
-              <p className="text-base text-[#A1A1AA]">
+              <p className="text-base text-[#9CA3AF]">
                 Real-time completion telemetry for Batch SBO-JEE-2027-A
               </p>
             </div>
             <button
               type="button"
               onClick={() => navigate('/dashboard/student/courses')}
-              className="text-sm font-semibold text-[#FF4B00] hover:underline inline-flex items-center gap-1.5"
+              className="text-sm font-semibold text-[#3B82F6] hover:text-brand-champagne inline-flex items-center gap-1.5 transition-colors"
             >
               <span>Go to Courses & VODs</span>
               <ArrowRight className="w-4 h-4" />
@@ -225,35 +231,35 @@ export const StudentDashboardPage: React.FC = () => {
             ].map((row) => (
               <div
                 key={row.subject}
-                className="bg-[#080808] border border-[#292929] rounded-md p-5 space-y-3.5"
+                className="bg-[#0A0B0E] border border-[#232734] rounded-md p-5 space-y-3.5"
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-base font-semibold text-[#F5F3EF]">
+                    <p className="text-base font-semibold text-[#F3F4F6]">
                       {row.subject}
                     </p>
-                    <p className="text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider mt-0.5">
+                    <p className="text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider mt-0.5">
                       {row.faculty}
                     </p>
                   </div>
                   <div className="text-right font-mono">
-                    <p className="text-lg font-bold text-[#FF4B00]">
+                    <p className="text-lg font-bold text-brand-champagne">
                       {row.pct}% Syllabus
                     </p>
-                    <p className="text-xs text-[#A1A1AA]">
+                    <p className="text-xs text-[#3B82F6]">
                       Attendance: {row.attendance}
                     </p>
                   </div>
                 </div>
 
-                <div className="w-full h-2 bg-[#111111] border border-[#292929] rounded-full overflow-hidden">
+                <div className="w-full h-2 bg-[#13161F] border border-[#232734] rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-[#FF4B00]"
+                    className="h-full bg-brand-champagne"
                     style={{ width: `${row.pct}%` }}
                   />
                 </div>
 
-                <p className="font-mono text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+                <p className="font-mono text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
                   {row.completed} / {row.total} Modules Completed
                 </p>
               </div>

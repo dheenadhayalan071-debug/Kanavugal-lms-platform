@@ -139,20 +139,20 @@ export const StudentCoursesPage: React.FC = () => {
   });
 
   return (
-    <div className="bg-[#080808] text-[#F5F3EF]">
-      <header className="px-6 lg:px-10 py-8 border-b border-[#292929] bg-[#080808] flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+    <div className="bg-[#0A0B0E] text-[#F3F4F6]">
+      <header className="px-6 lg:px-10 py-8 border-b border-[#232734] bg-[#11131A] flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div className="space-y-2">
-          <div className="flex items-center gap-2 text-xs md:text-sm font-medium text-[#FF4B00] uppercase tracking-wider">
+          <div className="flex items-center gap-2 text-xs md:text-sm font-medium text-brand-champagne uppercase tracking-wider">
             <BookOpen className="w-4 h-4" />
             <span>Learning Hub · /dashboard/student/courses</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F5F3EF]">
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F3F4F6]">
             Enrolled Courses, VODs & Live Zoom Links
           </h1>
         </div>
 
         {/* Segmented Sub-Tab Switcher */}
-        <div className="inline-flex items-center bg-[#111111] border border-[#292929] rounded-md p-1.5 gap-1.5">
+        <div className="inline-flex items-center bg-[#13161F] border border-[#232734] rounded-md p-1.5 gap-1.5">
           {(
             [
               { key: 'COURSES', label: 'Enrolled Courses (4)' },
@@ -166,10 +166,10 @@ export const StudentCoursesPage: React.FC = () => {
                 key={tab.key}
                 type="button"
                 onClick={() => setSubView(tab.key)}
-                className={`px-4 py-2 rounded text-xs md:text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded text-xs md:text-sm font-semibold transition-colors cursor-pointer ${
                   active
-                    ? 'bg-[#FF4B00] text-[#F5F3EF]'
-                    : 'text-[#A1A1AA] hover:text-[#F5F3EF]'
+                    ? 'bg-brand-champagne text-[#0A0B0E]'
+                    : 'text-[#9CA3AF] hover:text-[#F3F4F6]'
                 }`}
               >
                 {tab.label}
@@ -190,54 +190,54 @@ export const StudentCoursesPage: React.FC = () => {
               return (
                 <div
                   key={course.id}
-                  className="bg-[#111111] border border-[#292929] rounded-lg p-6 md:p-8 flex flex-col justify-between space-y-6 hover:border-[#FF4B00]/60 transition-colors"
+                  className="bg-[#13161F] border border-[#232734] rounded-lg p-6 md:p-8 flex flex-col justify-between space-y-6 hover:border-brand-champagne/60 transition-colors"
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="px-2.5 py-1 rounded text-xs md:text-sm font-medium uppercase tracking-wider bg-[#080808] text-[#FF4B00] border border-[#292929]">
+                      <span className="px-2.5 py-1 rounded text-xs md:text-sm font-medium uppercase tracking-wider bg-[#0A0B0E] text-brand-champagne border border-[#232734]">
                         {course.subject} · {course.classLevel}
                       </span>
-                      <span className="font-mono text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+                      <span className="font-mono text-xs md:text-sm font-medium text-[#3B82F6] uppercase tracking-wider">
                         {course.academicTrack}
                       </span>
                     </div>
 
-                    <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F5F3EF] leading-snug">
+                    <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F3F4F6] leading-snug">
                       {course.title}
                     </h2>
                   </div>
 
-                  <div className="space-y-4 pt-4 border-t border-[#292929]">
+                  <div className="space-y-4 pt-4 border-t border-[#232734]">
                     <div className="flex items-center justify-between text-base">
-                      <span className="text-[#A1A1AA]">
+                      <span className="text-[#9CA3AF]">
                         {course.instructorName}
                       </span>
-                      <span className="font-mono text-[#F5F3EF]">
+                      <span className="font-mono text-[#F3F4F6]">
                         {course.completedModules}/{course.totalModules} Modules (
                         {progressPct}%)
                       </span>
                     </div>
 
-                    <div className="w-full h-2 bg-[#080808] border border-[#292929] rounded-full overflow-hidden">
+                    <div className="w-full h-2 bg-[#0A0B0E] border border-[#232734] rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-[#FF4B00]"
+                        className="h-full bg-brand-champagne"
                         style={{ width: `${progressPct}%` }}
                       />
                     </div>
 
-                    <div className="bg-[#080808] border border-[#292929] rounded-md p-4 flex items-center justify-between gap-4">
+                    <div className="bg-[#0A0B0E] border border-[#232734] rounded-md p-4 flex items-center justify-between gap-4">
                       <div className="min-w-0 space-y-0.5">
-                        <p className="text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+                        <p className="text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
                           Up Next in Syllabus
                         </p>
-                        <p className="text-base font-medium text-[#F5F3EF] truncate">
+                        <p className="text-base font-medium text-[#F3F4F6] truncate">
                           {course.nextModuleTitle}
                         </p>
                       </div>
                       <button
                         type="button"
                         onClick={() => navigate(course.resumePath)}
-                        className="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-sm font-medium transition-colors"
+                        className="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-sm font-semibold transition-colors"
                       >
                         <span>Continue</span>
                         <ChevronRight className="w-4 h-4" />
@@ -252,7 +252,7 @@ export const StudentCoursesPage: React.FC = () => {
 
         {/* 2. Recorded VODs View */}
         {subView === 'VODS' && (
-          <div className="bg-[#111111] border border-[#292929] rounded-lg divide-y divide-[#292929]">
+          <div className="bg-[#13161F] border border-[#232734] rounded-lg divide-y divide-[#232734]">
             {VOD_LECTURES.map((vod) => {
               const isDone = !!completedModuleIds[vod.id];
               return (
@@ -262,19 +262,19 @@ export const StudentCoursesPage: React.FC = () => {
                 >
                   <div className="space-y-2">
                     <div className="flex flex-wrap items-center gap-2.5 text-xs md:text-sm font-medium uppercase tracking-wider">
-                      <span className="font-mono text-[#FF4B00]">
+                      <span className="font-mono text-brand-champagne">
                         Lecture #{vod.position}
                       </span>
-                      <span className="text-[#A1A1AA]">•</span>
-                      <span className="text-[#F5F3EF]">{vod.subject}</span>
-                      <span className="font-mono text-xs text-[#A1A1AA]">
+                      <span className="text-[#9CA3AF]">•</span>
+                      <span className="text-[#F3F4F6]">{vod.subject}</span>
+                      <span className="font-mono text-xs text-[#3B82F6]">
                         ({vod.durationMinutes} mins · {vod.youtubeVideoId})
                       </span>
                     </div>
-                    <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F5F3EF]">
+                    <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F3F4F6]">
                       {vod.title}
                     </h2>
-                    <p className="text-base text-[#A1A1AA]">
+                    <p className="text-base text-[#9CA3AF]">
                       Chapter: {vod.chapterName} · Faculty: {vod.instructorName}
                     </p>
                   </div>
@@ -290,8 +290,8 @@ export const StudentCoursesPage: React.FC = () => {
                       }
                       className={`px-4 py-2.5 rounded-md text-sm font-medium border transition-colors inline-flex items-center gap-2 ${
                         isDone
-                          ? 'bg-[#080808] text-[#FF4B00] border-[#FF4B00]'
-                          : 'bg-[#080808] text-[#A1A1AA] border-[#292929] hover:text-[#F5F3EF]'
+                          ? 'bg-[#0A0B0E] text-brand-champagne border-brand-champagne'
+                          : 'bg-[#0A0B0E] text-[#9CA3AF] border-[#232734] hover:text-[#F3F4F6]'
                       }`}
                     >
                       <CheckCircle2 className="w-4 h-4" />
@@ -301,7 +301,7 @@ export const StudentCoursesPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => navigate(`/learn/crs_phy_12_01/${vod.id}`)}
-                      className="px-4 py-2.5 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-sm font-medium inline-flex items-center gap-2 transition-colors"
+                      className="px-4 py-2.5 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-sm font-semibold inline-flex items-center gap-2 transition-colors"
                     >
                       <Play className="w-4 h-4" />
                       <span>Watch Lecture</span>
@@ -319,37 +319,37 @@ export const StudentCoursesPage: React.FC = () => {
             {ZOOM_CLASSES.map((live) => (
               <div
                 key={live.id}
-                className="bg-[#111111] border border-[#292929] rounded-lg p-6 md:p-8 flex flex-col justify-between space-y-6"
+                className="bg-[#13161F] border border-[#232734] rounded-lg p-6 md:p-8 flex flex-col justify-between space-y-6"
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded text-xs md:text-sm font-medium uppercase tracking-wider bg-[#FF4B00]/15 text-[#FF4B00] border border-[#FF4B00]/30">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded text-xs md:text-sm font-medium uppercase tracking-wider bg-brand-champagne/15 text-brand-champagne border border-brand-champagne/30">
                       <Radio className="w-3.5 h-3.5" />
                       Live Zoom Classroom
                     </span>
-                    <span className="font-mono text-xs md:text-sm font-medium text-[#F5F3EF] uppercase tracking-wider">
+                    <span className="font-mono text-xs md:text-sm font-medium text-[#3B82F6] uppercase tracking-wider">
                       {live.scheduledStartAt}
                     </span>
                   </div>
 
-                  <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F5F3EF]">
+                  <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F3F4F6]">
                     {live.title}
                   </h2>
 
-                  <p className="text-base text-[#A1A1AA]">
+                  <p className="text-base text-[#9CA3AF]">
                     {live.subject} · Chapter: {live.chapterName} · Faculty:{' '}
-                    <span className="text-[#F5F3EF]">{live.instructorName}</span>
+                    <span className="text-[#F3F4F6]">{live.instructorName}</span>
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-[#292929] flex flex-wrap items-center justify-between gap-4">
-                  <div className="font-mono text-xs md:text-sm text-[#A1A1AA]">
+                <div className="pt-4 border-t border-[#232734] flex flex-wrap items-center justify-between gap-4">
+                  <div className="font-mono text-xs md:text-sm text-[#9CA3AF]">
                     Meeting ID:{' '}
-                    <span className="text-[#F5F3EF]">
+                    <span className="text-[#3B82F6]">
                       {live.liveZoomMeetingId}
                     </span>{' '}
                     · Passcode:{' '}
-                    <span className="text-[#F5F3EF]">
+                    <span className="text-[#F3F4F6]">
                       {live.liveZoomPasscode}
                     </span>
                   </div>
@@ -359,7 +359,7 @@ export const StudentCoursesPage: React.FC = () => {
                     onClick={() =>
                       navigate(`/learn/${live.courseId}/${live.id}`)
                     }
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-sm font-medium transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-sm font-semibold transition-colors"
                   >
                     <span>Join Zoom Class</span>
                     <ExternalLink className="w-4 h-4" />

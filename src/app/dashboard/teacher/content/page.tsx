@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   Radio,
-  Video,
   FileText,
   Upload,
   ExternalLink,
@@ -108,24 +107,24 @@ export const TeacherContentPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#080808] text-[#F5F3EF]">
+    <div className="bg-[#0A0B0E] text-[#F3F4F6]">
       {toastMessage && (
-        <div className="fixed bottom-8 right-6 z-50 max-w-md bg-[#111111] border border-[#FF4B00] rounded-lg px-4 py-3 shadow-2xl flex items-center gap-3">
-          <CheckCircle2 className="w-4 h-4 text-[#FF4B00] shrink-0" />
-          <p className="text-xs text-[#F5F3EF]">{toastMessage}</p>
+        <div className="fixed bottom-8 right-6 z-50 max-w-md bg-[#13161F] border border-brand-champagne rounded-lg px-4 py-3 shadow-2xl flex items-center gap-3">
+          <CheckCircle2 className="w-4 h-4 text-brand-champagne shrink-0" />
+          <p className="text-xs text-[#F3F4F6]">{toastMessage}</p>
         </div>
       )}
 
-      <header className="px-6 lg:px-10 py-6 border-b border-[#292929] bg-[#080808] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <header className="px-6 lg:px-10 py-6 border-b border-[#232734] bg-[#11131A] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div className="space-y-1">
-          <div className="flex items-center gap-2 text-xs text-[#FF4B00] font-medium">
+          <div className="flex items-center gap-2 text-xs text-brand-champagne font-medium">
             <FileText className="w-3.5 h-3.5" />
             <span>Curriculum Publishing Studio · /dashboard/teacher/content</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F5F3EF]">
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F3F4F6]">
             Course Content, PDFs & Live Zoom Links
           </h1>
-          <p className="text-xs text-[#A1A1AA]">
+          <p className="text-xs text-[#9CA3AF]">
             Upload chapter PDFs, publish recorded VOD lecture streams, and paste scheduled Zoom URLs
           </p>
         </div>
@@ -136,27 +135,27 @@ export const TeacherContentPage: React.FC = () => {
           {/* Paste Scheduled Zoom Link */}
           <form
             onSubmit={handlePublishZoom}
-            className="lg:col-span-6 bg-[#111111] border border-[#292929] rounded-lg p-6 space-y-4"
+            className="lg:col-span-6 bg-[#13161F] border border-[#232734] rounded-lg p-6 space-y-4"
           >
-            <div className="flex items-center justify-between border-b border-[#292929] pb-3">
-              <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#F5F3EF]">
-                <Radio className="w-4 h-4 text-[#FF4B00]" />
+            <div className="flex items-center justify-between border-b border-[#232734] pb-3">
+              <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#F3F4F6]">
+                <Radio className="w-4 h-4 text-brand-champagne" />
                 Paste Scheduled Zoom URL
               </span>
-              <span className="font-mono text-xs text-[#A1A1AA]">
+              <span className="font-mono text-xs text-[#3B82F6]">
                 Meeting ID: 984 2110 4921
               </span>
             </div>
 
             <div className="space-y-3">
               <div>
-                <label className="block text-xs text-[#A1A1AA] mb-1">
+                <label className="block text-xs text-[#9CA3AF] mb-1">
                   Target Batch
                 </label>
                 <select
                   value={zoomBatch}
                   onChange={(e) => setZoomBatch(e.target.value)}
-                  className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2 text-xs font-mono text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+                  className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2 text-xs font-mono text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
                 >
                   <option value="SBO-JEE-2027-A">SBO-JEE-2027-A</option>
                   <option value="SBO-NEET-2027-B">SBO-NEET-2027-B</option>
@@ -165,7 +164,7 @@ export const TeacherContentPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs text-[#A1A1AA] mb-1">
+                <label className="block text-xs text-[#9CA3AF] mb-1">
                   Live Class Session Topic
                 </label>
                 <input
@@ -173,12 +172,12 @@ export const TeacherContentPage: React.FC = () => {
                   required
                   value={zoomTopic}
                   onChange={(e) => setZoomTopic(e.target.value)}
-                  className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2 text-xs text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+                  className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2 text-xs text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
                 />
               </div>
 
               <div>
-                <label className="block text-xs text-[#A1A1AA] mb-1">
+                <label className="block text-xs text-[#9CA3AF] mb-1">
                   Scheduled Zoom Join URL
                 </label>
                 <input
@@ -187,18 +186,18 @@ export const TeacherContentPage: React.FC = () => {
                   value={zoomUrl}
                   onChange={(e) => setZoomUrl(e.target.value)}
                   placeholder="https://zoom.us/j/..."
-                  className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2 text-xs font-mono text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+                  className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2 text-xs font-mono text-[#3B82F6] focus:outline-none focus:border-brand-champagne"
                 />
               </div>
             </div>
 
             <div className="pt-2 flex items-center justify-between">
-              <span className="font-mono text-xs text-[#A1A1AA]">
-                Passcode: <strong className="text-[#F5F3EF]">KA2026</strong>
+              <span className="font-mono text-xs text-[#9CA3AF]">
+                Passcode: <strong className="text-[#F3F4F6]">KA2026</strong>
               </span>
               <button
                 type="submit"
-                className="px-4 py-2 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-xs font-medium inline-flex items-center gap-1.5 transition-colors"
+                className="px-4 py-2 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-xs font-semibold inline-flex items-center gap-1.5 transition-colors"
               >
                 <span>Publish Zoom Link</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -209,14 +208,14 @@ export const TeacherContentPage: React.FC = () => {
           {/* Upload PDF Study Material / VOD Lecture */}
           <form
             onSubmit={handleUploadContent}
-            className="lg:col-span-6 bg-[#111111] border border-[#292929] rounded-lg p-6 space-y-4"
+            className="lg:col-span-6 bg-[#13161F] border border-[#232734] rounded-lg p-6 space-y-4"
           >
-            <div className="flex items-center justify-between border-b border-[#292929] pb-3">
-              <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#F5F3EF]">
-                <Upload className="w-4 h-4 text-[#FF4B00]" />
+            <div className="flex items-center justify-between border-b border-[#232734] pb-3">
+              <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#F3F4F6]">
+                <Upload className="w-4 h-4 text-brand-champagne" />
                 Upload PDF Material / Recorded VOD
               </span>
-              <span className="font-mono text-xs text-[#A1A1AA]">
+              <span className="font-mono text-xs text-[#3B82F6]">
                 Supabase Storage
               </span>
             </div>
@@ -224,13 +223,13 @@ export const TeacherContentPage: React.FC = () => {
             <div className="space-y-3">
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs text-[#A1A1AA] mb-1">
+                  <label className="block text-xs text-[#9CA3AF] mb-1">
                     Target Batch
                   </label>
                   <select
                     value={uploadBatch}
                     onChange={(e) => setUploadBatch(e.target.value)}
-                    className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2 text-xs font-mono text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+                    className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2 text-xs font-mono text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
                   >
                     <option value="SBO-JEE-2027-A">SBO-JEE-2027-A</option>
                     <option value="SBO-NEET-2027-B">SBO-NEET-2027-B</option>
@@ -239,7 +238,7 @@ export const TeacherContentPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs text-[#A1A1AA] mb-1">
+                  <label className="block text-xs text-[#9CA3AF] mb-1">
                     Content Format
                   </label>
                   <select
@@ -249,7 +248,7 @@ export const TeacherContentPage: React.FC = () => {
                         e.target.value as 'PDF_MATERIAL' | 'VOD_LECTURE'
                       )
                     }
-                    className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2 text-xs font-mono text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+                    className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2 text-xs font-mono text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
                   >
                     <option value="PDF_MATERIAL">PDF Study Material / DPP</option>
                     <option value="VOD_LECTURE">Recorded VOD Lecture</option>
@@ -258,7 +257,7 @@ export const TeacherContentPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs text-[#A1A1AA] mb-1">
+                <label className="block text-xs text-[#9CA3AF] mb-1">
                   Module / Document Title
                 </label>
                 <input
@@ -267,12 +266,12 @@ export const TeacherContentPage: React.FC = () => {
                   value={uploadTitle}
                   onChange={(e) => setUploadTitle(e.target.value)}
                   placeholder="e.g., DPP #20: Ampere’s Law & Toroid Magnetic Field"
-                  className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2 text-xs text-[#F5F3EF] placeholder-[#A1A1AA] focus:outline-none focus:border-[#FF4B00]"
+                  className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2 text-xs text-[#F3F4F6] placeholder-[#9CA3AF] focus:outline-none focus:border-brand-champagne"
                 />
               </div>
 
               <div>
-                <label className="block text-xs text-[#A1A1AA] mb-1">
+                <label className="block text-xs text-[#9CA3AF] mb-1">
                   {uploadType === 'PDF_MATERIAL'
                     ? 'PDF Filename (Supabase Storage)'
                     : 'YouTube Unlisted / HLS Stream URL'}
@@ -282,7 +281,7 @@ export const TeacherContentPage: React.FC = () => {
                   required
                   value={uploadResource}
                   onChange={(e) => setUploadResource(e.target.value)}
-                  className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2 text-xs font-mono text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+                  className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2 text-xs font-mono text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
                 />
               </div>
             </div>
@@ -290,7 +289,7 @@ export const TeacherContentPage: React.FC = () => {
             <div className="pt-2 flex justify-end">
               <button
                 type="submit"
-                className="px-4 py-2 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-xs font-medium inline-flex items-center gap-1.5 transition-colors"
+                className="px-4 py-2 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-xs font-semibold inline-flex items-center gap-1.5 transition-colors"
               >
                 <Upload className="w-3.5 h-3.5" />
                 <span>Upload & Publish to Batch</span>
@@ -301,11 +300,11 @@ export const TeacherContentPage: React.FC = () => {
 
         {/* Recently Published Content Feed */}
         <section className="space-y-4">
-          <h2 className="text-lg font-semibold text-[#F5F3EF]">
+          <h2 className="text-lg font-semibold text-[#F3F4F6]">
             Published Batch Content & Live Zoom Links ({contentItems.length})
           </h2>
 
-          <div className="bg-[#111111] border border-[#292929] rounded-lg divide-y divide-[#292929]">
+          <div className="bg-[#13161F] border border-[#232734] rounded-lg divide-y divide-[#232734]">
             {contentItems.map((item) => (
               <div
                 key={item.id}
@@ -313,25 +312,25 @@ export const TeacherContentPage: React.FC = () => {
               >
                 <div className="space-y-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-mono text-[11px] px-2.5 py-0.5 rounded bg-[#080808] border border-[#292929] text-[#FF4B00]">
+                    <span className="font-mono text-[11px] px-2.5 py-0.5 rounded bg-[#0A0B0E] border border-[#232734] text-brand-champagne">
                       {item.type}
                     </span>
-                    <span className="font-mono text-xs text-[#F5F3EF]">
+                    <span className="font-mono text-xs text-[#F3F4F6]">
                       {item.batchCode}
                     </span>
-                    <span className="font-mono text-[11px] text-[#A1A1AA]">
+                    <span className="font-mono text-[11px] text-[#9CA3AF]">
                       • {item.publishedAt}
                     </span>
                   </div>
-                  <p className="text-sm font-semibold text-[#F5F3EF]">
+                  <p className="text-sm font-semibold text-[#F3F4F6]">
                     {item.title}
                   </p>
-                  <p className="font-mono text-xs text-[#A1A1AA]">
+                  <p className="font-mono text-xs text-[#3B82F6]">
                     {item.urlOrFile}
                   </p>
                 </div>
 
-                <span className="font-mono text-xs px-3 py-1 rounded bg-[#080808] border border-[#292929] text-[#FF4B00] shrink-0">
+                <span className="font-mono text-xs px-3 py-1 rounded bg-[#0A0B0E] border border-[#232734] text-brand-champagne shrink-0">
                   PUBLISHED
                 </span>
               </div>

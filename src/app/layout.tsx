@@ -1,5 +1,5 @@
 import React from 'react';
-import '../index.css';
+import './globals.css';
 
 export const metadata = {
   title: 'Kanavugal Academy — NEET UG, JEE Main & Advanced & Board LMS',
@@ -14,8 +14,8 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" className="dark">
-      <body className="min-h-screen bg-[#080808] text-[#F5F3EF] font-sans antialiased selection:bg-[#FF4B00] selection:text-[#F5F3EF] overflow-x-hidden">
-        <div className="min-h-screen flex flex-col bg-[#080808] text-[#F5F3EF]">
+      <body className="min-h-screen bg-[#0A0B0E] text-[#F3F4F6] font-sans antialiased selection:bg-brand-champagne selection:text-[#0A0B0E] overflow-x-hidden">
+        <div className="min-h-screen flex flex-col bg-[#0A0B0E] text-[#F3F4F6]">
           {children}
         </div>
       </body>

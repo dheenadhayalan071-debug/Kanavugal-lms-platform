@@ -18,6 +18,7 @@ import { StudentExamsPage } from './app/dashboard/student/exams/page';
 
 // Teacher Isolated Route Pages
 import { TeacherDashboardPage } from './app/dashboard/teacher/page';
+import { TeacherBatchPerformancePage } from './app/dashboard/teacher/performance/page';
 import { TeacherEvaluationsPage } from './app/dashboard/teacher/evaluations/page';
 import { TeacherExamsPage } from './app/dashboard/teacher/exams/page';
 import { TeacherAttendancePage } from './app/dashboard/teacher/attendance/page';
@@ -69,7 +70,9 @@ const AppRouter: React.FC = () => {
     }
     // 2. TEACHER ROUTES
     else if (cleanPath.startsWith('/dashboard/teacher')) {
-      if (cleanPath === '/dashboard/teacher/evaluations') {
+      if (cleanPath === '/dashboard/teacher/performance') {
+        pageContent = <TeacherBatchPerformancePage />;
+      } else if (cleanPath === '/dashboard/teacher/evaluations') {
         pageContent = <TeacherEvaluationsPage />;
       } else if (cleanPath === '/dashboard/teacher/exams') {
         pageContent = <TeacherExamsPage />;
@@ -134,7 +137,7 @@ export default function App() {
   return (
     <LmsProvider>
       <MockGlobalProvider>
-        <div className="min-h-screen bg-[#080808] text-[#F5F3EF] flex flex-col font-sans antialiased overflow-x-hidden">
+        <div className="min-h-screen bg-[#0A0B0E] text-[#F3F4F6] flex flex-col font-sans antialiased overflow-x-hidden">
           <div className="flex-1">
             <AppRouter />
           </div>

@@ -52,26 +52,26 @@ export const AdminDashboardPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#080808] text-[#F5F3EF]">
+    <div className="bg-[#0A0B0E] text-[#F3F4F6]">
       {toastMessage && (
-        <div className="fixed bottom-8 right-6 z-50 max-w-md bg-[#111111] border border-[#FF4B00] rounded-lg px-5 py-4 shadow-2xl flex items-center gap-3">
-          <CheckCircle2 className="w-5 h-5 text-[#FF4B00] shrink-0" />
-          <p className="text-base text-[#F5F3EF]">{toastMessage}</p>
+        <div className="fixed bottom-8 right-6 z-50 max-w-md bg-[#13161F] border border-brand-champagne rounded-lg px-5 py-4 shadow-2xl flex items-center gap-3">
+          <CheckCircle2 className="w-5 h-5 text-brand-champagne shrink-0" />
+          <p className="text-base text-[#F3F4F6]">{toastMessage}</p>
         </div>
       )}
 
-      <header className="px-6 lg:px-10 py-8 border-b border-[#292929] bg-[#080808] flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <header className="px-6 lg:px-10 py-8 border-b border-[#232734] bg-[#11131A] flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div className="space-y-2">
-          <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+          <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
             <span>Global Administration Overview</span>
             <span>•</span>
-            <span className="font-mono text-[#F5F3EF]">ID: KA-ADM-001</span>
+            <span className="font-mono text-[#3B82F6]">ID: KA-ADM-001</span>
             <span>•</span>
-            <span className="text-[#FF4B00]">
+            <span className="text-brand-champagne">
               SBO Colony & Anaiyur Governance
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F5F3EF]">
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F3F4F6]">
             Campus Branch Metrics & Broadcasts
           </h1>
         </div>
@@ -80,16 +80,16 @@ export const AdminDashboardPage: React.FC = () => {
           <button
             type="button"
             onClick={() => navigate('/dashboard/admin/users')}
-            className="px-4 py-2.5 rounded-md bg-[#111111] hover:bg-[#181818] text-[#F5F3EF] border border-[#292929] hover:border-[#FF4B00] text-sm font-medium inline-flex items-center gap-2 transition-colors"
+            className="px-4 py-2.5 rounded-md bg-[#13161F] hover:bg-[#191D28] text-[#F3F4F6] border border-[#232734] hover:border-brand-champagne text-sm font-medium inline-flex items-center gap-2 transition-colors"
           >
-            <Users className="w-4 h-4 text-[#FF4B00]" />
+            <Users className="w-4 h-4 text-brand-champagne" />
             <span>Approve Pending Users ({pendingApprovalsCount})</span>
           </button>
 
           <button
             type="button"
             onClick={() => navigate('/dashboard/admin/batches')}
-            className="px-4 py-2.5 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-sm font-medium inline-flex items-center gap-2 transition-colors"
+            className="px-4 py-2.5 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-sm font-semibold inline-flex items-center gap-2 transition-colors"
           >
             <Layers className="w-4 h-4" />
             <span>Create New Batch</span>
@@ -101,10 +101,10 @@ export const AdminDashboardPage: React.FC = () => {
         {/* Branch-Level Performance & Capacity (SBO Colony vs. Anaiyur) */}
         <section className="space-y-6">
           <div className="space-y-1">
-            <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F5F3EF]">
+            <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F3F4F6]">
               Branch-Level Performance & Capacity (SBO Colony vs. Anaiyur)
             </h2>
-            <p className="text-base text-[#A1A1AA]">
+            <p className="text-base text-[#9CA3AF]">
               Live enrollment, batch utilization, attendance, and fee collection
               across both Madurai campuses
             </p>
@@ -112,47 +112,47 @@ export const AdminDashboardPage: React.FC = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* SBO Colony Campus Card */}
-            <div className="bg-[#111111] border border-[#292929] rounded-lg p-6 md:p-8 space-y-6">
+            <div className="bg-[#13161F] border border-[#232734] rounded-lg p-6 md:p-8 space-y-6">
               <div className="flex items-start justify-between gap-4">
                 <div className="space-y-1.5">
-                  <span className="inline-flex items-center gap-1.5 font-mono text-xs md:text-sm font-medium text-[#FF4B00] uppercase tracking-wider px-2.5 py-1 rounded bg-[#080808] border border-[#292929]">
+                  <span className="inline-flex items-center gap-1.5 font-mono text-xs md:text-sm font-medium text-brand-champagne uppercase tracking-wider px-2.5 py-1 rounded bg-[#0A0B0E] border border-[#232734]">
                     <MapPin className="w-3.5 h-3.5" />
                     BRANCH: SBO_COLONY
                   </span>
-                  <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F5F3EF] pt-1">
+                  <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F3F4F6] pt-1">
                     SBO Colony Main Campus, Madurai
                   </h3>
-                  <p className="text-base text-[#A1A1AA]">
+                  <p className="text-base text-[#9CA3AF]">
                     Plot 42, SBO Colony First Street, Bypass Road
                   </p>
                 </div>
-                <span className="font-mono text-xs md:text-sm font-medium text-[#F5F3EF] bg-[#080808] px-3 py-1.5 rounded border border-[#292929] uppercase tracking-wider">
+                <span className="font-mono text-xs md:text-sm font-medium text-[#3B82F6] bg-[#0A0B0E] px-3 py-1.5 rounded border border-[#232734] uppercase tracking-wider">
                   14 Active Batches
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#292929]">
-                <div className="bg-[#080808] border border-[#292929] rounded-md p-4 space-y-1.5">
-                  <p className="text-xs font-medium text-[#A1A1AA] uppercase tracking-wider">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#232734]">
+                <div className="bg-[#0A0B0E] border border-[#232734] rounded-md p-4 space-y-1.5">
+                  <p className="text-xs font-medium text-[#9CA3AF] uppercase tracking-wider">
                     Enrolled Scholars
                   </p>
-                  <p className="font-mono text-3xl xl:text-4xl font-bold tracking-tight text-[#FF4B00]">
+                  <p className="font-mono text-3xl xl:text-4xl font-bold tracking-tight text-brand-champagne">
                     684
                   </p>
                 </div>
-                <div className="bg-[#080808] border border-[#292929] rounded-md p-4 space-y-1.5">
-                  <p className="text-xs font-medium text-[#A1A1AA] uppercase tracking-wider">
+                <div className="bg-[#0A0B0E] border border-[#232734] rounded-md p-4 space-y-1.5">
+                  <p className="text-xs font-medium text-[#9CA3AF] uppercase tracking-wider">
                     Avg Attendance
                   </p>
-                  <p className="font-mono text-3xl xl:text-4xl font-bold tracking-tight text-[#FF4B00]">
+                  <p className="font-mono text-3xl xl:text-4xl font-bold tracking-tight text-brand-champagne">
                     95.8%
                   </p>
                 </div>
-                <div className="bg-[#080808] border border-[#292929] rounded-md p-4 space-y-1.5">
-                  <p className="text-xs font-medium text-[#A1A1AA] uppercase tracking-wider">
+                <div className="bg-[#0A0B0E] border border-[#232734] rounded-md p-4 space-y-1.5">
+                  <p className="text-xs font-medium text-[#9CA3AF] uppercase tracking-wider">
                     Term Fee Cleared
                   </p>
-                  <p className="font-mono text-3xl xl:text-4xl font-bold tracking-tight text-[#FF4B00]">
+                  <p className="font-mono text-3xl xl:text-4xl font-bold tracking-tight text-brand-champagne">
                     92.4%
                   </p>
                 </div>
@@ -160,47 +160,47 @@ export const AdminDashboardPage: React.FC = () => {
             </div>
 
             {/* Anaiyur Campus Card */}
-            <div className="bg-[#111111] border border-[#292929] rounded-lg p-6 md:p-8 space-y-6">
+            <div className="bg-[#13161F] border border-[#232734] rounded-lg p-6 md:p-8 space-y-6">
               <div className="flex items-start justify-between gap-4">
                 <div className="space-y-1.5">
-                  <span className="inline-flex items-center gap-1.5 font-mono text-xs md:text-sm font-medium text-[#FF4B00] uppercase tracking-wider px-2.5 py-1 rounded bg-[#080808] border border-[#292929]">
+                  <span className="inline-flex items-center gap-1.5 font-mono text-xs md:text-sm font-medium text-brand-champagne uppercase tracking-wider px-2.5 py-1 rounded bg-[#0A0B0E] border border-[#232734]">
                     <MapPin className="w-3.5 h-3.5" />
                     BRANCH: ANAIYUR
                   </span>
-                  <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F5F3EF] pt-1">
+                  <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F3F4F6] pt-1">
                     Anaiyur Academic Centre, Madurai
                   </h3>
-                  <p className="text-base text-[#A1A1AA]">
+                  <p className="text-base text-[#9CA3AF]">
                     North Main Road, Near Bus Terminus, Anaiyur
                   </p>
                 </div>
-                <span className="font-mono text-xs md:text-sm font-medium text-[#F5F3EF] bg-[#080808] px-3 py-1.5 rounded border border-[#292929] uppercase tracking-wider">
+                <span className="font-mono text-xs md:text-sm font-medium text-[#3B82F6] bg-[#0A0B0E] px-3 py-1.5 rounded border border-[#232734] uppercase tracking-wider">
                   10 Active Batches
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#292929]">
-                <div className="bg-[#080808] border border-[#292929] rounded-md p-4 space-y-1.5">
-                  <p className="text-xs font-medium text-[#A1A1AA] uppercase tracking-wider">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#232734]">
+                <div className="bg-[#0A0B0E] border border-[#232734] rounded-md p-4 space-y-1.5">
+                  <p className="text-xs font-medium text-[#9CA3AF] uppercase tracking-wider">
                     Enrolled Scholars
                   </p>
-                  <p className="font-mono text-3xl xl:text-4xl font-bold tracking-tight text-[#FF4B00]">
+                  <p className="font-mono text-3xl xl:text-4xl font-bold tracking-tight text-brand-champagne">
                     442
                   </p>
                 </div>
-                <div className="bg-[#080808] border border-[#292929] rounded-md p-4 space-y-1.5">
-                  <p className="text-xs font-medium text-[#A1A1AA] uppercase tracking-wider">
+                <div className="bg-[#0A0B0E] border border-[#232734] rounded-md p-4 space-y-1.5">
+                  <p className="text-xs font-medium text-[#9CA3AF] uppercase tracking-wider">
                     Avg Attendance
                   </p>
-                  <p className="font-mono text-3xl xl:text-4xl font-bold tracking-tight text-[#FF4B00]">
+                  <p className="font-mono text-3xl xl:text-4xl font-bold tracking-tight text-brand-champagne">
                     94.6%
                   </p>
                 </div>
-                <div className="bg-[#080808] border border-[#292929] rounded-md p-4 space-y-1.5">
-                  <p className="text-xs font-medium text-[#A1A1AA] uppercase tracking-wider">
+                <div className="bg-[#0A0B0E] border border-[#232734] rounded-md p-4 space-y-1.5">
+                  <p className="text-xs font-medium text-[#9CA3AF] uppercase tracking-wider">
                     Term Fee Cleared
                   </p>
-                  <p className="font-mono text-3xl xl:text-4xl font-bold tracking-tight text-[#FF4B00]">
+                  <p className="font-mono text-3xl xl:text-4xl font-bold tracking-tight text-brand-champagne">
                     89.5%
                   </p>
                 </div>
@@ -212,15 +212,15 @@ export const AdminDashboardPage: React.FC = () => {
         {/* Global Announcements Manager + Live Broadcast Feed */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Announcements Manager */}
-          <section className="lg:col-span-6 bg-[#111111] border border-[#292929] rounded-lg p-6 md:p-8 space-y-6">
-            <div className="flex items-center justify-between border-b border-[#292929] pb-4">
+          <section className="lg:col-span-6 bg-[#13161F] border border-[#232734] rounded-lg p-6 md:p-8 space-y-6">
+            <div className="flex items-center justify-between border-b border-[#232734] pb-4">
               <div className="flex items-center gap-2.5">
-                <Megaphone className="w-5 h-5 text-[#FF4B00]" />
-                <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F5F3EF]">
+                <Megaphone className="w-5 h-5 text-brand-champagne" />
+                <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F3F4F6]">
                   Announcements Manager
                 </h2>
               </div>
-              <span className="font-mono text-xs md:text-sm font-medium text-[#FF4B00] uppercase tracking-wider">
+              <span className="font-mono text-xs md:text-sm font-medium text-brand-champagne uppercase tracking-wider">
                 GLOBAL DISPATCH
               </span>
             </div>
@@ -229,7 +229,7 @@ export const AdminDashboardPage: React.FC = () => {
               <div className="space-y-2">
                 <label
                   htmlFor="admin-announcement-title"
-                  className="block text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider"
+                  className="block text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider"
                 >
                   Notification Headline
                 </label>
@@ -240,14 +240,14 @@ export const AdminDashboardPage: React.FC = () => {
                   value={announcementTitle}
                   onChange={(e) => setAnnouncementTitle(e.target.value)}
                   placeholder="e.g., NEET Full-Length CBT #06 Schedule Released"
-                  className="w-full bg-[#080808] border border-[#292929] rounded-md px-4 py-3 text-base text-[#F5F3EF] placeholder-[#A1A1AA] focus:outline-none focus:border-[#FF4B00]"
+                  className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-4 py-3 text-base text-[#F3F4F6] placeholder-[#9CA3AF] focus:outline-none focus:border-brand-champagne"
                 />
               </div>
 
               <div className="space-y-2">
                 <label
                   htmlFor="admin-announcement-branch"
-                  className="block text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider"
+                  className="block text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider"
                 >
                   Target Branches
                 </label>
@@ -262,7 +262,7 @@ export const AdminDashboardPage: React.FC = () => {
                         | 'ANAIYUR'
                     )
                   }
-                  className="w-full bg-[#080808] border border-[#292929] rounded-md px-4 py-3 text-base text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+                  className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-4 py-3 text-base text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
                 >
                   <option value="ALL_BRANCHES">
                     All Branches (SBO Colony & Anaiyur)
@@ -275,7 +275,7 @@ export const AdminDashboardPage: React.FC = () => {
               <div className="space-y-2">
                 <label
                   htmlFor="admin-announcement-message"
-                  className="block text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider"
+                  className="block text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider"
                 >
                   Broadcast Message
                 </label>
@@ -286,13 +286,13 @@ export const AdminDashboardPage: React.FC = () => {
                   value={announcementMessage}
                   onChange={(e) => setAnnouncementMessage(e.target.value)}
                   placeholder="Enter global circular for students, parents, and faculty..."
-                  className="w-full bg-[#080808] border border-[#292929] rounded-md px-4 py-3 text-base text-[#F5F3EF] placeholder-[#A1A1AA] focus:outline-none focus:border-[#FF4B00]"
+                  className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-4 py-3 text-base text-[#F3F4F6] placeholder-[#9CA3AF] focus:outline-none focus:border-brand-champagne"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full px-5 py-3 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-base font-semibold inline-flex items-center justify-center gap-2 transition-colors"
+                className="w-full px-5 py-3 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-base font-semibold inline-flex items-center justify-center gap-2 transition-colors"
               >
                 <Send className="w-4 h-4" />
                 <span>Push Global Notification</span>
@@ -301,29 +301,29 @@ export const AdminDashboardPage: React.FC = () => {
           </section>
 
           {/* Recent Broadcasts & Module Shortcuts */}
-          <section className="lg:col-span-6 bg-[#111111] border border-[#292929] rounded-lg p-6 md:p-8 flex flex-col justify-between space-y-6">
+          <section className="lg:col-span-6 bg-[#13161F] border border-[#232734] rounded-lg p-6 md:p-8 flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F5F3EF] border-b border-[#292929] pb-4">
+              <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F3F4F6] border-b border-[#232734] pb-4">
                 Recent Global Broadcasts ({globalAnnouncements.length})
               </h3>
               <div className="space-y-3">
                 {globalAnnouncements.map((ann) => (
                   <div
                     key={ann.id}
-                    className="bg-[#080808] border border-[#292929] rounded-md p-5 space-y-2"
+                    className="bg-[#0A0B0E] border border-[#232734] rounded-md p-5 space-y-2"
                   >
                     <div className="flex items-center justify-between gap-2">
-                      <span className="font-mono text-xs md:text-sm font-medium uppercase tracking-wider px-2.5 py-0.5 rounded bg-[#111111] border border-[#292929] text-[#FF4B00]">
+                      <span className="font-mono text-xs md:text-sm font-medium uppercase tracking-wider px-2.5 py-0.5 rounded bg-[#13161F] border border-[#232734] text-brand-champagne">
                         {ann.targetBranches}
                       </span>
-                      <span className="font-mono text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+                      <span className="font-mono text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
                         {ann.publishedAt}
                       </span>
                     </div>
-                    <p className="text-base font-semibold text-[#F5F3EF]">
+                    <p className="text-base font-semibold text-[#F3F4F6]">
                       {ann.title}
                     </p>
-                    <p className="text-base text-[#A1A1AA] leading-relaxed">
+                    <p className="text-base text-[#9CA3AF] leading-relaxed">
                       {ann.message}
                     </p>
                   </div>
@@ -331,14 +331,14 @@ export const AdminDashboardPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-[#292929] flex items-center justify-between">
-              <span className="text-base text-[#A1A1AA]">
+            <div className="pt-4 border-t border-[#232734] flex items-center justify-between">
+              <span className="text-base text-[#9CA3AF]">
                 Need to log a desk fee receipt?
               </span>
               <button
                 type="button"
                 onClick={() => navigate('/dashboard/admin/finance')}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#FF4B00] hover:underline"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#3B82F6] hover:text-brand-champagne transition-colors"
               >
                 <Receipt className="w-4 h-4" />
                 <span>Open Finance Tab</span>

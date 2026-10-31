@@ -47,17 +47,17 @@ export const StudentExamsPage: React.FC = () => {
   const { navigate } = useLms();
 
   return (
-    <div className="bg-[#080808] text-[#F5F3EF]">
-      <header className="px-6 lg:px-10 py-8 border-b border-[#292929] bg-[#080808] flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+    <div className="bg-[#0A0B0E] text-[#F3F4F6]">
+      <header className="px-6 lg:px-10 py-8 border-b border-[#232734] bg-[#11131A] flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div className="space-y-2">
-          <div className="flex items-center gap-2 text-xs md:text-sm font-medium text-[#FF4B00] uppercase tracking-wider">
+          <div className="flex items-center gap-2 text-xs md:text-sm font-medium text-brand-champagne uppercase tracking-wider">
             <Award className="w-4 h-4" />
             <span>NTA-Pattern CBT Examination Center · /dashboard/student/exams</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F5F3EF]">
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F3F4F6]">
             NTA CBT Examinations & Telemetry
           </h1>
-          <p className="text-base text-[#A1A1AA]">
+          <p className="text-base text-[#9CA3AF]">
             Timed NEET UG, JEE Main & Advanced, and CBSE mock tests with +4 / -1
             marking and auto-submission
           </p>
@@ -66,7 +66,7 @@ export const StudentExamsPage: React.FC = () => {
         <button
           type="button"
           onClick={() => navigate('/exam/exm_jee_mock_01/attempt')}
-          className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-sm font-semibold transition-colors"
+          className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-sm font-semibold transition-colors"
         >
           <Clock className="w-4 h-4" />
           <span>Enter Active CBT Exam Hall</span>
@@ -77,29 +77,29 @@ export const StudentExamsPage: React.FC = () => {
         {CBT_EXAMS.map((exam) => (
           <div
             key={exam.id}
-            className="bg-[#111111] border border-[#292929] rounded-lg p-6 md:p-8 space-y-6"
+            className="bg-[#13161F] border border-[#232734] rounded-lg p-6 md:p-8 space-y-6"
           >
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
               <div className="space-y-2.5">
-                <div className="flex flex-wrap items-center gap-3 text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
-                  <span className="font-mono px-2.5 py-1 rounded bg-[#080808] text-[#FF4B00] border border-[#292929]">
+                <div className="flex flex-wrap items-center gap-3 text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
+                  <span className="font-mono px-2.5 py-1 rounded bg-[#0A0B0E] text-brand-champagne border border-[#232734]">
                     {exam.code}
                   </span>
-                  <span className="font-mono">
+                  <span className="font-mono text-[#3B82F6]">
                     Duration: {exam.durationMinutes} mins
                   </span>
                   <span className="font-mono">Max Marks: {exam.totalMarks}</span>
-                  <span className="font-mono text-[#F5F3EF] bg-[#080808] px-2.5 py-1 rounded border border-[#292929]">
+                  <span className="font-mono text-[#F3F4F6] bg-[#0A0B0E] px-2.5 py-1 rounded border border-[#232734]">
                     +{exam.defaultPositiveMarks} Correct / -
                     {exam.defaultNegativeMarks} Incorrect
                   </span>
                 </div>
 
-                <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F5F3EF]">
+                <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F3F4F6]">
                   {exam.title}
                 </h2>
 
-                <p className="text-base text-[#A1A1AA]">
+                <p className="text-base text-[#9CA3AF]">
                   {exam.scheduledStartAt}
                 </p>
               </div>
@@ -108,7 +108,7 @@ export const StudentExamsPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => navigate(`/exam/${exam.id}/attempt`)}
-                  className="px-5 py-3 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-sm font-semibold inline-flex items-center gap-2 transition-colors"
+                  className="px-5 py-3 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-sm font-semibold inline-flex items-center gap-2 transition-colors"
                 >
                   <span>
                     {exam.status === 'LIVE_NOW'
@@ -121,38 +121,38 @@ export const StudentExamsPage: React.FC = () => {
             </div>
 
             {exam.resultsReleased && exam.submission && (
-              <div className="pt-6 border-t border-[#292929] space-y-6">
+              <div className="pt-6 border-t border-[#232734] space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                  <div className="bg-[#080808] border border-[#292929] rounded-md p-5 space-y-2">
-                    <p className="text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+                  <div className="bg-[#0A0B0E] border border-[#232734] rounded-md p-5 space-y-2">
+                    <p className="text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
                       Total Score
                     </p>
-                    <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-[#FF4B00]">
+                    <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-brand-champagne">
                       {exam.submission.totalScore}/{exam.submission.maxScore}
                     </p>
                   </div>
-                  <div className="bg-[#080808] border border-[#292929] rounded-md p-5 space-y-2">
-                    <p className="text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+                  <div className="bg-[#0A0B0E] border border-[#232734] rounded-md p-5 space-y-2">
+                    <p className="text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
                       Net Accuracy
                     </p>
-                    <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-[#FF4B00]">
+                    <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-brand-champagne">
                       {exam.submission.accuracyPercentage}%
                     </p>
                   </div>
-                  <div className="bg-[#080808] border border-[#292929] rounded-md p-5 space-y-2">
-                    <p className="text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+                  <div className="bg-[#0A0B0E] border border-[#232734] rounded-md p-5 space-y-2">
+                    <p className="text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
                       Attempt Split
                     </p>
-                    <p className="font-mono text-base font-semibold text-[#F5F3EF] pt-2">
+                    <p className="font-mono text-base font-semibold text-[#3B82F6] pt-2">
                       {exam.submission.correctCount} Correct ·{' '}
                       {exam.submission.incorrectCount} Wrong
                     </p>
                   </div>
-                  <div className="bg-[#080808] border border-[#292929] rounded-md p-5 space-y-2">
-                    <p className="text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+                  <div className="bg-[#0A0B0E] border border-[#232734] rounded-md p-5 space-y-2">
+                    <p className="text-xs md:text-sm font-medium text-[#9CA3AF] uppercase tracking-wider">
                       Time Taken
                     </p>
-                    <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-[#FF4B00]">
+                    <p className="font-mono text-4xl md:text-5xl font-bold tracking-tight text-brand-champagne">
                       {Math.round(exam.submission.totalTimeSpentSec / 60)}m
                     </p>
                   </div>
@@ -162,17 +162,17 @@ export const StudentExamsPage: React.FC = () => {
                   {exam.submission.subjectBreakdown.map((sub) => (
                     <div
                       key={sub.subject}
-                      className="bg-[#080808] border border-[#292929] rounded-md p-4 flex items-center justify-between"
+                      className="bg-[#0A0B0E] border border-[#232734] rounded-md p-4 flex items-center justify-between"
                     >
                       <div>
-                        <p className="text-base font-semibold text-[#F5F3EF]">
+                        <p className="text-base font-semibold text-[#F3F4F6]">
                           {sub.subject}
                         </p>
-                        <p className="font-mono text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider">
+                        <p className="font-mono text-xs md:text-sm font-medium text-[#3B82F6] uppercase tracking-wider">
                           Accuracy: {sub.accuracy}%
                         </p>
                       </div>
-                      <span className="font-mono text-xl font-bold text-[#FF4B00]">
+                      <span className="font-mono text-xl font-bold text-brand-champagne">
                         {sub.score}/{sub.maxScore}
                       </span>
                     </div>

@@ -85,29 +85,29 @@ export const TeacherEvaluationsPage: React.FC = () => {
   const pendingCount = evaluations.filter((e) => e.status === 'PENDING').length;
 
   return (
-    <div className="bg-[#080808] text-[#F5F3EF]">
+    <div className="bg-[#0A0B0E] text-[#F3F4F6]">
       {toastMessage && (
-        <div className="fixed bottom-8 right-6 z-50 max-w-md bg-[#111111] border border-[#FF4B00] rounded-lg px-4 py-3 shadow-2xl flex items-center gap-3">
-          <CheckCircle2 className="w-4 h-4 text-[#FF4B00] shrink-0" />
-          <p className="text-xs text-[#F5F3EF]">{toastMessage}</p>
+        <div className="fixed bottom-8 right-6 z-50 max-w-md bg-[#13161F] border border-brand-champagne rounded-lg px-4 py-3 shadow-2xl flex items-center gap-3">
+          <CheckCircle2 className="w-4 h-4 text-brand-champagne shrink-0" />
+          <p className="text-xs text-[#F3F4F6]">{toastMessage}</p>
         </div>
       )}
 
-      <header className="px-6 lg:px-10 py-6 border-b border-[#292929] bg-[#080808] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <header className="px-6 lg:px-10 py-6 border-b border-[#232734] bg-[#11131A] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div className="space-y-1">
-          <div className="flex items-center gap-2 text-xs text-[#FF4B00] font-medium">
+          <div className="flex items-center gap-2 text-xs text-brand-champagne font-medium">
             <CheckSquare className="w-3.5 h-3.5" />
             <span>Descriptive Script Grading Queue · /dashboard/teacher/evaluations</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F5F3EF]">
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F3F4F6]">
             Exam Script Evaluations
           </h1>
-          <p className="text-xs text-[#A1A1AA]">
+          <p className="text-xs text-[#9CA3AF]">
             Isolated grading workspace for reviewing step-by-step student derivations and awarding marks
           </p>
         </div>
 
-        <span className="font-mono text-xs px-3 py-1.5 rounded-md bg-[#111111] border border-[#292929] text-[#FF4B00]">
+        <span className="font-mono text-xs px-3 py-1.5 rounded-md bg-[#13161F] border border-[#232734] text-brand-champagne">
           {pendingCount} Pending Scripts
         </span>
       </header>
@@ -118,17 +118,17 @@ export const TeacherEvaluationsPage: React.FC = () => {
           return (
             <div
               key={item.id}
-              className="bg-[#111111] border border-[#292929] rounded-lg p-6 space-y-4"
+              className="bg-[#13161F] border border-[#232734] rounded-lg p-6 space-y-4"
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div className="flex flex-wrap items-center gap-2.5">
-                  <span className="font-mono text-xs px-2.5 py-0.5 rounded bg-[#080808] text-[#FF4B00] border border-[#292929]">
+                  <span className="font-mono text-xs px-2.5 py-0.5 rounded bg-[#0A0B0E] text-brand-champagne border border-[#232734]">
                     {item.examCode}
                   </span>
-                  <span className="text-sm font-semibold text-[#F5F3EF]">
+                  <span className="text-sm font-semibold text-[#F3F4F6]">
                     {item.studentName}
                   </span>
-                  <span className="font-mono text-xs text-[#A1A1AA]">
+                  <span className="font-mono text-xs text-[#3B82F6]">
                     ({item.rollNumber} · {item.batchCode})
                   </span>
                 </div>
@@ -136,8 +136,8 @@ export const TeacherEvaluationsPage: React.FC = () => {
                 <span
                   className={`font-mono text-xs px-2.5 py-1 rounded border ${
                     isGraded
-                      ? 'bg-[#080808] text-[#FF4B00] border-[#FF4B00]'
-                      : 'bg-[#080808] text-[#A1A1AA] border-[#292929]'
+                      ? 'bg-[#0A0B0E] text-brand-champagne border-brand-champagne'
+                      : 'bg-[#0A0B0E] text-[#9CA3AF] border-[#232734]'
                   }`}
                 >
                   {isGraded
@@ -147,24 +147,24 @@ export const TeacherEvaluationsPage: React.FC = () => {
               </div>
 
               <div className="space-y-2">
-                <p className="text-xs font-medium text-[#F5F3EF]">
+                <p className="text-xs font-medium text-[#F3F4F6]">
                   {item.questionPrompt}
                 </p>
-                <div className="bg-[#080808] border border-[#292929] rounded-md p-3.5">
-                  <p className="text-[11px] font-mono text-[#A1A1AA] mb-1">
+                <div className="bg-[#0A0B0E] border border-[#232734] rounded-md p-3.5">
+                  <p className="text-[11px] font-mono text-[#9CA3AF] mb-1">
                     Submitted Student Derivation ({item.submittedAgo}):
                   </p>
-                  <p className="text-xs text-[#F5F3EF] leading-relaxed">
+                  <p className="text-xs text-[#F3F4F6] leading-relaxed">
                     {item.studentDerivation}
                   </p>
                 </div>
               </div>
 
-              <div className="pt-2 border-t border-[#292929] flex flex-wrap items-center justify-between gap-3">
-                <span className="text-xs text-[#A1A1AA]">{item.examTitle}</span>
+              <div className="pt-2 border-t border-[#232734] flex flex-wrap items-center justify-between gap-3">
+                <span className="text-xs text-[#9CA3AF]">{item.examTitle}</span>
 
                 <div className="flex items-center gap-2.5">
-                  <label className="text-xs text-[#A1A1AA]">Award Marks:</label>
+                  <label className="text-xs text-[#9CA3AF]">Award Marks:</label>
                   <input
                     type="number"
                     step="0.5"
@@ -178,19 +178,19 @@ export const TeacherEvaluationsPage: React.FC = () => {
                         [item.id]: e.target.value,
                       }))
                     }
-                    className="w-20 bg-[#080808] border border-[#292929] rounded-md px-2.5 py-1.5 text-xs font-mono text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+                    className="w-20 bg-[#0A0B0E] border border-[#232734] rounded-md px-2.5 py-1.5 text-xs font-mono text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
                   />
-                  <span className="font-mono text-xs text-[#A1A1AA]">
+                  <span className="font-mono text-xs text-[#9CA3AF]">
                     / {item.maxMarks}
                   </span>
                   <button
                     type="button"
                     onClick={() => handleGradeSubmission(item.id, item.maxMarks)}
                     disabled={isGraded}
-                    className={`px-3.5 py-1.5 rounded-md text-xs font-medium inline-flex items-center gap-1.5 transition-colors ${
+                    className={`px-3.5 py-1.5 rounded-md text-xs font-semibold inline-flex items-center gap-1.5 transition-colors ${
                       isGraded
-                        ? 'bg-[#080808] text-[#A1A1AA] border border-[#292929] cursor-default'
-                        : 'bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF]'
+                        ? 'bg-[#0A0B0E] text-[#9CA3AF] border border-[#232734] cursor-default'
+                        : 'bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E]'
                     }`}
                   >
                     <Send className="w-3.5 h-3.5" />

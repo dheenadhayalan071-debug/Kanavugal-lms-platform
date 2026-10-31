@@ -7,7 +7,6 @@ import {
   ArrowLeft,
   GraduationCap,
   ExternalLink,
-  UserCheck,
 } from 'lucide-react';
 import { MockRole, useLms } from '../../context/LmsContext';
 import { resolveLoginDashboardRoute } from '../../lib/lmsLogic';
@@ -22,28 +21,11 @@ const ROLE_DEFAULT_EMAILS: Record<MockRole, string> = {
 const ROLE_OPTIONS: {
   role: MockRole;
   label: string;
-  subtitle: string;
 }[] = [
-  {
-    role: 'STUDENT',
-    label: 'Student',
-    subtitle: 'Classes 6–12 · NEET & JEE',
-  },
-  {
-    role: 'TEACHER',
-    label: 'Teacher',
-    subtitle: 'Faculty & CBT Studio',
-  },
-  {
-    role: 'PARENT',
-    label: 'Parent',
-    subtitle: 'Guardian Telemetry',
-  },
-  {
-    role: 'ADMIN',
-    label: 'Admin',
-    subtitle: 'SBO Colony & Anaiyur',
-  },
+  { role: 'STUDENT', label: 'Student' },
+  { role: 'TEACHER', label: 'Teacher' },
+  { role: 'PARENT', label: 'Parent' },
+  { role: 'ADMIN', label: 'Admin' },
 ];
 
 export const LoginPage: React.FC = () => {
@@ -75,181 +57,157 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <main className="min-h-screen bg-[#080808] text-[#F5F3EF] flex flex-col justify-between px-4 sm:px-8 py-8 relative overflow-x-hidden">
+    <main className="min-h-[100dvh] flex flex-col justify-center items-center bg-[#0A0B0E] text-[#F3F4F6] px-4 py-3 relative overflow-x-hidden">
       {publicSiteNotice && (
-        <div className="fixed bottom-6 right-6 z-50 max-w-md bg-[#111111] border border-[#FF4B00] rounded-lg px-5 py-4 shadow-2xl flex items-center gap-3">
-          <ExternalLink className="w-4 h-4 text-[#FF4B00] shrink-0" />
-          <p className="text-base text-[#F5F3EF] leading-relaxed">
+        <div className="fixed bottom-4 right-4 z-50 max-w-sm bg-[#13161F] border border-brand-champagne rounded-lg px-4 py-3 shadow-2xl flex items-center gap-2.5">
+          <ExternalLink className="w-4 h-4 text-brand-champagne shrink-0" />
+          <p className="text-xs text-[#F3F4F6] leading-relaxed">
             {publicSiteNotice}
           </p>
         </div>
       )}
 
-      {/* Top Bar with Subtle "← Back to Kanavugal.Academy" Button */}
-      <header className="w-full max-w-7xl mx-auto flex items-center justify-between">
+      {/* Compact Top Bar */}
+      <div className="w-full max-w-sm md:max-w-md mx-auto flex items-center justify-between mb-3">
         <button
           type="button"
           onClick={handleBackToPublicSite}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-[#111111] hover:bg-[#181818] text-[#A1A1AA] hover:text-[#F5F3EF] border border-[#292929] text-xs md:text-sm font-medium transition-colors"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#13161F] hover:bg-[#11131A] text-[#9CA3AF] hover:text-[#F3F4F6] border border-[#232734] text-xs font-medium transition-colors"
         >
-          <ArrowLeft className="w-4 h-4 text-[#FF4B00]" />
+          <ArrowLeft className="w-3.5 h-3.5 text-brand-champagne" />
           <span>← Back to Kanavugal.Academy</span>
         </button>
 
-        <div className="hidden sm:flex items-center gap-2 text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider font-mono">
-          <span className="w-2 h-2 rounded-full bg-[#FF4B00]" />
-          <span>SBO COLONY · ANAIYUR</span>
-        </div>
-      </header>
-
-      {/* Center Authentication Card */}
-      <div className="my-auto py-12 flex items-center justify-center">
-        <div className="w-full max-w-lg bg-[#111111] border border-[#292929] rounded-lg p-8 sm:p-10 space-y-8">
-          <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 text-xs md:text-sm font-medium text-[#FF4B00] uppercase tracking-wider">
-              <ShieldCheck className="w-4 h-4" />
-              <span>Supabase Auth · Enterprise LMS Portal</span>
-            </div>
-            <h1 className="text-xl md:text-2xl font-semibold tracking-tight text-[#F5F3EF]">
-              Sign in to Kanavugal Academy
-            </h1>
-            <p className="text-base text-[#A1A1AA] leading-relaxed">
-              Select your institutional role to access Classes 6–12, NEET UG,
-              and JEE Main & Advanced workspaces.
-            </p>
-          </div>
-
-          <form onSubmit={handleSignIn} className="space-y-6">
-            {/* Clean, Premium Select Role Toggle & Dropdown */}
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor="login-role-select"
-                  className="block text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider"
-                >
-                  Select Role
-                </label>
-                <span className="font-mono text-xs text-[#FF4B00]">
-                  Routes to {resolveLoginDashboardRoute(selectedRole)}
-                </span>
-              </div>
-
-              {/* Segmented Role Toggle Buttons */}
-              <div
-                className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-[#080808] p-1.5 rounded-md border border-[#292929]"
-                role="radiogroup"
-                aria-label="Select Role Toggle"
-              >
-                {ROLE_OPTIONS.map((opt) => {
-                  const isActive = selectedRole === opt.role;
-                  return (
-                    <button
-                      key={opt.role}
-                      type="button"
-                      role="radio"
-                      aria-checked={isActive}
-                      onClick={() => handleSelectRole(opt.role)}
-                      className={`py-2.5 px-3 rounded text-xs md:text-sm font-medium transition-colors text-center ${
-                        isActive
-                          ? 'bg-[#FF4B00] text-[#F5F3EF] font-semibold'
-                          : 'text-[#A1A1AA] hover:text-[#F5F3EF] hover:bg-[#111111]'
-                      }`}
-                    >
-                      {opt.label}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Accessible Native Dropdown synchronized with the Role Toggle */}
-              <div className="relative">
-                <UserCheck className="w-4 h-4 text-[#FF4B00] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-                <select
-                  id="login-role-select"
-                  aria-label="Select Role"
-                  value={selectedRole}
-                  onChange={(e) => handleSelectRole(e.target.value as MockRole)}
-                  className="w-full pl-10 pr-4 py-2.5 rounded-md bg-[#080808] border border-[#292929] text-base text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
-                >
-                  {ROLE_OPTIONS.map((opt) => (
-                    <option key={opt.role} value={opt.role}>
-                      {opt.label} — {opt.subtitle}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <label
-                htmlFor="login-email-input"
-                className="block text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider"
-              >
-                Academy Email Address
-              </label>
-              <div className="relative">
-                <Mail className="w-4 h-4 text-[#A1A1AA] absolute left-3.5 top-1/2 -translate-y-1/2" />
-                <input
-                  id="login-email-input"
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 rounded-md bg-[#080808] border border-[#292929] text-base text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor="login-password-input"
-                  className="block text-xs md:text-sm font-medium text-[#A1A1AA] uppercase tracking-wider"
-                >
-                  Password
-                </label>
-                <span className="font-mono text-xs text-[#A1A1AA]">
-                  Supabase JWT Session
-                </span>
-              </div>
-              <div className="relative">
-                <Lock className="w-4 h-4 text-[#A1A1AA] absolute left-3.5 top-1/2 -translate-y-1/2" />
-                <input
-                  id="login-password-input"
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 rounded-md bg-[#080808] border border-[#292929] text-base text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
-                />
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full py-3.5 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-base font-semibold inline-flex items-center justify-center gap-2 transition-colors"
-            >
-              <span>Sign In</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </form>
-
-          <div className="pt-5 border-t border-[#292929] flex items-center justify-between text-xs md:text-sm font-medium text-[#A1A1AA]">
-            <span className="inline-flex items-center gap-2">
-              <GraduationCap className="w-4 h-4 text-[#FF4B00]" />
-              SBO Colony & Anaiyur Campuses
-            </span>
-            <span className="font-mono text-xs">AY 2026–27</span>
-          </div>
+        <div className="hidden sm:flex items-center gap-1.5 text-[11px] font-mono text-[#9CA3AF]">
+          <span className="w-1.5 h-1.5 rounded-full bg-brand-champagne" />
+          <span>SBO · ANAIYUR</span>
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="w-full max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-xs md:text-sm text-[#A1A1AA] border-t border-[#292929] pt-5">
-        <span>© 2026 Kanavugal Academy. All rights reserved.</span>
-        <span className="font-mono text-xs">
-          Classes 6–12 · NEET UG · JEE Main & Advanced
-        </span>
+      {/* Central Login Card */}
+      <div className="w-full max-w-sm md:max-w-md mx-auto p-6 md:p-8 bg-[#13161F] border border-[#232734] rounded-lg shadow-2xl">
+        <div className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-champagne uppercase tracking-wider mb-2">
+          <ShieldCheck className="w-4 h-4" />
+          <span>Supabase Auth · Enterprise LMS</span>
+        </div>
+
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-[#F3F4F6] mb-1.5">
+          Sign in to Kanavugal Academy
+        </h1>
+
+        <p className="text-sm md:text-base text-[#9CA3AF] mb-6 leading-snug">
+          Select your role to access Classes 6–12, NEET UG, and JEE Main &
+          Advanced workspaces.
+        </p>
+
+        <form onSubmit={handleSignIn} className="space-y-4">
+          {/* 4-Button Role Grid Only (No Native Select Dropdown) */}
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-[#9CA3AF] uppercase tracking-wider">
+                Select Role
+              </span>
+              <span className="font-mono text-[11px] text-[#3B82F6]">
+                {resolveLoginDashboardRoute(selectedRole)}
+              </span>
+            </div>
+
+            <div
+              className="grid grid-cols-4 gap-1.5 bg-[#0A0B0E] p-1 rounded-md border border-[#232734]"
+              role="radiogroup"
+              aria-label="Select Role"
+            >
+              {ROLE_OPTIONS.map((opt) => {
+                const isActive = selectedRole === opt.role;
+                return (
+                  <button
+                    key={opt.role}
+                    type="button"
+                    role="radio"
+                    aria-checked={isActive}
+                    onClick={() => handleSelectRole(opt.role)}
+                    className={`py-2 px-2 rounded text-xs font-semibold transition-colors text-center cursor-pointer ${
+                      isActive
+                        ? 'bg-brand-champagne text-[#0A0B0E]'
+                        : 'text-[#9CA3AF] hover:text-[#F3F4F6] hover:bg-[#11131A]'
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="space-y-1.5">
+            <label
+              htmlFor="login-email-input"
+              className="block text-xs font-bold text-[#9CA3AF] uppercase tracking-wider"
+            >
+              Academy Email Address
+            </label>
+            <div className="relative">
+              <Mail className="w-4 h-4 text-[#9CA3AF] absolute left-3 top-1/2 -translate-y-1/2" />
+              <input
+                id="login-email-input"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full pl-9 pr-3.5 py-2.5 rounded-md bg-[#0A0B0E] border border-[#232734] text-sm text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between">
+              <label
+                htmlFor="login-password-input"
+                className="block text-xs font-bold text-[#9CA3AF] uppercase tracking-wider"
+              >
+                Password
+              </label>
+              <span className="font-mono text-[11px] text-[#3B82F6]">
+                JWT Session
+              </span>
+            </div>
+            <div className="relative">
+              <Lock className="w-4 h-4 text-[#9CA3AF] absolute left-3 top-1/2 -translate-y-1/2" />
+              <input
+                id="login-password-input"
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full pl-9 pr-3.5 py-2.5 rounded-md bg-[#0A0B0E] border border-[#232734] text-sm text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
+              />
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-2.5 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors cursor-pointer"
+          >
+            <span>Sign In</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </form>
+
+        <div className="mt-5 pt-4 border-t border-[#232734] flex items-center justify-between text-xs text-[#9CA3AF]">
+          <span className="inline-flex items-center gap-1.5">
+            <GraduationCap className="w-3.5 h-3.5 text-brand-champagne" />
+            SBO Colony & Anaiyur Campuses
+          </span>
+          <span className="font-mono text-[11px] text-[#3B82F6]">
+            AY 2026–27
+          </span>
+        </div>
+      </div>
+
+      {/* Compact Single-Line Footer inside Single Viewport */}
+      <footer className="w-full max-w-sm md:max-w-md mx-auto flex items-center justify-between text-[11px] text-[#9CA3AF] mt-3">
+        <span>© 2026 Kanavugal Academy</span>
+        <span className="font-mono">NEET · JEE · Classes 6–12</span>
       </footer>
     </main>
   );

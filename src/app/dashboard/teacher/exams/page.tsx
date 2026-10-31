@@ -99,24 +99,24 @@ export const TeacherExamsPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#080808] text-[#F5F3EF]">
+    <div className="bg-[#0A0B0E] text-[#F3F4F6]">
       {toastMessage && (
-        <div className="fixed bottom-8 right-6 z-50 max-w-md bg-[#111111] border border-[#FF4B00] rounded-lg px-4 py-3 shadow-2xl flex items-center gap-3">
-          <CheckCircle2 className="w-4 h-4 text-[#FF4B00] shrink-0" />
-          <p className="text-xs text-[#F5F3EF]">{toastMessage}</p>
+        <div className="fixed bottom-8 right-6 z-50 max-w-md bg-[#13161F] border border-brand-champagne rounded-lg px-4 py-3 shadow-2xl flex items-center gap-3">
+          <CheckCircle2 className="w-4 h-4 text-brand-champagne shrink-0" />
+          <p className="text-xs text-[#F3F4F6]">{toastMessage}</p>
         </div>
       )}
 
-      <header className="px-6 lg:px-10 py-6 border-b border-[#292929] bg-[#080808] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <header className="px-6 lg:px-10 py-6 border-b border-[#232734] bg-[#11131A] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div className="space-y-1">
-          <div className="flex items-center gap-2 text-xs text-[#FF4B00] font-medium">
+          <div className="flex items-center gap-2 text-xs text-brand-champagne font-medium">
             <Award className="w-3.5 h-3.5" />
             <span>NTA CBT Authoring Engine · /dashboard/teacher/exams</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F5F3EF]">
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F3F4F6]">
             Examination Studio
           </h1>
-          <p className="text-xs text-[#A1A1AA]">
+          <p className="text-xs text-[#9CA3AF]">
             Create timed CBT examinations, configure +4 / -1 marking schemes, upload Question Paper PDFs, and release results
           </p>
         </div>
@@ -127,40 +127,40 @@ export const TeacherExamsPage: React.FC = () => {
           {/* Create New CBT Exam Form */}
           <form
             onSubmit={handleCreateCbtExam}
-            className="lg:col-span-6 bg-[#111111] border border-[#292929] rounded-lg p-6 space-y-4"
+            className="lg:col-span-6 bg-[#13161F] border border-[#232734] rounded-lg p-6 space-y-4"
           >
-            <div className="flex items-center justify-between border-b border-[#292929] pb-3">
+            <div className="flex items-center justify-between border-b border-[#232734] pb-3">
               <div className="flex items-center gap-2">
-                <FilePlus2 className="w-4 h-4 text-[#FF4B00]" />
-                <h2 className="text-base font-semibold text-[#F5F3EF]">
+                <FilePlus2 className="w-4 h-4 text-brand-champagne" />
+                <h2 className="text-base font-semibold text-[#F3F4F6]">
                   Create New CBT Exam
                 </h2>
               </div>
-              <span className="font-mono text-xs text-[#FF4B00]">
+              <span className="font-mono text-xs text-brand-champagne">
                 +4 / -1 Default
               </span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="space-y-1">
-                <label className="block text-xs text-[#A1A1AA]">Exam Code</label>
+                <label className="block text-xs text-[#9CA3AF]">Exam Code</label>
                 <input
                   type="text"
                   required
                   value={newExamCode}
                   onChange={(e) => setNewExamCode(e.target.value)}
-                  className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2 text-xs font-mono text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+                  className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2 text-xs font-mono text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="block text-xs text-[#A1A1AA]">
+                <label className="block text-xs text-[#9CA3AF]">
                   Assign Batch
                 </label>
                 <select
                   value={newExamBatch}
                   onChange={(e) => setNewExamBatch(e.target.value)}
-                  className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2 text-xs font-mono text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+                  className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2 text-xs font-mono text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
                 >
                   <option value="SBO-JEE-2027-A">SBO-JEE-2027-A</option>
                   <option value="SBO-NEET-2027-B">SBO-NEET-2027-B</option>
@@ -170,7 +170,7 @@ export const TeacherExamsPage: React.FC = () => {
             </div>
 
             <div className="space-y-1">
-              <label className="block text-xs text-[#A1A1AA]">
+              <label className="block text-xs text-[#9CA3AF]">
                 Examination Title
               </label>
               <input
@@ -179,13 +179,13 @@ export const TeacherExamsPage: React.FC = () => {
                 value={newExamTitle}
                 onChange={(e) => setNewExamTitle(e.target.value)}
                 placeholder="e.g., JEE Main & Advanced Unit Test #05 — Electrodynamics"
-                className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2 text-xs text-[#F5F3EF] placeholder-[#A1A1AA] focus:outline-none focus:border-[#FF4B00]"
+                className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2 text-xs text-[#F3F4F6] placeholder-[#9CA3AF] focus:outline-none focus:border-brand-champagne"
               />
             </div>
 
             <div className="grid grid-cols-3 gap-3">
               <div className="space-y-1">
-                <label className="block text-xs text-[#A1A1AA]">
+                <label className="block text-xs text-[#9CA3AF]">
                   Duration (Mins)
                 </label>
                 <input
@@ -193,12 +193,12 @@ export const TeacherExamsPage: React.FC = () => {
                   required
                   value={newExamDuration}
                   onChange={(e) => setNewExamDuration(e.target.value)}
-                  className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2 text-xs font-mono text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+                  className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2 text-xs font-mono text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="block text-xs text-[#A1A1AA]">
+                <label className="block text-xs text-[#9CA3AF]">
                   Correct Marks (+)
                 </label>
                 <input
@@ -207,12 +207,12 @@ export const TeacherExamsPage: React.FC = () => {
                   required
                   value={newPositiveMarks}
                   onChange={(e) => setNewPositiveMarks(e.target.value)}
-                  className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2 text-xs font-mono text-[#FF4B00] focus:outline-none focus:border-[#FF4B00]"
+                  className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2 text-xs font-mono text-brand-champagne focus:outline-none focus:border-brand-champagne"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="block text-xs text-[#A1A1AA]">
+                <label className="block text-xs text-[#9CA3AF]">
                   Negative Marks (-)
                 </label>
                 <input
@@ -221,17 +221,17 @@ export const TeacherExamsPage: React.FC = () => {
                   required
                   value={newNegativeMarks}
                   onChange={(e) => setNewNegativeMarks(e.target.value)}
-                  className="w-full bg-[#080808] border border-[#292929] rounded-md px-3 py-2 text-xs font-mono text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+                  className="w-full bg-[#0A0B0E] border border-[#232734] rounded-md px-3 py-2 text-xs font-mono text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
                 />
               </div>
             </div>
 
-            <div className="bg-[#080808] border border-[#292929] rounded-md p-4 space-y-3">
+            <div className="bg-[#0A0B0E] border border-[#232734] rounded-md p-4 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-medium text-[#F5F3EF]">
+                <span className="text-xs font-medium text-[#F3F4F6]">
                   Question Paper (PDF) & Question Bank Builder
                 </span>
-                <span className="font-mono text-[11px] text-[#A1A1AA]">
+                <span className="font-mono text-[11px] text-[#3B82F6]">
                   Supabase Storage
                 </span>
               </div>
@@ -242,7 +242,7 @@ export const TeacherExamsPage: React.FC = () => {
                   value={questionPaperFile}
                   onChange={(e) => setQuestionPaperFile(e.target.value)}
                   placeholder="Question_Paper_Filename.pdf"
-                  className="w-full bg-[#111111] border border-[#292929] rounded-md px-3 py-2 text-xs font-mono text-[#F5F3EF] focus:outline-none focus:border-[#FF4B00]"
+                  className="w-full bg-[#13161F] border border-[#232734] rounded-md px-3 py-2 text-xs font-mono text-[#F3F4F6] focus:outline-none focus:border-brand-champagne"
                 />
                 <button
                   type="button"
@@ -251,9 +251,9 @@ export const TeacherExamsPage: React.FC = () => {
                       `Attached Question Paper PDF (${questionPaperFile}) and added to Question Bank.`
                     )
                   }
-                  className="w-full px-3.5 py-2 rounded-md bg-[#111111] hover:bg-[#181818] text-[#F5F3EF] border border-[#FF4B00] text-xs font-medium inline-flex items-center justify-center gap-1.5 transition-colors"
+                  className="w-full px-3.5 py-2 rounded-md bg-[#13161F] hover:bg-[#191D28] text-[#F3F4F6] border border-brand-champagne text-xs font-medium inline-flex items-center justify-center gap-1.5 transition-colors"
                 >
-                  <Upload className="w-3.5 h-3.5 text-[#FF4B00]" />
+                  <Upload className="w-3.5 h-3.5 text-brand-champagne" />
                   <span>Upload Question Paper (PDF) / Add Questions</span>
                 </button>
               </div>
@@ -263,14 +263,14 @@ export const TeacherExamsPage: React.FC = () => {
                 value={sampleQuestionPrompt}
                 onChange={(e) => setSampleQuestionPrompt(e.target.value)}
                 placeholder="Optional: Quick-add MCQ stem (e.g., Magnetic field at center of current loop...)"
-                className="w-full bg-[#111111] border border-[#292929] rounded-md px-3 py-2 text-xs text-[#F5F3EF] placeholder-[#A1A1AA] focus:outline-none focus:border-[#FF4B00]"
+                className="w-full bg-[#13161F] border border-[#232734] rounded-md px-3 py-2 text-xs text-[#F3F4F6] placeholder-[#9CA3AF] focus:outline-none focus:border-brand-champagne"
               />
             </div>
 
             <div className="pt-1 flex justify-end">
               <button
                 type="submit"
-                className="px-4 py-2.5 rounded-md bg-[#FF4B00] hover:bg-[#E04200] text-[#F5F3EF] text-xs font-medium inline-flex items-center gap-1.5 transition-colors"
+                className="px-4 py-2.5 rounded-md bg-brand-champagne hover:bg-[#F1C48F] text-[#0A0B0E] text-xs font-semibold inline-flex items-center gap-1.5 transition-colors"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Create New CBT Exam</span>
@@ -279,12 +279,12 @@ export const TeacherExamsPage: React.FC = () => {
           </form>
 
           {/* Active CBT Exams & Result Release Control */}
-          <div className="lg:col-span-6 bg-[#111111] border border-[#292929] rounded-lg p-6 space-y-4">
-            <div className="flex items-center justify-between border-b border-[#292929] pb-3">
-              <h2 className="text-base font-semibold text-[#F5F3EF]">
+          <div className="lg:col-span-6 bg-[#13161F] border border-[#232734] rounded-lg p-6 space-y-4">
+            <div className="flex items-center justify-between border-b border-[#232734] pb-3">
+              <h2 className="text-base font-semibold text-[#F3F4F6]">
                 Configured CBT Examinations ({cbtExams.length})
               </h2>
-              <span className="font-mono text-xs text-[#A1A1AA]">
+              <span className="font-mono text-xs text-[#9CA3AF]">
                 Teacher Result Control
               </span>
             </div>
@@ -293,28 +293,28 @@ export const TeacherExamsPage: React.FC = () => {
               {cbtExams.map((exam) => (
                 <div
                   key={exam.id}
-                  className="bg-[#080808] border border-[#292929] rounded-md p-4 space-y-3"
+                  className="bg-[#0A0B0E] border border-[#232734] rounded-md p-4 space-y-3"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
-                      <span className="font-mono text-xs text-[#FF4B00] font-semibold">
+                      <span className="font-mono text-xs text-brand-champagne font-semibold">
                         {exam.code}
                       </span>
-                      <span className="font-mono text-[11px] px-2 py-0.5 rounded bg-[#111111] border border-[#292929] text-[#A1A1AA]">
+                      <span className="font-mono text-[11px] px-2 py-0.5 rounded bg-[#13161F] border border-[#232734] text-[#3B82F6]">
                         {exam.batchCode}
                       </span>
                     </div>
-                    <span className="font-mono text-xs text-[#F5F3EF] bg-[#111111] px-2.5 py-0.5 rounded border border-[#292929]">
+                    <span className="font-mono text-xs text-[#F3F4F6] bg-[#13161F] px-2.5 py-0.5 rounded border border-[#232734]">
                       +{exam.positiveMarks} / -{exam.negativeMarks} Marking
                     </span>
                   </div>
 
-                  <p className="text-sm font-semibold text-[#F5F3EF]">
+                  <p className="text-sm font-semibold text-[#F3F4F6]">
                     {exam.title}
                   </p>
 
-                  <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-[#292929] text-xs">
-                    <span className="font-mono text-[11px] text-[#A1A1AA]">
+                  <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-[#232734] text-xs">
+                    <span className="font-mono text-[11px] text-[#9CA3AF]">
                       {exam.durationMinutes} mins · {exam.questionPaperPdf}
                     </span>
 
@@ -323,10 +323,10 @@ export const TeacherExamsPage: React.FC = () => {
                       onClick={() =>
                         handleToggleReleaseResults(exam.id, exam.code)
                       }
-                      className={`px-3 py-1.5 rounded-md font-medium transition-colors border ${
+                      className={`px-3 py-1.5 rounded-md font-semibold transition-colors border ${
                         exam.resultsReleased
-                          ? 'bg-[#FF4B00] text-[#F5F3EF] border-[#FF4B00]'
-                          : 'bg-[#111111] text-[#A1A1AA] border-[#292929] hover:text-[#F5F3EF]'
+                          ? 'bg-brand-champagne text-[#0A0B0E] border-brand-champagne'
+                          : 'bg-[#13161F] text-[#9CA3AF] border-[#232734] hover:text-[#F3F4F6]'
                       }`}
                     >
                       {exam.resultsReleased
