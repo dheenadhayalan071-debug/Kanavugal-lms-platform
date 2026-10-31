@@ -1,0 +1,6 @@
+{
+  "name": "Kanavugal Academy",
+  "description": "A Cyber-Brutalist Learning Management System (LMS) for high school student builders mastering full-stack systems, embedded hardware, and distributed protocols.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

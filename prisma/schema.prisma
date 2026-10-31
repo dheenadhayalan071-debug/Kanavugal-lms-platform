@@ -1,0 +1,508 @@
+// prisma/schema.prisma
+// Kanavugal Academy LMS — Academic & Competitive Exam Preparation (Classes 6–12, NEET UG, JEE Main & Advanced)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// -----------------------------------------------------------------------------
+// ENUMS
+// -----------------------------------------------------------------------------
+
+enum Role {
+  STUDENT
+  TEACHER
+  PARENT
+  ADMIN
+}
+
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  SUSPENDED
+}
+
+enum AcademicTrack {
+  FOUNDATION_6_10
+  BOARD_11_12
+  NEET_UG
+  JEE_MAIN_ADVANCED
+}
+
+enum ModuleContentType {
+  VOD_LECTURE
+  PDF_MATERIAL
+  LIVE_CLASS_ZOOM
+}
+
+enum QuestionType {
+  MCQ_SINGLE
+  NUMERICAL
+  DESCRIPTIVE
+}
+
+enum QuestionBankScope {
+  PRIVATE_TEACHER
+  SHARED_ACADEMY
+}
+
+enum SubmissionStatus {
+  IN_PROGRESS
+  SUBMITTED
+  EVALUATED
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  LATE
+  EXCUSED
+}
+
+enum PaymentMethod {
+  CASH
+  UPI
+  NEFT
+  DD_CHEQUE
+}
+
+enum FeeStatus {
+  PAID
+  PARTIAL
+  OVERDUE
+}
+
+// -----------------------------------------------------------------------------
+// 1. BRANCHES & BATCHES (SBO Colony, Anaiyur & Future Campuses)
+// -----------------------------------------------------------------------------
+
+model Branch {
+  id           String   @id @default(cuid())
+  code         String   @unique // e.g., "SBO", "ANAIYUR"
+  name         String   // e.g., "SBO Colony Campus", "Anaiyur Academic Centre"
+  address      String
+  contactPhone String?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  users        User[]
+  batches      Batch[]
+  feeRecords   FeeRecord[]
+
+  @@index([code])
+}
+
+model Batch {
+  id              String        @id @default(cuid())
+  code            String        @unique // e.g., "SBO-NEET-2027-A"
+  name            String        // e.g., "NEET UG 2027 Target Batch A"
+  academicTrack   AcademicTrack
+  classLevel      String        // e.g., "Class 12", "Class 10"
+  academicYear    String        // e.g., "2026-2027"
+  scheduleSummary String        // e.g., "Mon-Sat · 05:30 PM - 08:30 PM"
+  isActive        Boolean       @default(true)
+
+  branchId        String
+  branch          Branch        @relation(fields: [branchId], references: [id], onDelete: Restrict)
+
+  leadTeacherId   String?
+  leadTeacher     User?         @relation("BatchLeadTeacher", fields: [leadTeacherId], references: [id], onDelete: SetNull)
+
+  enrollments     BatchEnrollment[]
+  courses         BatchCourse[]
+  exams           ExamBatchAssignment[]
+  attendanceLogs  AttendanceRecord[]
+
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([branchId])
+  @@index([academicTrack])
+}
+
+// -----------------------------------------------------------------------------
+// 2. USERS & ADMIN-MANAGED PARENT-STUDENT LINKING
+// -----------------------------------------------------------------------------
+
+model User {
+  id               String         @id @default(cuid())
+  supabaseAuthId   String         @unique // Real Supabase Auth UID
+  email            String         @unique
+  phone            String?
+  fullName         String
+  rollNumber       String?        @unique // Monospace roll number for students (e.g., "KA-SBO-26-0142")
+  role             Role           @default(STUDENT)
+  approvalStatus   ApprovalStatus @default(PENDING)
+
+  // Student-specific academic metadata
+  classLevel       String?        // e.g., "Class 12", "Class 9"
+  targetTrack      AcademicTrack?
+
+  // Primary campus branch
+  branchId         String?
+  branch           Branch?        @relation(fields: [branchId], references: [id], onDelete: SetNull)
+
+  // Relations: Parent <-> Student links (Managed manually by Admin)
+  parentLinks      ParentStudentLink[] @relation("ParentToStudents")
+  studentLinks     ParentStudentLink[] @relation("StudentToParents")
+  linksCreatedByMe ParentStudentLink[] @relation("AdminCreatedParentLink")
+
+  // Relations: Teacher ownership
+  managedBatches   Batch[]        @relation("BatchLeadTeacher")
+  taughtCourses    Course[]       @relation("CourseInstructor")
+  authoredQuestions Question[]    @relation("QuestionAuthor")
+  createdExams     Exam[]         @relation("ExamCreator")
+
+  // Relations: Student learning & CBT activity
+  batchEnrollments BatchEnrollment[]
+  moduleProgress   ModuleProgress[]
+  examSubmissions  ExamSubmission[]
+  attendanceLogs   AttendanceRecord[]
+  feeRecords       FeeRecord[]    @relation("StudentFeeRecords")
+
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  @@index([role, approvalStatus])
+  @@index([branchId])
+}
+
+model ParentStudentLink {
+  id              String   @id @default(cuid())
+  parentId        String
+  studentId       String
+  relationship    String   @default("Parent / Guardian") // e.g., "Father", "Mother", "Guardian"
+  linkedByAdminId String
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+
+  parent          User     @relation("ParentToStudents", fields: [parentId], references: [id], onDelete: Cascade)
+  student         User     @relation("StudentToParents", fields: [studentId], references: [id], onDelete: Cascade)
+  linkedByAdmin   User     @relation("AdminCreatedParentLink", fields: [linkedByAdminId], references: [id], onDelete: Restrict)
+
+  @@unique([parentId, studentId])
+  @@index([parentId])
+  @@index([studentId])
+}
+
+model BatchEnrollment {
+  id         String   @id @default(cuid())
+  studentId  String
+  batchId    String
+  enrolledAt DateTime @default(now())
+  isActive   Boolean  @default(true)
+
+  student    User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  batch      Batch    @relation(fields: [batchId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, batchId])
+  @@index([studentId])
+  @@index([batchId])
+}
+
+// -----------------------------------------------------------------------------
+// 3. COURSES, MODULES (VOD / PDF / LIVE ZOOM) & STUDENT PROGRESS
+// -----------------------------------------------------------------------------
+
+model Course {
+  id            String        @id @default(cuid())
+  slug          String        @unique
+  title         String        // e.g., "NEET UG Physics: Electrostatics & Current Electricity"
+  subject       String        // e.g., "Physics", "Chemistry", "Biology", "Mathematics"
+  classLevel    String        // e.g., "Class 12"
+  academicTrack AcademicTrack
+  description   String
+  isPublished   Boolean       @default(false)
+
+  instructorId  String
+  instructor    User          @relation("CourseInstructor", fields: [instructorId], references: [id], onDelete: Restrict)
+
+  batches       BatchCourse[]
+  modules       Module[]
+
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([academicTrack, subject])
+  @@index([instructorId])
+}
+
+model BatchCourse {
+  id        String   @id @default(cuid())
+  batchId   String
+  courseId  String
+  createdAt DateTime @default(now())
+
+  batch     Batch    @relation(fields: [batchId], references: [id], onDelete: Cascade)
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([batchId, courseId])
+}
+
+model Module {
+  id                 String            @id @default(cuid())
+  courseId           String
+  title              String
+  chapterName        String            // e.g., "Rotational Mechanics", "Chemical Bonding"
+  position           Int               // Sequential order inside the course
+  contentType        ModuleContentType @default(VOD_LECTURE)
+  description        String?
+  durationMinutes    Int               @default(60)
+
+  // 1. Recorded VOD Lecture (YouTube Unlisted or dedicated HLS stream)
+  vodUrl             String?
+  youtubeVideoId     String?
+
+  // 2. Study Material PDF (Supabase Storage bucket path & signed/public URL)
+  pdfStoragePath     String?
+  pdfAttachmentTitle String?
+
+  // 3. Live Class (Zoom integration)
+  liveZoomJoinUrl    String?
+  liveZoomMeetingId  String?
+  liveZoomPasscode   String?
+  scheduledStartAt   DateTime?
+  scheduledEndAt     DateTime?
+
+  course             Course            @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  progressRecords    ModuleProgress[]
+
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+
+  @@unique([courseId, position])
+  @@index([courseId])
+}
+
+model ModuleProgress {
+  id               String    @id @default(cuid())
+  studentId        String
+  moduleId         String
+  isCompleted      Boolean   @default(false)
+  watchedSeconds   Int       @default(0)
+  completedAt      DateTime?
+  updatedAt        DateTime  @updatedAt
+
+  student          User      @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  module           Module    @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, moduleId])
+  @@index([studentId])
+}
+
+// -----------------------------------------------------------------------------
+// 4. CBT EXAMINATION ENGINE (NTA-STYLE NEET/JEE MOCKS & DESCRIPTIVE EXAMS)
+// -----------------------------------------------------------------------------
+
+model Exam {
+  id                   String                @id @default(cuid())
+  code                 String                @unique // e.g., "NTA-JEE-MOCK-04"
+  title                String                // e.g., "All-Academy JEE Main Full Syllabus CBT Mock #04"
+  academicTrack        AcademicTrack
+  classLevel           String
+  durationMinutes      Int                   @default(180)
+  totalMarks           Float                 @default(300)
+
+  // Default marking scheme (can be overridden per question)
+  defaultPositiveMarks Float                 @default(4.0)
+  defaultNegativeMarks Float                 @default(1.0) // Stored as positive number deducted on wrong MCQ
+
+  scheduledStartAt     DateTime
+  scheduledEndAt       DateTime?
+  isPublished          Boolean               @default(false)
+  resultsReleased      Boolean               @default(false) // Teacher/Admin controlled manual release
+
+  createdById          String
+  createdBy            User                  @relation("ExamCreator", fields: [createdById], references: [id], onDelete: Restrict)
+
+  batchAssignments     ExamBatchAssignment[]
+  examQuestions        ExamQuestion[]
+  submissions          ExamSubmission[]
+
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+
+  @@index([academicTrack, isPublished])
+}
+
+model ExamBatchAssignment {
+  id         String   @id @default(cuid())
+  examId     String
+  batchId    String
+  assignedAt DateTime @default(now())
+
+  exam       Exam     @relation(fields: [examId], references: [id], onDelete: Cascade)
+  batch      Batch    @relation(fields: [batchId], references: [id], onDelete: Cascade)
+
+  @@unique([examId, batchId])
+}
+
+model Question {
+  id            String            @id @default(cuid())
+  subject       String            // "Physics" | "Chemistry" | "Mathematics" | "Biology"
+  chapter       String            // e.g., "Electrostatics", "Genetics"
+  topic         String?           // e.g., "Gauss Law Applications"
+  classLevel    String            // e.g., "Class 12"
+  academicTrack AcademicTrack
+  questionType  QuestionType      @default(MCQ_SINGLE)
+  bankScope     QuestionBankScope @default(SHARED_ACADEMY)
+
+  promptText    String            // Question stem (supports LaTeX notation)
+  diagramUrl    String?           // Optional Supabase Storage figure/circuit diagram
+  positiveMarks Float             @default(4.0)
+  negativeMarks Float             @default(1.0) // 0 for NUMERICAL or DESCRIPTIVE if desired
+
+  // For NUMERICAL or DESCRIPTIVE evaluation reference
+  numericalAnswer Float?
+  modelAnswerText String?
+  solutionSteps   String?
+
+  authorId      String
+  author        User              @relation("QuestionAuthor", fields: [authorId], references: [id], onDelete: Restrict)
+
+  options       QuestionOption[]
+  examLinks     ExamQuestion[]
+  studentAnswers ExamAnswer[]
+
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  @@index([subject, chapter])
+  @@index([bankScope, authorId])
+}
+
+model QuestionOption {
+  id          String       @id @default(cuid())
+  questionId  String
+  optionLabel String       // "A", "B", "C", "D"
+  optionText  String
+  isCorrect   Boolean      @default(false)
+
+  question    Question     @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  chosenBy    ExamAnswer[]
+
+  @@unique([questionId, optionLabel])
+  @@index([questionId])
+}
+
+model ExamQuestion {
+  id            String   @id @default(cuid())
+  examId        String
+  questionId    String
+  questionOrder Int      // 1-based NTA palette sequence number
+  sectionName   String   @default("Section A") // e.g., "Physics - Section A"
+  positiveMarks Float    @default(4.0)
+  negativeMarks Float    @default(1.0)
+
+  exam          Exam     @relation(fields: [examId], references: [id], onDelete: Cascade)
+  question      Question @relation(fields: [questionId], references: [id], onDelete: Restrict)
+
+  @@unique([examId, questionId])
+  @@unique([examId, questionOrder])
+  @@index([examId])
+}
+
+model ExamSubmission {
+  id                  String           @id @default(cuid())
+  examId              String
+  studentId           String
+  status              SubmissionStatus @default(IN_PROGRESS)
+  startedAt           DateTime         @default(now())
+  submittedAt         DateTime?
+  evaluatedAt         DateTime?
+
+  // Computed CBT Telemetry & Analytics
+  totalScore          Float            @default(0)
+  maxScore            Float            @default(0)
+  accuracyPercentage  Float            @default(0)
+  totalTimeSpentSec   Int              @default(0)
+  correctCount        Int              @default(0)
+  incorrectCount      Int              @default(0)
+  unattemptedCount    Int              @default(0)
+
+  // Teacher feedback for overall attempt
+  teacherRemarks      String?
+
+  exam                Exam             @relation(fields: [examId], references: [id], onDelete: Cascade)
+  student             User             @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  answers             ExamAnswer[]
+
+  @@unique([examId, studentId])
+  @@index([studentId])
+  @@index([examId])
+}
+
+model ExamAnswer {
+  id                   String          @id @default(cuid())
+  submissionId         String
+  questionId           String
+
+  // Student response payload
+  selectedOptionId     String?
+  numericalResponse    Float?
+  descriptiveAnswerText String?
+  attachmentPdfUrl     String?         // Optional scanned answer sheet upload for descriptive exams
+
+  // NTA Palette State & Per-Question Telemetry
+  isMarkedForReview    Boolean         @default(false)
+  timeSpentSeconds     Int             @default(0)
+
+  // Grading outcome
+  isCorrect            Boolean?
+  marksAwarded         Float           @default(0)
+  teacherComment       String?
+
+  submission           ExamSubmission  @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+  question             Question        @relation(fields: [questionId], references: [id], onDelete: Restrict)
+  selectedOption       QuestionOption? @relation(fields: [selectedOptionId], references: [id], onDelete: SetNull)
+
+  @@unique([submissionId, questionId])
+  @@index([submissionId])
+}
+
+// -----------------------------------------------------------------------------
+// 5. ATTENDANCE & OFFLINE FEE RECORDS (PARENT & ADMIN PORTALS)
+// -----------------------------------------------------------------------------
+
+model AttendanceRecord {
+  id          String           @id @default(cuid())
+  studentId   String
+  batchId     String
+  sessionDate DateTime
+  status      AttendanceStatus @default(PRESENT)
+  remarks     String?
+
+  student     User             @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  batch       Batch            @relation(fields: [batchId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, batchId, sessionDate])
+  @@index([studentId, sessionDate])
+}
+
+model FeeRecord {
+  id            String        @id @default(cuid())
+  receiptNumber String        @unique // e.g., "KA-SBO-2026-0891"
+  studentId     String
+  branchId      String
+  termName      String        // e.g., "Term 1 Academic & Test Series Fee (2026-27)"
+  totalAmount   Float
+  amountPaid    Float
+  balanceDue    Float         @default(0)
+  paymentMethod PaymentMethod @default(CASH)
+  status        FeeStatus     @default(PAID)
+  paidAt        DateTime      @default(now())
+  recordedBy    String        // Admin name / ID
+
+  student       User          @relation("StudentFeeRecords", fields: [studentId], references: [id], onDelete: Cascade)
+  branch        Branch        @relation(fields: [branchId], references: [id], onDelete: Restrict)
+
+  @@index([studentId])
+  @@index([branchId])
+}
