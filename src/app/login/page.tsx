@@ -1,7 +1,4 @@
-"use client";
-
 import React, { useState } from 'react';
-import Link from 'next/link';
 import {
   ShieldCheck,
   Lock,
@@ -52,13 +49,13 @@ export const LoginPage: React.FC = () => {
     <main className="min-h-[100dvh] flex flex-col justify-center items-center bg-[#0A0B0E] text-[#F3F4F6] px-4 py-3 relative overflow-x-hidden">
       {/* Compact Top Bar */}
       <div className="w-full max-w-sm md:max-w-md mx-auto flex items-center justify-between mb-3">
-        <Link
+        <a
           href="https://kanavugal-frontend.vercel.app/"
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#13161F] hover:bg-[#11131A] text-[#9CA3AF] hover:text-[#F3F4F6] border border-[#232734] text-xs font-medium transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5 text-brand-champagne" />
           <span>← Back to Kanavugal.Academy</span>
-        </Link>
+        </a>
 
         <div className="hidden sm:flex items-center gap-1.5 text-[11px] font-mono text-[#9CA3AF]">
           <span className="w-1.5 h-1.5 rounded-full bg-brand-champagne" />
@@ -83,7 +80,6 @@ export const LoginPage: React.FC = () => {
         </p>
 
         <form onSubmit={handleSignIn} className="space-y-4">
-          {/* 4-Button Role Grid Only (No Native Select Dropdown) */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-[#9CA3AF] uppercase tracking-wider">
@@ -186,11 +182,10 @@ export const LoginPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Compact Single-Line Footer inside Single Viewport */}
       <footer className="w-full max-w-sm md:max-w-md mx-auto flex items-center justify-between text-[11px] text-[#9CA3AF] mt-3">
         <span>© 2026 Kanavugal Academy</span>
         <span className="font-mono">NEET · JEE · Classes 6–12</span>
       </footer>
     </main>
   );
-}
+};
