@@ -1,4 +1,7 @@
+"use client";
+
 import React, { useState } from 'react';
+import Link from 'next/link';
 import {
   ShieldCheck,
   Lock,
@@ -6,7 +9,6 @@ import {
   ArrowRight,
   ArrowLeft,
   GraduationCap,
-  ExternalLink,
 } from 'lucide-react';
 import { MockRole, useLms } from '../../context/LmsContext';
 import { resolveLoginDashboardRoute } from '../../lib/lmsLogic';
@@ -28,12 +30,11 @@ const ROLE_OPTIONS: {
   { role: 'ADMIN', label: 'Admin' },
 ];
 
-export const LoginPage: React.FC = () => {
+export default function LoginPage() {
   const { switchMockRole, navigate } = useLms();
   const [selectedRole, setSelectedRole] = useState<MockRole>('STUDENT');
   const [email, setEmail] = useState(ROLE_DEFAULT_EMAILS.STUDENT);
   const [password, setPassword] = useState('••••••••••••');
-  const [publicSiteNotice, setPublicSiteNotice] = useState<string | null>(null);
 
   const handleSelectRole = (role: MockRole) => {
     setSelectedRole(role);
@@ -47,36 +48,17 @@ export const LoginPage: React.FC = () => {
     navigate(targetPath);
   };
 
-  const handleBackToPublicSite = () => {
-    setPublicSiteNotice(
-      'Simulated redirect to https://kanavugal.academy (Public Institutional Website).'
-    );
-    setTimeout(() => {
-      setPublicSiteNotice(null);
-    }, 4500);
-  };
-
   return (
     <main className="min-h-[100dvh] flex flex-col justify-center items-center bg-[#0A0B0E] text-[#F3F4F6] px-4 py-3 relative overflow-x-hidden">
-      {publicSiteNotice && (
-        <div className="fixed bottom-4 right-4 z-50 max-w-sm bg-[#13161F] border border-brand-champagne rounded-lg px-4 py-3 shadow-2xl flex items-center gap-2.5">
-          <ExternalLink className="w-4 h-4 text-brand-champagne shrink-0" />
-          <p className="text-xs text-[#F3F4F6] leading-relaxed">
-            {publicSiteNotice}
-          </p>
-        </div>
-      )}
-
       {/* Compact Top Bar */}
       <div className="w-full max-w-sm md:max-w-md mx-auto flex items-center justify-between mb-3">
-        <button
-          type="button"
-          onClick={handleBackToPublicSite}
+        <Link
+          href="https://kanavugal-frontend.vercel.app/"
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#13161F] hover:bg-[#11131A] text-[#9CA3AF] hover:text-[#F3F4F6] border border-[#232734] text-xs font-medium transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5 text-brand-champagne" />
           <span>← Back to Kanavugal.Academy</span>
-        </button>
+        </Link>
 
         <div className="hidden sm:flex items-center gap-1.5 text-[11px] font-mono text-[#9CA3AF]">
           <span className="w-1.5 h-1.5 rounded-full bg-brand-champagne" />
@@ -211,6 +193,4 @@ export const LoginPage: React.FC = () => {
       </footer>
     </main>
   );
-};
-
-export default LoginPage;
+}
