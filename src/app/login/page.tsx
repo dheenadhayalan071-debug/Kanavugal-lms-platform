@@ -30,7 +30,7 @@ const ROLE_OPTIONS: {
   { role: 'ADMIN', label: 'Admin' },
 ];
 
-export default function LoginPage() {
+export const LoginPage: React.FC = () => {
   const { switchMockRole, navigate } = useLms();
   const [selectedRole, setSelectedRole] = useState<MockRole>('STUDENT');
   const [email, setEmail] = useState(ROLE_DEFAULT_EMAILS.STUDENT);
